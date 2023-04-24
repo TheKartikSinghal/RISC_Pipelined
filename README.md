@@ -1,0 +1,1 @@
+6 stage pipelines (Instruction fetch, instruction decode, register  read,  execute,  memory  access, and  write  back)
