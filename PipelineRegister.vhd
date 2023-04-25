@@ -2,15 +2,15 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
-entity LargeRegister is
+entity PipelineRegister is
     port(
     data_in : in std_logic_vector(100 downto 0);
     data_out : out std_logic_vector(100 downto 0);
     clk: in std_logic
     );
-end LargeRegister;
+end PipelineRegister;
 
-architecture arch_LargeRegister of LargeRegister is
+architecture arch_PipelineRegister of PipelineRegister is
     signal data : std_logic_vector(100 downto 0) := (others => "0");
     begin
         p1: process(clk)
@@ -23,4 +23,4 @@ architecture arch_LargeRegister of LargeRegister is
             
         end if;
     end process;
-end arch_LargeRegister;
+end arch_PipelineRegister;
