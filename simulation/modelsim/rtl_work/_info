@@ -1,0 +1,441 @@
+m255
+K4
+z2
+!s11e vcom 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/home/kartik/RISC_Pipelined/simulation/modelsim
+Ealu
+Z1 w1682342368
+Z2 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
+Z3 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z4 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 8
+R0
+Z5 8/home/kartik/RISC_Pipelined/ALU.vhd
+Z6 F/home/kartik/RISC_Pipelined/ALU.vhd
+l0
+L5 1
+VKg_8LdNYAABJ[LV^1gAR]2
+!s100 nk604Tk5PR<S:M8z^HMK70
+Z7 OV;C;2020.1;71
+31
+Z8 !s110 1682451874
+!i10b 1
+Z9 !s108 1682451873.000000
+Z10 !s90 -reportprogress|300|-93|-work|work|/home/kartik/RISC_Pipelined/ALU.vhd|
+Z11 !s107 /home/kartik/RISC_Pipelined/ALU.vhd|
+!i113 1
+Z12 o-93 -work work
+Z13 tExplicit 1 CvgOpt 0
+Aalu_arch
+R2
+R3
+R4
+DEx4 work 3 alu 0 22 Kg_8LdNYAABJ[LV^1gAR]2
+!i122 8
+l75
+L17 110
+ViDcK`IKB[>UUbIUUlIc_;2
+!s100 Z;Q4THg=o7[]NMB54TeoJ2
+R7
+31
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Edatamemory
+Z14 w1682271744
+R2
+R3
+R4
+!i122 7
+R0
+Z15 8/home/kartik/RISC_Pipelined/DataMemory.vhd
+Z16 F/home/kartik/RISC_Pipelined/DataMemory.vhd
+l0
+L5 1
+VNSbF`?;ciIooozMQ?PjdP2
+!s100 XziNAAf1X9RQD2KQITB;53
+R7
+31
+Z17 !s110 1682451873
+!i10b 1
+R9
+Z18 !s90 -reportprogress|300|-93|-work|work|/home/kartik/RISC_Pipelined/DataMemory.vhd|
+Z19 !s107 /home/kartik/RISC_Pipelined/DataMemory.vhd|
+!i113 1
+R12
+R13
+Adatamemory_arch
+R2
+R3
+R4
+DEx4 work 10 datamemory 0 22 NSbF`?;ciIooozMQ?PjdP2
+!i122 7
+l19
+L16 15
+VRhZ[[]6===54n?Ujf1^h]2
+!s100 D7DQ:W649cR9H:Vij5k3T2
+R7
+31
+R17
+!i10b 1
+R9
+R18
+R19
+!i113 1
+R12
+R13
+Edatapath
+Z20 w1682451839
+R2
+R3
+R4
+!i122 6
+R0
+Z21 8/home/kartik/RISC_Pipelined/Datapath.vhd
+Z22 F/home/kartik/RISC_Pipelined/Datapath.vhd
+l0
+L5 1
+V;7nQU7X4F9]>dT6hLMM7E1
+!s100 OAAQS1IF8ai_bJm>90X3z2
+R7
+31
+R17
+!i10b 1
+R9
+Z23 !s90 -reportprogress|300|-93|-work|work|/home/kartik/RISC_Pipelined/Datapath.vhd|
+Z24 !s107 /home/kartik/RISC_Pipelined/Datapath.vhd|
+!i113 1
+R12
+R13
+Aarch_datapath
+R2
+R3
+R4
+DEx4 work 8 datapath 0 22 ;7nQU7X4F9]>dT6hLMM7E1
+!i122 6
+l92
+L10 151
+V_L?ch:g>FNTIo=ibeh85V3
+!s100 `9z>62mhzHLonT4Z01kLW1
+R7
+31
+R17
+!i10b 1
+R9
+R23
+R24
+!i113 1
+R12
+R13
+Einstructionmemory
+Z25 w1682270988
+R2
+R3
+R4
+!i122 5
+R0
+Z26 8/home/kartik/RISC_Pipelined/InstructionMemory.vhd
+Z27 F/home/kartik/RISC_Pipelined/InstructionMemory.vhd
+l0
+L5 1
+V14<aG4CFj=PN1`0:joOb=2
+!s100 YC6C=oTTgE7>YiSVMR3L=3
+R7
+31
+R17
+!i10b 1
+R9
+Z28 !s90 -reportprogress|300|-93|-work|work|/home/kartik/RISC_Pipelined/InstructionMemory.vhd|
+Z29 !s107 /home/kartik/RISC_Pipelined/InstructionMemory.vhd|
+!i113 1
+R12
+R13
+Ainstructionmemory_arch
+R2
+R3
+R4
+DEx4 work 17 instructionmemory 0 22 14<aG4CFj=PN1`0:joOb=2
+!i122 5
+l17
+L14 10
+VZe2WUm8]j7UmN6U8`hJll0
+!s100 0[OWP:E4z;z?bfEiTQm_E2
+R7
+31
+R17
+!i10b 1
+R9
+R28
+R29
+!i113 1
+R12
+R13
+Emux_4to1_16bit
+Z30 w1682344998
+R2
+R3
+R4
+!i122 4
+R0
+Z31 8/home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd
+Z32 F/home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd
+l0
+L5 1
+VXi3eEn@fa[]iUI2`M6nF90
+!s100 A1Y^5L0@4PcbN8cjFGWT82
+R7
+31
+R17
+!i10b 1
+R9
+Z33 !s90 -reportprogress|300|-93|-work|work|/home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd|
+Z34 !s107 /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd|
+!i113 1
+R12
+R13
+Aarch_mux_4to1_16bit
+R2
+R3
+R4
+DEx4 work 14 mux_4to1_16bit 0 22 Xi3eEn@fa[]iUI2`M6nF90
+!i122 4
+l15
+L14 15
+Vk9lfUnAW8L]a3_j3WfmXg1
+!s100 :NGhBfgUG>i4kY>M;KdNP0
+R7
+31
+R17
+!i10b 1
+R9
+R33
+R34
+!i113 1
+R12
+R13
+Epipelineregister
+Z35 w1682417686
+R2
+R3
+R4
+!i122 3
+R0
+Z36 8/home/kartik/RISC_Pipelined/PipelineRegister.vhd
+Z37 F/home/kartik/RISC_Pipelined/PipelineRegister.vhd
+l0
+L5 1
+VkkPb0;jYU`B?=f5mUc^1Q3
+!s100 @63^SLgjCz>W9TF<1bhjA2
+R7
+31
+R17
+!i10b 1
+R9
+Z38 !s90 -reportprogress|300|-93|-work|work|/home/kartik/RISC_Pipelined/PipelineRegister.vhd|
+Z39 !s107 /home/kartik/RISC_Pipelined/PipelineRegister.vhd|
+!i113 1
+R12
+R13
+Aarch_pipelineregister
+R2
+R3
+R4
+DEx4 work 16 pipelineregister 0 22 kkPb0;jYU`B?=f5mUc^1Q3
+!i122 3
+l15
+L13 11
+V0KVUJjH>lcY]URAK<[02F1
+!s100 [7ZzL:2<3l3H]0LNYmSji3
+R7
+31
+R17
+!i10b 1
+R9
+R38
+R39
+!i113 1
+R12
+R13
+Eregister_1bit
+Z40 w1682342543
+R2
+R3
+R4
+!i122 2
+R0
+Z41 8/home/kartik/RISC_Pipelined/register_1bit.vhd
+Z42 F/home/kartik/RISC_Pipelined/register_1bit.vhd
+l0
+L7 1
+VTdnaf=E?2VFIHBCNTWidh3
+!s100 d0id=fcXB?hNRMGAcoAB>2
+R7
+31
+R17
+!i10b 1
+R9
+Z43 !s90 -reportprogress|300|-93|-work|work|/home/kartik/RISC_Pipelined/register_1bit.vhd|
+Z44 !s107 /home/kartik/RISC_Pipelined/register_1bit.vhd|
+!i113 1
+R12
+R13
+Aarch_register_1bit
+R2
+R3
+R4
+DEx4 work 13 register_1bit 0 22 Tdnaf=E?2VFIHBCNTWidh3
+!i122 2
+l18
+L16 13
+VXb==?FjEbfCA8M8J04b9?2
+!s100 0AR7KZ_a0Z3lcaW0SA>ma2
+R7
+31
+R17
+!i10b 1
+R9
+R43
+R44
+!i113 1
+R12
+R13
+Eregisterfile
+Z45 w1682418731
+R2
+R3
+R4
+!i122 1
+R0
+Z46 8/home/kartik/RISC_Pipelined/RegisterFile.vhd
+Z47 F/home/kartik/RISC_Pipelined/RegisterFile.vhd
+l0
+L6 1
+VB:nCj9MZ;]D:NV4PlJbZ:3
+!s100 F9EU_h3RZhD;]BJ:7?Ta>1
+R7
+31
+R17
+!i10b 1
+R9
+Z48 !s90 -reportprogress|300|-93|-work|work|/home/kartik/RISC_Pipelined/RegisterFile.vhd|
+Z49 !s107 /home/kartik/RISC_Pipelined/RegisterFile.vhd|
+!i113 1
+R12
+R13
+Aregisterfile_arch
+R2
+R3
+R4
+DEx4 work 12 registerfile 0 22 B:nCj9MZ;]D:NV4PlJbZ:3
+!i122 1
+l20
+L17 29
+VIzm:W?g5I`K]W6CJU`O6:1
+!s100 07XjiAMd?J`N0hAc9nBVZ2
+R7
+31
+R17
+!i10b 1
+R9
+R48
+R49
+!i113 1
+R12
+R13
+Esignextender
+Z50 w1682417722
+R2
+R3
+R4
+!i122 0
+R0
+Z51 8/home/kartik/RISC_Pipelined/signExtender.vhd
+Z52 F/home/kartik/RISC_Pipelined/signExtender.vhd
+l0
+L5 1
+VMgb86=N@3AK0WALVAV]_71
+!s100 JF7D_6__FNg78YXG:NV<W2
+R7
+31
+R17
+!i10b 1
+R9
+Z53 !s90 -reportprogress|300|-93|-work|work|/home/kartik/RISC_Pipelined/signExtender.vhd|
+Z54 !s107 /home/kartik/RISC_Pipelined/signExtender.vhd|
+!i113 1
+R12
+R13
+Aarch_signextender
+R2
+R3
+R4
+DEx4 work 12 signextender 0 22 Mgb86=N@3AK0WALVAV]_71
+!i122 0
+l16
+L10 30
+V`0?`jST;WO0fjWcUdMf@W0
+!s100 ^fG3bNc7V4E;o3fzT5E7B2
+R7
+31
+R17
+!i10b 1
+R9
+R53
+R54
+!i113 1
+R12
+R13
+Etestbench_tb
+Z55 w1682419314
+R2
+R3
+R4
+!i122 9
+R0
+Z56 8/home/kartik/RISC_Pipelined/testbench.vhd
+Z57 F/home/kartik/RISC_Pipelined/testbench.vhd
+l0
+L6 1
+VJN5z]CanEjRla4BaFS5QR2
+!s100 >=M8Aj>Gd]CED]WPC6Pbd0
+R7
+31
+R8
+!i10b 1
+Z58 !s108 1682451874.000000
+Z59 !s90 -reportprogress|300|-93|-work|work|/home/kartik/RISC_Pipelined/testbench.vhd|
+!s107 /home/kartik/RISC_Pipelined/testbench.vhd|
+!i113 1
+R12
+R13
+Atest_arch
+R2
+R3
+R4
+DEx4 work 12 testbench_tb 0 22 JN5z]CanEjRla4BaFS5QR2
+!i122 9
+l19
+L9 23
+V<Eo4RJ13<e>O4;FRUaQ`i3
+!s100 KaQCMWEKN8VZ@ROaVDizE2
+R7
+31
+R8
+!i10b 1
+R58
+R59
+Z60 !s107 /home/kartik/RISC_Pipelined/testbench.vhd|
+!i113 1
+R12
+R13

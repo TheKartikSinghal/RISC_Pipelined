@@ -10,8 +10,8 @@ entity RegisterFile is
         data_in3 : in std_logic_vector(15 downto 0);
         clk: in std_logic;
         RF_write_enable: in std_logic;
-        PC_in: in std_logic_vector(15 downto 0);
-        PC_out: out std_logic_vector(15 downto 0)
+        PC_in: in std_logic_vector(15 downto 0) := (others => '0');
+        PC_out: out std_logic_vector(15 downto 0):= (others => '0')
     );
 end RegisterFile;
 architecture RegisterFile_arch of RegisterFile is
@@ -20,26 +20,44 @@ architecture RegisterFile_arch of RegisterFile is
     begin
     process(address1,address2,clk)
         begin
-            if(RF_write_enable='1') then
-            RF_data(to_integer(unsigned(address3))) <= data_in3;
-            data_out1 <= RF_data(to_integer(unsigned(address1)));
-            data_out2 <= RF_data(to_integer(unsigned(address2)));
-            if (clk='0') then
-                RF_data(0) <= PC_in;
-                PC_out <= PC_in;
+            if(address3 = "000")then
+                if(RF_write_enable='1') then
+                    if(clk'event and clk='0') then
+                        RF_data(0) <= data_in3;
+                        data_out2 <= RF_data(to_integer(unsigned(address2)));
+                        data_out1 <= RF_data(to_integer(unsigned(address1)));
+                    else
+                        data_out2 <= RF_data(to_integer(unsigned(address2)));
+                        data_out1 <= RF_data(to_integer(unsigned(address1)));
+                        PC_out <= RF_data(0);
+                    end if;
+                else
+                    data_out2 <= RF_data(to_integer(unsigned(address2)));
+                    data_out1 <= RF_data(to_integer(unsigned(address1)));
+                    PC_out <= RF_data(0);
+                end if;
             else
-                PC_out <= RF_data(0);
+                if(RF_write_enable='1') then
+                    RF_data(to_integer(unsigned(address3))) <= data_in3;
+                    data_out1 <= RF_data(to_integer(unsigned(address1)));
+                    data_out2 <= RF_data(to_integer(unsigned(address2)));
+                    if (clk'event and clk='0') then
+                        RF_data(0) <= PC_in;
+                        PC_out <= PC_in;
+                    else
+                        PC_out <= RF_data(0);
+                    end if;
+                else
+                    data_out1 <= RF_data(to_integer(unsigned(address1)));
+                    data_out2 <= RF_data(to_integer(unsigned(address2)));
+                    if (clk'event and clk='0') then
+                        RF_data(0) <= PC_in;
+                        PC_out <= PC_in;
+                    else
+                        PC_out <= RF_data(0);
+                    end if;
+                end if;
             end if;
-            elsif(RF_write_enable='0') then
-            data_out1 <= RF_data(to_integer(unsigned(address1)));
-            data_out2 <= RF_data(to_integer(unsigned(address2)));
-            if (clk='0') then
-                RF_data(0) <= PC_in;
-                PC_out <= PC_in;
-            else
-                PC_out <= RF_data(0);
-            end if;
-        end if;
     end process;
 
 end RegisterFile_arch;

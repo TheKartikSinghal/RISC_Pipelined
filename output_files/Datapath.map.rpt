@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Datapath
-Tue Apr 25 16:02:22 2023
+Wed Apr 26 01:48:23 2023
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -10,27 +10,7 @@ Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
   2. Analysis & Synthesis Summary
   3. Analysis & Synthesis Settings
   4. Parallel Compilation
-  5. Analysis & Synthesis Source Files Read
-  6. Analysis & Synthesis Resource Usage Summary
-  7. Analysis & Synthesis Resource Utilization by Entity
-  8. General Register Statistics
-  9. Port Connectivity Checks: "ALU:alu3"
- 10. Port Connectivity Checks: "ALU:alu2"
- 11. Port Connectivity Checks: "ALU:alu1"
- 12. Port Connectivity Checks: "register_1bit:zflag"
- 13. Port Connectivity Checks: "register_1bit:cflag"
- 14. Port Connectivity Checks: "Mux_4to1_16bit:muxAluB"
- 15. Port Connectivity Checks: "Mux_4to1_16bit:muxpc"
- 16. Port Connectivity Checks: "Mux_4to1_16bit:muxAluA"
- 17. Port Connectivity Checks: "DataMemory:DMem"
- 18. Port Connectivity Checks: "PipelineRegister:MEMWB"
- 19. Port Connectivity Checks: "PipelineRegister:EXMEM"
- 20. Port Connectivity Checks: "PipelineRegister:RREX"
- 21. Port Connectivity Checks: "PipelineRegister:IDRR"
- 22. Port Connectivity Checks: "PipelineRegister:IFID"
- 23. Post-Synthesis Netlist Statistics for Top Partition
- 24. Elapsed Time Per Partition
- 25. Analysis & Synthesis Messages
+  5. Analysis & Synthesis Messages
 
 
 
@@ -57,22 +37,22 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Tue Apr 25 16:02:22 2023       ;
+; Analysis & Synthesis Status        ; Failed - Wed Apr 26 01:48:23 2023           ;
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                      ; Datapath                                    ;
 ; Top-level Entity Name              ; Datapath                                    ;
 ; Family                             ; MAX 10                                      ;
-; Total logic elements               ; 0                                           ;
-;     Total combinational functions  ; 0                                           ;
-;     Dedicated logic registers      ; 0                                           ;
-; Total registers                    ; 0                                           ;
-; Total pins                         ; 1                                           ;
-; Total virtual pins                 ; 0                                           ;
-; Total memory bits                  ; 0                                           ;
-; Embedded Multiplier 9-bit elements ; 0                                           ;
-; Total PLLs                         ; 0                                           ;
-; UFM blocks                         ; 0                                           ;
-; ADC blocks                         ; 0                                           ;
+; Total logic elements               ; N/A until Partition Merge                   ;
+;     Total combinational functions  ; N/A until Partition Merge                   ;
+;     Dedicated logic registers      ; N/A until Partition Merge                   ;
+; Total registers                    ; N/A until Partition Merge                   ;
+; Total pins                         ; N/A until Partition Merge                   ;
+; Total virtual pins                 ; N/A until Partition Merge                   ;
+; Total memory bits                  ; N/A until Partition Merge                   ;
+; Embedded Multiplier 9-bit elements ; N/A until Partition Merge                   ;
+; Total PLLs                         ; N/A until Partition Merge                   ;
+; UFM blocks                         ; N/A until Partition Merge                   ;
+; ADC blocks                         ; N/A until Partition Merge                   ;
 +------------------------------------+---------------------------------------------+
 
 
@@ -178,255 +158,13 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                             ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                      ; Library ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------+---------+
-; signExtender.vhd                 ; yes             ; User VHDL File  ; /home/kartik/RISC_Pipelined/signExtender.vhd      ;         ;
-; RegisterFile.vhd                 ; yes             ; User VHDL File  ; /home/kartik/RISC_Pipelined/RegisterFile.vhd      ;         ;
-; register_1bit.vhd                ; yes             ; User VHDL File  ; /home/kartik/RISC_Pipelined/register_1bit.vhd     ;         ;
-; PipelineRegister.vhd             ; yes             ; User VHDL File  ; /home/kartik/RISC_Pipelined/PipelineRegister.vhd  ;         ;
-; Mux_4to1_16bit.vhd               ; yes             ; User VHDL File  ; /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd    ;         ;
-; InstructionMemory.vhd            ; yes             ; User VHDL File  ; /home/kartik/RISC_Pipelined/InstructionMemory.vhd ;         ;
-; Datapath.vhd                     ; yes             ; User VHDL File  ; /home/kartik/RISC_Pipelined/Datapath.vhd          ;         ;
-; DataMemory.vhd                   ; yes             ; User VHDL File  ; /home/kartik/RISC_Pipelined/DataMemory.vhd        ;         ;
-; ALU.vhd                          ; yes             ; User VHDL File  ; /home/kartik/RISC_Pipelined/ALU.vhd               ;         ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------+---------+
-
-
-+-----------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary         ;
-+---------------------------------------------+-------+
-; Resource                                    ; Usage ;
-+---------------------------------------------+-------+
-;                                             ;       ;
-; Total combinational functions               ; 0     ;
-; Logic element usage by number of LUT inputs ;       ;
-;     -- 4 input functions                    ; 0     ;
-;     -- 3 input functions                    ; 0     ;
-;     -- <=2 input functions                  ; 0     ;
-;                                             ;       ;
-; Logic elements by mode                      ;       ;
-;     -- normal mode                          ; 0     ;
-;     -- arithmetic mode                      ; 0     ;
-;                                             ;       ;
-; Total registers                             ; 0     ;
-;     -- Dedicated logic registers            ; 0     ;
-;     -- I/O registers                        ; 0     ;
-;                                             ;       ;
-; I/O pins                                    ; 1     ;
-;                                             ;       ;
-; Embedded Multiplier 9-bit elements          ; 0     ;
-;                                             ;       ;
-; Maximum fan-out node                        ; clk   ;
-; Maximum fan-out                             ; 1     ;
-; Total fan-out                               ; 1     ;
-; Average fan-out                             ; 0.50  ;
-+---------------------------------------------+-------+
-
-
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                ;
-+----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+-------------+--------------+
-; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name ; Entity Name ; Library Name ;
-+----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+-------------+--------------+
-; |Datapath                  ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 1    ; 0            ; 0          ; |Datapath           ; Datapath    ; work         ;
-+----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+-------------+--------------+
-Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
-
-
-+------------------------------------------------------+
-; General Register Statistics                          ;
-+----------------------------------------------+-------+
-; Statistic                                    ; Value ;
-+----------------------------------------------+-------+
-; Total registers                              ; 0     ;
-; Number of registers using Synchronous Clear  ; 0     ;
-; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 0     ;
-; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 0     ;
-; Number of registers using Preset             ; 0     ;
-+----------------------------------------------+-------+
-
-
-+-----------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "ALU:alu3"                                                                                  ;
-+-------------+--------+----------+-------------------------------------------------------------------------------------+
-; Port        ; Type   ; Severity ; Details                                                                             ;
-+-------------+--------+----------+-------------------------------------------------------------------------------------+
-; control_sel ; Input  ; Info     ; Stuck at GND                                                                        ;
-; c_flag      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; z_flag      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; e_flag      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+-------------+--------+----------+-------------------------------------------------------------------------------------+
-
-
-+------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "ALU:alu2"                                                                             ;
-+--------+--------+----------+-------------------------------------------------------------------------------------+
-; Port   ; Type   ; Severity ; Details                                                                             ;
-+--------+--------+----------+-------------------------------------------------------------------------------------+
-; e_flag ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+--------+--------+----------+-------------------------------------------------------------------------------------+
-
-
-+-----------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "ALU:alu1"                                                                                  ;
-+-------------+--------+----------+-------------------------------------------------------------------------------------+
-; Port        ; Type   ; Severity ; Details                                                                             ;
-+-------------+--------+----------+-------------------------------------------------------------------------------------+
-; b[15..1]    ; Input  ; Info     ; Stuck at GND                                                                        ;
-; b[0]        ; Input  ; Info     ; Stuck at VCC                                                                        ;
-; control_sel ; Input  ; Info     ; Stuck at GND                                                                        ;
-; c_flag      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; z_flag      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; e_flag      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+-------------+--------+----------+-------------------------------------------------------------------------------------+
-
-
-+--------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "register_1bit:zflag"                                                                    ;
-+----------+--------+----------+-------------------------------------------------------------------------------------+
-; Port     ; Type   ; Severity ; Details                                                                             ;
-+----------+--------+----------+-------------------------------------------------------------------------------------+
-; data_out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+----------+--------+----------+-------------------------------------------------------------------------------------+
-
-
-+--------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "register_1bit:cflag"                                                                    ;
-+----------+--------+----------+-------------------------------------------------------------------------------------+
-; Port     ; Type   ; Severity ; Details                                                                             ;
-+----------+--------+----------+-------------------------------------------------------------------------------------+
-; data_out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+----------+--------+----------+-------------------------------------------------------------------------------------+
-
-
-+----------------------------------------------------+
-; Port Connectivity Checks: "Mux_4to1_16bit:muxAluB" ;
-+----------+-------+----------+----------------------+
-; Port     ; Type  ; Severity ; Details              ;
-+----------+-------+----------+----------------------+
-; c[15..1] ; Input ; Info     ; Stuck at GND         ;
-; c[0]     ; Input ; Info     ; Stuck at VCC         ;
-; d        ; Input ; Info     ; Stuck at GND         ;
-+----------+-------+----------+----------------------+
-
-
-+--------------------------------------------------+
-; Port Connectivity Checks: "Mux_4to1_16bit:muxpc" ;
-+------+-------+----------+------------------------+
-; Port ; Type  ; Severity ; Details                ;
-+------+-------+----------+------------------------+
-; d    ; Input ; Info     ; Stuck at GND           ;
-+------+-------+----------+------------------------+
-
-
-+----------------------------------------------------+
-; Port Connectivity Checks: "Mux_4to1_16bit:muxAluA" ;
-+------+-------+----------+--------------------------+
-; Port ; Type  ; Severity ; Details                  ;
-+------+-------+----------+--------------------------+
-; d    ; Input ; Info     ; Stuck at GND             ;
-+------+-------+----------+--------------------------+
-
-
-+---------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "DataMemory:DMem"                                                                               ;
-+-----------------+--------+----------+-------------------------------------------------------------------------------------+
-; Port            ; Type   ; Severity ; Details                                                                             ;
-+-----------------+--------+----------+-------------------------------------------------------------------------------------+
-; data_out_memory ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+-----------------+--------+----------+-------------------------------------------------------------------------------------+
-
-
-+---------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "PipelineRegister:MEMWB"                                                                        ;
-+-----------------+--------+----------+-------------------------------------------------------------------------------------+
-; Port            ; Type   ; Severity ; Details                                                                             ;
-+-----------------+--------+----------+-------------------------------------------------------------------------------------+
-; data_in[68..48] ; Input  ; Info     ; Stuck at GND                                                                        ;
-; data_out[84..6] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; data_out[2..0]  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+-----------------+--------+----------+-------------------------------------------------------------------------------------+
-
-
-+----------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "PipelineRegister:EXMEM"                                                                         ;
-+------------------+--------+----------+-------------------------------------------------------------------------------------+
-; Port             ; Type   ; Severity ; Details                                                                             ;
-+------------------+--------+----------+-------------------------------------------------------------------------------------+
-; data_in[68..48]  ; Input  ; Info     ; Stuck at GND                                                                        ;
-; data_out[68..48] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+------------------+--------+----------+-------------------------------------------------------------------------------------+
-
-
-+-----------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "PipelineRegister:RREX"                                                                           ;
-+-------------------+--------+----------+-------------------------------------------------------------------------------------+
-; Port              ; Type   ; Severity ; Details                                                                             ;
-+-------------------+--------+----------+-------------------------------------------------------------------------------------+
-; data_in[100..85]  ; Input  ; Info     ; Stuck at GND                                                                        ;
-; data_in[68..48]   ; Input  ; Info     ; Stuck at GND                                                                        ;
-; data_out[100..85] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; data_out[68..48]  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+-------------------+--------+----------+-------------------------------------------------------------------------------------+
-
-
-+-----------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "PipelineRegister:IDRR"                                                                           ;
-+-------------------+--------+----------+-------------------------------------------------------------------------------------+
-; Port              ; Type   ; Severity ; Details                                                                             ;
-+-------------------+--------+----------+-------------------------------------------------------------------------------------+
-; data_in[100..85]  ; Input  ; Info     ; Stuck at GND                                                                        ;
-; data_in[68..16]   ; Input  ; Info     ; Stuck at GND                                                                        ;
-; data_out[100..12] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; data_out[5..0]    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+-------------------+--------+----------+-------------------------------------------------------------------------------------+
-
-
-+-----------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "PipelineRegister:IFID"                                                                           ;
-+-------------------+--------+----------+-------------------------------------------------------------------------------------+
-; Port              ; Type   ; Severity ; Details                                                                             ;
-+-------------------+--------+----------+-------------------------------------------------------------------------------------+
-; data_in[100..85]  ; Input  ; Info     ; Stuck at GND                                                                        ;
-; data_in[68..16]   ; Input  ; Info     ; Stuck at GND                                                                        ;
-; data_out[100..85] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; data_out[68..16]  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+-------------------+--------+----------+-------------------------------------------------------------------------------------+
-
-
-+-----------------------------------------------------+
-; Post-Synthesis Netlist Statistics for Top Partition ;
-+-------------------+---------------------------------+
-; Type              ; Count                           ;
-+-------------------+---------------------------------+
-; boundary_port     ; 1                               ;
-;                   ;                                 ;
-; Max LUT depth     ; 0.00                            ;
-; Average LUT depth ; 0.00                            ;
-+-------------------+---------------------------------+
-
-
-+-------------------------------+
-; Elapsed Time Per Partition    ;
-+----------------+--------------+
-; Partition Name ; Elapsed Time ;
-+----------------+--------------+
-; Top            ; 00:00:00     ;
-+----------------+--------------+
-
-
 +-------------------------------+
 ; Analysis & Synthesis Messages ;
 +-------------------------------+
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Tue Apr 25 16:02:16 2023
+    Info: Processing started: Wed Apr 26 01:48:15 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off RISCee -c Datapath
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
@@ -487,252 +225,64 @@ Warning (10873): Using initial value X (don't care) for net "EXMEM_in[68..48]" a
 Warning (10873): Using initial value X (don't care) for net "MEMWB_in[68..48]" at Datapath.vhd(89) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 89
 Info (12128): Elaborating entity "PipelineRegister" for hierarchy "PipelineRegister:IFID" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 93
 Warning (10036): Verilog HDL or VHDL warning at PipelineRegister.vhd(14): object "data" assigned a value but never read File: /home/kartik/RISC_Pipelined/PipelineRegister.vhd Line: 14
-Info (12128): Elaborating entity "InstructionMemory" for hierarchy "InstructionMemory:IMem" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 141
+Info (12128): Elaborating entity "InstructionMemory" for hierarchy "InstructionMemory:IMem" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 99
 Warning (10492): VHDL Process Statement warning at InstructionMemory.vhd(20): signal "Instructions" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/InstructionMemory.vhd Line: 20
-Info (12128): Elaborating entity "DataMemory" for hierarchy "DataMemory:DMem" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 142
+Info (12128): Elaborating entity "DataMemory" for hierarchy "DataMemory:DMem" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 100
 Warning (10492): VHDL Process Statement warning at DataMemory.vhd(22): signal "Memory_write_enable" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/DataMemory.vhd Line: 22
 Warning (10492): VHDL Process Statement warning at DataMemory.vhd(23): signal "data_in_memory" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/DataMemory.vhd Line: 23
 Warning (10492): VHDL Process Statement warning at DataMemory.vhd(24): signal "Memory_data" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/DataMemory.vhd Line: 24
 Warning (10492): VHDL Process Statement warning at DataMemory.vhd(25): signal "Memory_write_enable" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/DataMemory.vhd Line: 25
 Warning (10492): VHDL Process Statement warning at DataMemory.vhd(26): signal "Memory_data" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/DataMemory.vhd Line: 26
 Warning (10631): VHDL Process Statement warning at DataMemory.vhd(20): inferring latch(es) for signal or variable "data_out_memory", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/DataMemory.vhd Line: 20
-Info (12128): Elaborating entity "RegisterFile" for hierarchy "RegisterFile:RF" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 143
-Warning (10492): VHDL Process Statement warning at RegisterFile.vhd(23): signal "RF_write_enable" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 23
-Warning (10492): VHDL Process Statement warning at RegisterFile.vhd(24): signal "data_in3" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 24
-Warning (10492): VHDL Process Statement warning at RegisterFile.vhd(24): signal "address3" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 24
-Warning (10492): VHDL Process Statement warning at RegisterFile.vhd(25): signal "RF_data" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 25
-Warning (10492): VHDL Process Statement warning at RegisterFile.vhd(26): signal "RF_data" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 26
-Warning (10492): VHDL Process Statement warning at RegisterFile.vhd(28): signal "PC_in" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 28
-Warning (10492): VHDL Process Statement warning at RegisterFile.vhd(29): signal "PC_in" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 29
+Info (12128): Elaborating entity "RegisterFile" for hierarchy "RegisterFile:RF" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 101
+Warning (10492): VHDL Process Statement warning at RegisterFile.vhd(23): signal "address3" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 23
+Warning (10492): VHDL Process Statement warning at RegisterFile.vhd(24): signal "RF_write_enable" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 24
+Warning (10492): VHDL Process Statement warning at RegisterFile.vhd(30): signal "RF_data" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 30
 Warning (10492): VHDL Process Statement warning at RegisterFile.vhd(31): signal "RF_data" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 31
-Warning (10492): VHDL Process Statement warning at RegisterFile.vhd(33): signal "RF_write_enable" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 33
-Warning (10492): VHDL Process Statement warning at RegisterFile.vhd(34): signal "RF_data" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 34
+Warning (10492): VHDL Process Statement warning at RegisterFile.vhd(32): signal "RF_data" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 32
 Warning (10492): VHDL Process Statement warning at RegisterFile.vhd(35): signal "RF_data" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 35
-Warning (10492): VHDL Process Statement warning at RegisterFile.vhd(37): signal "PC_in" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 37
-Warning (10492): VHDL Process Statement warning at RegisterFile.vhd(38): signal "PC_in" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 38
-Warning (10492): VHDL Process Statement warning at RegisterFile.vhd(40): signal "RF_data" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 40
+Warning (10492): VHDL Process Statement warning at RegisterFile.vhd(36): signal "RF_data" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 36
+Warning (10492): VHDL Process Statement warning at RegisterFile.vhd(37): signal "RF_data" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 37
+Warning (10492): VHDL Process Statement warning at RegisterFile.vhd(40): signal "RF_write_enable" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 40
+Warning (10492): VHDL Process Statement warning at RegisterFile.vhd(41): signal "data_in3" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 41
+Warning (10492): VHDL Process Statement warning at RegisterFile.vhd(41): signal "address3" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 41
+Warning (10492): VHDL Process Statement warning at RegisterFile.vhd(42): signal "RF_data" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 42
+Warning (10492): VHDL Process Statement warning at RegisterFile.vhd(43): signal "RF_data" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 43
+Warning (10492): VHDL Process Statement warning at RegisterFile.vhd(48): signal "RF_data" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 48
+Warning (10492): VHDL Process Statement warning at RegisterFile.vhd(51): signal "RF_data" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 51
+Warning (10492): VHDL Process Statement warning at RegisterFile.vhd(52): signal "RF_data" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 52
+Warning (10492): VHDL Process Statement warning at RegisterFile.vhd(57): signal "RF_data" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 57
 Warning (10631): VHDL Process Statement warning at RegisterFile.vhd(21): inferring latch(es) for signal or variable "RF_data", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Warning (10631): VHDL Process Statement warning at RegisterFile.vhd(21): inferring latch(es) for signal or variable "data_out1", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Warning (10631): VHDL Process Statement warning at RegisterFile.vhd(21): inferring latch(es) for signal or variable "data_out2", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Warning (10631): VHDL Process Statement warning at RegisterFile.vhd(21): inferring latch(es) for signal or variable "PC_out", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[7][0]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[7][1]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[7][2]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[7][3]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[7][4]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[7][5]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[7][6]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[7][7]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[7][8]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[7][9]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[7][10]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[7][11]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[7][12]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[7][13]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[7][14]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[7][15]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[6][0]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[6][1]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[6][2]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[6][3]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[6][4]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[6][5]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[6][6]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[6][7]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[6][8]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[6][9]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[6][10]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[6][11]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[6][12]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[6][13]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[6][14]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[6][15]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[5][0]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[5][1]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[5][2]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[5][3]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[5][4]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[5][5]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[5][6]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[5][7]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[5][8]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[5][9]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[5][10]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[5][11]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[5][12]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[5][13]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[5][14]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[5][15]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[4][0]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[4][1]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[4][2]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[4][3]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[4][4]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[4][5]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[4][6]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[4][7]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[4][8]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[4][9]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[4][10]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[4][11]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[4][12]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[4][13]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[4][14]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[4][15]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[3][0]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[3][1]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[3][2]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[3][3]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[3][4]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[3][5]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[3][6]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[3][7]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[3][8]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[3][9]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[3][10]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[3][11]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[3][12]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[3][13]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[3][14]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[3][15]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[2][0]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[2][1]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[2][2]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[2][3]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[2][4]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[2][5]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[2][6]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[2][7]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[2][8]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[2][9]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[2][10]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[2][11]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[2][12]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[2][13]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[2][14]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[2][15]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[1][0]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[1][1]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[1][2]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[1][3]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[1][4]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[1][5]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[1][6]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[1][7]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[1][8]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[1][9]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[1][10]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[1][11]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[1][12]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[1][13]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[1][14]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[1][15]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[0][0]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[0][1]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[0][2]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[0][3]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[0][4]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[0][5]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[0][6]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[0][7]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[0][8]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[0][9]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[0][10]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[0][11]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[0][12]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[0][13]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[0][14]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (10041): Inferred latch for "RF_data[0][15]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
-Info (12128): Elaborating entity "Mux_4to1_16bit" for hierarchy "Mux_4to1_16bit:muxAluA" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 144
-Warning (10631): VHDL Process Statement warning at Mux_4to1_16bit.vhd(16): inferring latch(es) for signal or variable "output", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 16
-Info (10041): Inferred latch for "output[0]" at Mux_4to1_16bit.vhd(16) File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 16
-Info (10041): Inferred latch for "output[1]" at Mux_4to1_16bit.vhd(16) File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 16
-Info (10041): Inferred latch for "output[2]" at Mux_4to1_16bit.vhd(16) File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 16
-Info (10041): Inferred latch for "output[3]" at Mux_4to1_16bit.vhd(16) File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 16
-Info (10041): Inferred latch for "output[4]" at Mux_4to1_16bit.vhd(16) File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 16
-Info (10041): Inferred latch for "output[5]" at Mux_4to1_16bit.vhd(16) File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 16
-Info (10041): Inferred latch for "output[6]" at Mux_4to1_16bit.vhd(16) File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 16
-Info (10041): Inferred latch for "output[7]" at Mux_4to1_16bit.vhd(16) File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 16
-Info (10041): Inferred latch for "output[8]" at Mux_4to1_16bit.vhd(16) File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 16
-Info (10041): Inferred latch for "output[9]" at Mux_4to1_16bit.vhd(16) File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 16
-Info (10041): Inferred latch for "output[10]" at Mux_4to1_16bit.vhd(16) File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 16
-Info (10041): Inferred latch for "output[11]" at Mux_4to1_16bit.vhd(16) File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 16
-Info (10041): Inferred latch for "output[12]" at Mux_4to1_16bit.vhd(16) File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 16
-Info (10041): Inferred latch for "output[13]" at Mux_4to1_16bit.vhd(16) File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 16
-Info (10041): Inferred latch for "output[14]" at Mux_4to1_16bit.vhd(16) File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 16
-Info (10041): Inferred latch for "output[15]" at Mux_4to1_16bit.vhd(16) File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 16
-Info (12128): Elaborating entity "register_1bit" for hierarchy "register_1bit:cflag" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 147
-Warning (10492): VHDL Process Statement warning at register_1bit.vhd(21): signal "reg_WE" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/register_1bit.vhd Line: 21
-Warning (10492): VHDL Process Statement warning at register_1bit.vhd(24): signal "reg_WE" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/register_1bit.vhd Line: 24
-Warning (10492): VHDL Process Statement warning at register_1bit.vhd(25): signal "data" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/register_1bit.vhd Line: 25
-Warning (10631): VHDL Process Statement warning at register_1bit.vhd(19): inferring latch(es) for signal or variable "data", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/register_1bit.vhd Line: 19
-Warning (10631): VHDL Process Statement warning at register_1bit.vhd(19): inferring latch(es) for signal or variable "data_out", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/register_1bit.vhd Line: 19
-Info (10041): Inferred latch for "data" at register_1bit.vhd(19) File: /home/kartik/RISC_Pipelined/register_1bit.vhd Line: 19
-Info (12128): Elaborating entity "SignExtender" for hierarchy "SignExtender:se" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 150
-Warning (10492): VHDL Process Statement warning at signExtender.vhd(21): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 21
-Warning (10492): VHDL Process Statement warning at signExtender.vhd(22): signal "input" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 22
-Warning (10492): VHDL Process Statement warning at signExtender.vhd(24): signal "input" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 24
-Warning (10492): VHDL Process Statement warning at signExtender.vhd(26): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 26
-Warning (10492): VHDL Process Statement warning at signExtender.vhd(27): signal "input" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 27
-Warning (10492): VHDL Process Statement warning at signExtender.vhd(29): signal "input" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 29
-Warning (10492): VHDL Process Statement warning at signExtender.vhd(31): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 31
-Warning (10492): VHDL Process Statement warning at signExtender.vhd(32): signal "input" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 32
-Warning (10631): VHDL Process Statement warning at signExtender.vhd(17): inferring latch(es) for signal or variable "output", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
-Info (10041): Inferred latch for "output[0]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
-Info (10041): Inferred latch for "output[1]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
-Info (10041): Inferred latch for "output[2]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
-Info (10041): Inferred latch for "output[3]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
-Info (10041): Inferred latch for "output[4]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
-Info (10041): Inferred latch for "output[5]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
-Info (10041): Inferred latch for "output[6]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
-Info (10041): Inferred latch for "output[7]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
-Info (10041): Inferred latch for "output[8]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
-Info (10041): Inferred latch for "output[9]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
-Info (10041): Inferred latch for "output[10]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
-Info (10041): Inferred latch for "output[11]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
-Info (10041): Inferred latch for "output[12]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
-Info (10041): Inferred latch for "output[13]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
-Info (10041): Inferred latch for "output[14]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
-Info (10041): Inferred latch for "output[15]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
-Info (12128): Elaborating entity "ALU" for hierarchy "ALU:alu1" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 151
-Warning (10492): VHDL Process Statement warning at ALU.vhd(82): signal "control_sel" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 82
-Warning (10492): VHDL Process Statement warning at ALU.vhd(114): signal "C" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 114
-Warning (10492): VHDL Process Statement warning at ALU.vhd(115): signal "Z" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 115
-Warning (10492): VHDL Process Statement warning at ALU.vhd(116): signal "E" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 116
-Warning (10631): VHDL Process Statement warning at ALU.vhd(76): inferring latch(es) for signal or variable "ALU_out", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 76
-Warning (10631): VHDL Process Statement warning at ALU.vhd(76): inferring latch(es) for signal or variable "C", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 76
-Warning (10631): VHDL Process Statement warning at ALU.vhd(76): inferring latch(es) for signal or variable "Z", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 76
-Warning (10631): VHDL Process Statement warning at ALU.vhd(76): inferring latch(es) for signal or variable "E", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 76
-Info (10041): Inferred latch for "E" at ALU.vhd(76) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 76
-Info (10041): Inferred latch for "Z" at ALU.vhd(76) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 76
-Info (10041): Inferred latch for "C" at ALU.vhd(76) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 76
-Info (10041): Inferred latch for "ALU_out[0]" at ALU.vhd(76) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 76
-Info (10041): Inferred latch for "ALU_out[1]" at ALU.vhd(76) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 76
-Info (10041): Inferred latch for "ALU_out[2]" at ALU.vhd(76) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 76
-Info (10041): Inferred latch for "ALU_out[3]" at ALU.vhd(76) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 76
-Info (10041): Inferred latch for "ALU_out[4]" at ALU.vhd(76) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 76
-Info (10041): Inferred latch for "ALU_out[5]" at ALU.vhd(76) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 76
-Info (10041): Inferred latch for "ALU_out[6]" at ALU.vhd(76) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 76
-Info (10041): Inferred latch for "ALU_out[7]" at ALU.vhd(76) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 76
-Info (10041): Inferred latch for "ALU_out[8]" at ALU.vhd(76) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 76
-Info (10041): Inferred latch for "ALU_out[9]" at ALU.vhd(76) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 76
-Info (10041): Inferred latch for "ALU_out[10]" at ALU.vhd(76) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 76
-Info (10041): Inferred latch for "ALU_out[11]" at ALU.vhd(76) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 76
-Info (10041): Inferred latch for "ALU_out[12]" at ALU.vhd(76) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 76
-Info (10041): Inferred latch for "ALU_out[13]" at ALU.vhd(76) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 76
-Info (10041): Inferred latch for "ALU_out[14]" at ALU.vhd(76) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 76
-Info (10041): Inferred latch for "ALU_out[15]" at ALU.vhd(76) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 76
-Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
-    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 1 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "clk" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 6
-Info (21057): Implemented 1 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 1 input pins
-    Info (21059): Implemented 0 output pins
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 73 warnings
-    Info: Peak virtual memory: 432 megabytes
-    Info: Processing ended: Tue Apr 25 16:02:22 2023
-    Info: Elapsed time: 00:00:06
-    Info: Total CPU time (on all processors): 00:00:14
+Error (10818): Can't infer register for "PC_out[0]" at RegisterFile.vhd(53) because it does not hold its value outside the clock edge File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 53
+Error (10818): Can't infer register for "PC_out[0]" at RegisterFile.vhd(44) because it does not hold its value outside the clock edge File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 44
+Error (10818): Can't infer register for "PC_out[0]" at RegisterFile.vhd(25) because it does not hold its value outside the clock edge File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 25
+Info (10041): Inferred latch for "PC_out[0]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
+Error (10818): Can't infer register for "PC_out[1]" at RegisterFile.vhd(53) because it does not hold its value outside the clock edge File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 53
+Error (10818): Can't infer register for "PC_out[1]" at RegisterFile.vhd(44) because it does not hold its value outside the clock edge File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 44
+Error (10818): Can't infer register for "PC_out[1]" at RegisterFile.vhd(25) because it does not hold its value outside the clock edge File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 25
+Info (10041): Inferred latch for "PC_out[1]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
+Error (10818): Can't infer register for "PC_out[2]" at RegisterFile.vhd(53) because it does not hold its value outside the clock edge File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 53
+Error (10818): Can't infer register for "PC_out[2]" at RegisterFile.vhd(44) because it does not hold its value outside the clock edge File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 44
+Error (10818): Can't infer register for "PC_out[2]" at RegisterFile.vhd(25) because it does not hold its value outside the clock edge File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 25
+Info (10041): Inferred latch for "PC_out[2]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
+Error (10818): Can't infer register for "PC_out[3]" at RegisterFile.vhd(53) because it does not hold its value outside the clock edge File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 53
+Error (10818): Can't infer register for "PC_out[3]" at RegisterFile.vhd(44) because it does not hold its value outside the clock edge File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 44
+Error (10818): Can't infer register for "PC_out[3]" at RegisterFile.vhd(25) because it does not hold its value outside the clock edge File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 25
+Info (10041): Inferred latch for "PC_out[3]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
+Error (10818): Can't infer register for "PC_out[4]" at RegisterFile.vhd(53) because it does not hold its value outside the clock edge File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 53
+Error (10818): Can't infer register for "PC_out[4]" at RegisterFile.vhd(44) because it does not hold its value outside the clock edge File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 44
+Error (10818): Can't infer register for "PC_out[4]" at RegisterFile.vhd(25) because it does not hold its value outside the clock edge File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 25
+Info (10041): Inferred latch for "PC_out[4]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
+Error (10818): Can't infer register for "PC_out[5]" at RegisterFile.vhd(53) because it does not hold its value outside the clock edge File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 53
+Error (10818): Can't infer register for "PC_out[5]" at RegisterFile.vhd(44) because it does not hold its value outside the clock edge File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 44
+Error (10818): Can't infer register for "PC_out[5]" at RegisterFile.vhd(25) because it does not hold its value outside the clock edge File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 25
+Info (10041): Inferred latch for "PC_out[5]" at RegisterFile.vhd(21) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 21
+Error (10818): Can't infer register for "PC_out[6]" at RegisterFile.vhd(53) because it does not hold its value outside the clock edge File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 53
+Error (12152): Can't elaborate user hierarchy "RegisterFile:RF" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 101
+Error: Quartus Prime Analysis & Synthesis was unsuccessful. 20 errors, 48 warnings
+    Error: Peak virtual memory: 426 megabytes
+    Error: Processing ended: Wed Apr 26 01:48:23 2023
+    Error: Elapsed time: 00:00:08
+    Error: Total CPU time (on all processors): 00:00:20
 
 

@@ -38,15 +38,15 @@ architecture arch_Datapath of Datapath is
         end component;
 
     component RegisterFile is 
-        port(
-            address1,address2,address3 : in std_logic_vector(2 downto 0);
-            data_out1,data_out2 : out std_logic_vector(15 downto 0);
-            data_in3 : in std_logic_vector(15 downto 0);
-            clk: in std_logic;
-            RF_write_enable: in std_logic;
-            PC_in: in std_logic_vector(15 downto 0);
-            PC_out: out std_logic_vector(15 downto 0)
-        );
+    port(
+        address1,address2,address3 : in std_logic_vector(2 downto 0);
+        data_out1,data_out2 : out std_logic_vector(15 downto 0);
+        data_in3 : in std_logic_vector(15 downto 0);
+        clk: in std_logic;
+        RF_write_enable: in std_logic;
+        PC_in: in std_logic_vector(15 downto 0) := (others => '0');
+        PC_out: out std_logic_vector(15 downto 0):= (others => '0')
+    );
         end component;
     
     component ALU is
@@ -95,9 +95,25 @@ begin
     RREX: PipelineRegister port map(RREX_in,RREX_out,clk);
     EXMEM: PipelineRegister port map(EXMEM_in,EXMEM_out,clk);
     MEMWB: PipelineRegister port map(MEMWB_in,MEMWB_out,clk);
-
-    --p1: process(clk'event and clk='0')
-    --begin
+	
+	IMem: InstructionMemory port map(PC_out,Instruction,clk);
+    DMem: DataMemory port map(DataAdd,DataIn,DataOut,clk,DMem_WE);
+    RF: RegisterFile port map(RF_A1,RF_A2,RF_A3, RF_D1, RF_D2, RF_D3,clk,RF_WE,PC_in,PC_out);
+    muxAluA: Mux_4to1_16bit port map(muxAluA_con,RREX_out(31 downto 16),RREX_out(47 downto 32),RREX_out(84 downto 69),x"0000",clk,aluAin);
+    muxpc: Mux_4to1_16bit port map(muxpcCon,alu1out,alu3out,alu2out,x"0000",clk,PC_in);
+    muxAluB: Mux_4to1_16bit port map(muxAluB_con,seOut,RREX_out(47 downto 32),x"0001",x"0000",clk,aluBin);
+    cflag: register_1bit port map(Cflagin,Cflagout,clk,C_WE);
+    zflag: register_1bit port map(Zflagin,Zflagout,clk,Z_WE);
+    
+    se: SignExtender port map(RREX_out(15 downto 0),seOut);
+    alu1: ALU port map(PC_out,x"0001","00",open,open,open,clk,alu1out);
+    alu2: ALU port map(aluAin,aluBin,alu2Con,Cflagin,Zflagin,open,clk,alu2out);
+    alu3: ALU port map(RREX_out(84 downto 69),seOut,"00",open,open,open,clk,alu3out);
+	 
+	 
+    p1: process(clk)
+    begin
+	 if(clk'event and clk='0') then
     -- 1st Pipeline Register
     --IFID will only take in instrucion and PC
     IFID_in(15 downto 0) <= Instruction;
@@ -136,21 +152,9 @@ begin
 
     RF_D3 <= MEMWB_out (100 downto 85);
     RF_A3 <= MEMWB_out(5 downto 3);
+	 end if;
 
-
-    IMem: InstructionMemory port map(PC_out,Instruction,clk);
-    DMem: DataMemory port map(DataAdd,DataIn,DataOut,clk,DMem_WE);
-    RF: RegisterFile port map(RF_A1,RF_A2,RF_A3, RF_D1, RF_D2, RF_D3,clk,RF_WE,PC_in,PC_out);
-    muxAluA: Mux_4to1_16bit port map(muxAluA_con,RREX_out(31 downto 16),RREX_out(47 downto 32),RREX_out(84 downto 69),x"0000",clk,aluAin);
-    muxpc: Mux_4to1_16bit port map(muxpcCon,alu1out,alu3out,alu2out,x"0000",clk,PC_in);
-    muxAluB: Mux_4to1_16bit port map(muxAluB_con,seOut,RREX_out(47 downto 32),x"0001",x"0000",clk,aluBin);
-    cflag: register_1bit port map(Cflagin,Cflagout,clk,C_WE);
-    zflag: register_1bit port map(Zflagin,Zflagout,clk,Z_WE);
     
-    se: SignExtender port map(RREX_out(15 downto 0),seOut);
-    alu1: ALU port map(PC_out,x"0001","00",open,open,open,clk,alu1out);
-    alu2: ALU port map(aluAin,aluBin,alu2Con,Cflagin,Zflagin,open,clk,alu2out);
-    alu3: ALU port map(RREX_out(84 downto 69),seOut,"00",open,open,open,clk,alu3out);
 
-    --end process;
+    end process;
 end arch_Datapath;
