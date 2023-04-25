@@ -8,12 +8,10 @@ entity SignExtender is
 end entity;
 
 architecture arch_SignExtender of SignExtender is 
+begin 
     -- I type instructions : ADI-0000, LW-0100, SW-0101, BEQ-1000, BLT-1001, BLE-1010;
     -- J type instructions : LLI-0011, JAL-1100, JRI-1111;
     -- LLI needs unsigned extension
-	 signal OpCode: std_logic_vector(3 downto 0);
-	 signal input: std_logic_vector(8 downto 0);
-	 begin 
     p1: process(instruction)
     begin
     OpCode <= instruction(15 downto 12);
@@ -25,13 +23,13 @@ architecture arch_SignExtender of SignExtender is
         end loop;
     elsif (OpCode="1100" or OpCode="1111") then
         output(8 downto 0) <= input(8 downto 0);
-        fill1: for i in 9 to 15 loop
+        fill: for i in 9 to 15 loop
             output(i) <= input(8);
         end loop;
     elsif (OpCode= "0011") then
         output(8 downto 0) <= input(8 downto 0);
-        fill2: for i in 9 to 15 loop
-            output(15 downto 9) <= "000000";
+        fill: for i in 9 to 15 loop
+            output(15 downto 9) <= "000000");
         end loop;
         end if;
 

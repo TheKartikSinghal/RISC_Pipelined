@@ -134,14 +134,14 @@ begin
     MEMWB_in (47 downto 32) <=EXMEM_out (47 downto 32);--forwarding the data RB
     MEMWB_in (100 downto 85) <=EXMEM_out (100 downto 85);
 
-    RF_D3 <= MEMWB_out (100 downto 85);
+    RF_D3 <= MEMWB_out (100 downto 85));
     RF_A3 <= MEMWB_out(5 downto 3);
 
 
     IMem: InstructionMemory port map(PC_out,Instruction,clk);
     DMem: DataMemory port map(DataAdd,DataIn,DataOut,clk,DMem_WE);
     RF: RegisterFile port map(RF_A1,RF_A2,RF_A3, RF_D1, RF_D2, RF_D3,clk,RF_WE,PC_in,PC_out);
-    muxAluA: Mux_4to1_16bit port map(muxAluA_con,RREX_out(31 downto 16),RREX_out(47 downto 32),RREX_out(84 downto 69),x"0000",clk,aluAin);
+    muxAluA: Mux_4to1_16bit port map(muxAluA_con,RREX_out(11 downto 9),RREX_out(8 downto 6),RREX_out(83 downto 69),x"0000",clk,aluAin);
     muxpc: Mux_4to1_16bit port map(muxpcCon,alu1out,alu3out,alu2out,x"0000",clk,PC_in);
     muxAluB: Mux_4to1_16bit port map(muxAluB_con,seOut,RREX_out(47 downto 32),x"0001",x"0000",clk,aluBin);
     cflag: register_1bit port map(Cflagin,Cflagout,clk,C_WE);
@@ -150,7 +150,7 @@ begin
     se: SignExtender port map(RREX_out(15 downto 0),seOut);
     alu1: ALU port map(PC_out,x"0001","00",open,open,open,clk,alu1out);
     alu2: ALU port map(aluAin,aluBin,alu2Con,Cflagin,Zflagin,open,clk,alu2out);
-    alu3: ALU port map(RREX_out(84 downto 69),seOut,"00",open,open,open,clk,alu3out);
+    alu3: ALU port map(RREX_out(83 downto 69),seOut,"00",open,open,open,clk,alu3out);
 
     --end process;
 end arch_Datapath;
