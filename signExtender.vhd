@@ -31,7 +31,7 @@ architecture arch_SignExtender of SignExtender is
     elsif (OpCode= "0011") then
         output(8 downto 0) <= input(8 downto 0);
         fill2: for i in 9 to 15 loop
-            output(15 downto 9) <= "000000";
+            output(15 downto 9) <= "0000000";
         end loop;
         end if;
 

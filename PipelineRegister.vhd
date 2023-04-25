@@ -13,10 +13,11 @@ end PipelineRegister;
 architecture arch_PipelineRegister of PipelineRegister is
     signal data : std_logic_vector(100 downto 0) := (others => '0');
     begin
-		  data_out <= data;
-        process(clk'event and clk='0')
+        process(clk)
         begin
+		  if(clk'event and clk='0') then
             data <= data_in;
             data_out <= data_in;
+		  end if;
     end process;
 end arch_PipelineRegister;
