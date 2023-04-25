@@ -10,12 +10,12 @@ end entity;
 
 architecture arch_SignExtender of SignExtender is 
 begin 
-    # I type instructions : ADI-0000, LW-0100, SW-0101, BEQ-1000, BLT-1001, BLE-1001;
+    # I type instructions : ADI-0000, LW-0100, SW-0101, BEQ-1000, BLT-1001, BLE-1010;
     # J type instructions : LLI-0011, JAL-1100, JRI-1111;
     # LLI needs unsigned extension
     p1: process(clk)
     begin
-    if (OpCode="0000" || OpCode="0100" ||OpCode="0101" || OpCode="1000" ||OpCode="1001") then
+    if (OpCode="0000" || OpCode="0100" ||OpCode="0101" || OpCode="1000" ||OpCode="1001"||OpCode="1010") then
         output(5 downto 0) <= input(5 downto 0);
         fill: for i in 6 to 15 generate
             output(i) <= input(6);
