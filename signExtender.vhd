@@ -1,10 +1,9 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
-
+--sign extender sits in the execute stage infront of mux for alu B input.
 entity SignExtender is
-    port(input : in std_logic_vector(8 downto 0);
-    OpCode: in std_logic_vector(3 downto 0);
+    port(instruction : in std_logic_vector(15 downto 0);
     output : out std_logic_vector(15 downto 0));
 end entity;
 
@@ -13,8 +12,10 @@ begin
     # I type instructions : ADI-0000, LW-0100, SW-0101, BEQ-1000, BLT-1001, BLE-1010;
     # J type instructions : LLI-0011, JAL-1100, JRI-1111;
     # LLI needs unsigned extension
-    p1: process(clk)
+    p1: process(instruction)
     begin
+    OpCode <= instruction(15 downto 12);
+    input <= instruction(8 downto 0);
     if (OpCode="0000" || OpCode="0100" ||OpCode="0101" || OpCode="1000" ||OpCode="1001"||OpCode="1010") then
         output(5 downto 0) <= input(5 downto 0);
         fill: for i in 6 to 15 generate
