@@ -6,6 +6,7 @@ entity ALU is
     port (
         A: in std_logic_vector(15 downto 0);
         B: in std_logic_vector(15 downto 0);
+		  instruction: std_logic_vector(15 downto 0);
         control_sel: in std_logic_vector(1 downto 0);
         C_flag, Z_flag, E_flag : out std_logic;
         clk: in std_logic;
@@ -17,14 +18,31 @@ end ALU;
 architecture ALU_arch of ALU is
 --we will define functions for different operations which the ALU needs to do.
 signal C,Z,E: std_logic :='0' ;
+signal OpCode: std_logic_vector(3 downto 0);
+signal complement: std_logic;
 ----
 function add(A: in std_logic_vector(15 downto 0);
         B: in std_logic_vector(15 downto 0))
 return std_logic_vector is
     variable sum   : std_logic_vector(15 downto 0);
     variable carry : std_logic_vector(15 downto 0);
-begin 
+begin
+    
+    if((OpCode = "0001" or OpCode = "0010") and complement = 1) then
     L1: for i in 0 to 15 loop
+        if i = 0 then
+        sum(i)  := A(i) xor (not B(i)) xor '0';
+        carry(i):= A(i) and (not B(i));
+
+        else 
+        sum(i)  := A(i) xor (not B(i)) xor carry(i-1);
+        carry(i):= (A(i) and (not B(i))) or  (carry(i-1) and (A(i) xor (not B(i))));
+
+        end if;
+    end loop L1;
+	 
+	 else 
+	 L2: for i in 0 to 15 loop
         if i = 0 then
         sum(i)  := A(i) xor B(i) xor '0';
         carry(i):= A(i) and B(i);
@@ -34,7 +52,8 @@ begin
         carry(i):= (A(i) and B(i)) or  (carry(i-1) and (A(i) xor B(i)));
 
         end if;
-    end loop L1;
+    end loop L2;
+	 end if;
     return carry(15) & sum;
 end add;
 
@@ -74,6 +93,9 @@ end subtract;
 ----
 begin
 alu_process : process(A,B,clk)
+OpCode <= instruction(15 downto 12);
+complement <= instruction(2); 
+
 variable temp_1,temp_2 : std_logic_vector(16 downto 0);
 
     begin
@@ -93,7 +115,6 @@ variable temp_1,temp_2 : std_logic_vector(16 downto 0);
                 Z <= '1';
             else Z <= '0';
             end if;
-    --this is an issue , need to send only 16 bits to alu_out and the msb to c flag.
     when "10" => 
             ALU_out <= temp_2(15 downto 0); -- for subtraction
             C <= temp_2(16);
@@ -115,14 +136,6 @@ variable temp_1,temp_2 : std_logic_vector(16 downto 0);
      Z_flag <= Z ;
      E_flag <= E ;
     end process;
---flag_process :process(A,B,clk)
---    begin
---    if (control_sel="00" or control_sel="01") then
---        C_flag <= C ;
---        Z_flag <= Z ;
---        E_flag <= E ;
---    end if;
---end process;
 end ALU_arch;
 
 
