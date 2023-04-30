@@ -18,6 +18,7 @@ architecture arch_PipelineRegister of PipelineRegister is
 		  if(clk'event and clk='0') then
             data <= data_in;
             data_out <= data_in;
+		  
 		  end if;
     end process;
 end arch_PipelineRegister;

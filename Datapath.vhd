@@ -45,7 +45,8 @@ architecture arch_Datapath of Datapath is
         clk: in std_logic;
         RF_write_enable: in std_logic;
         PC_in: in std_logic_vector(15 downto 0) := (others => '0');
-        PC_out: out std_logic_vector(15 downto 0):= (others => '0')
+        PC_out: out std_logic_vector(15 downto 0);
+        PC_WE: in std_logic
     );
         end component;
     
@@ -87,7 +88,7 @@ architecture arch_Datapath of Datapath is
     signal Instruction, RF_D1, RF_D2, RF_D3, PC_out, alu1out, alu3out, alu2out, DataAdd, DataIn, DataOut, aluAin, aluBin, seOut, PC_in :std_logic_vector(15 downto 0);
     signal RF_A1,RF_A2,RF_A3 : std_logic_vector(2 downto 0);
     signal IFID_in,IFID_out,IDRR_in,IDRR_out,RREX_in,RREX_out,EXMEM_in,EXMEM_out,MEMWB_in,MEMWB_out: std_logic_vector(100 downto 0);
-    signal Cflagin,Cflagout,C_WE,Zflagin,Zflagout,Z_WE,DMem_WE,RF_WE: std_logic;
+    signal Cflagin,Cflagout,C_WE,Zflagin,Zflagout,Z_WE,DMem_WE,RF_WE,PC_WE: std_logic;
     signal muxpcCon,muxAluA_con,muxAluB_con,alu2con:std_logic_vector(1 downto 0);
 begin
     IFID: PipelineRegister port map(IFID_in,IFID_out,clk);
@@ -96,9 +97,12 @@ begin
     EXMEM: PipelineRegister port map(EXMEM_in,EXMEM_out,clk);
     MEMWB: PipelineRegister port map(MEMWB_in,MEMWB_out,clk);
 	
-	IMem: InstructionMemory port map(PC_out,Instruction,clk);
+	 muxpcCon <= "00";
+	 PC_WE <= '1';
+	 
+	 IMem: InstructionMemory port map(PC_out,Instruction,clk);
     DMem: DataMemory port map(DataAdd,DataIn,DataOut,clk,DMem_WE);
-    RF: RegisterFile port map(RF_A1,RF_A2,RF_A3, RF_D1, RF_D2, RF_D3,clk,RF_WE,PC_in,PC_out);
+    RF: RegisterFile port map(RF_A1,RF_A2,RF_A3, RF_D1, RF_D2, RF_D3,clk,RF_WE,PC_in,PC_out,PC_WE);
     muxAluA: Mux_4to1_16bit port map(muxAluA_con,RREX_out(31 downto 16),RREX_out(47 downto 32),RREX_out(84 downto 69),x"0000",clk,aluAin);
     muxpc: Mux_4to1_16bit port map(muxpcCon,alu1out,alu3out,alu2out,x"0000",clk,PC_in);
     muxAluB: Mux_4to1_16bit port map(muxAluB_con,seOut,RREX_out(47 downto 32),x"0001",x"0000",clk,aluBin);
@@ -110,14 +114,16 @@ begin
     alu2: ALU port map(aluAin,aluBin,alu2Con,Cflagin,Zflagin,open,clk,alu2out);
     alu3: ALU port map(RREX_out(84 downto 69),seOut,"00",open,open,open,clk,alu3out);
 	 
-	 
-    p1: process(clk)
-    begin
-	 if(clk'event and clk='0') then
+	 process(clk,Instruction,PC_out)
+	 begin
     -- 1st Pipeline Register
     --IFID will only take in instrucion and PC
     IFID_in(15 downto 0) <= Instruction;
     IFID_in(84 downto 69) <= PC_out;
+	 end process;
+	 
+    p1: process(clk)
+    begin
     
     -- 2nd Pipeline Register
     IDRR_in(15 downto 0)<=IFID_out(15 downto 0);--just copying instruction
@@ -152,9 +158,6 @@ begin
 
     RF_D3 <= MEMWB_out (100 downto 85);
     RF_A3 <= MEMWB_out(5 downto 3);
-	 end if;
-
-    
 
     end process;
 end arch_Datapath;
