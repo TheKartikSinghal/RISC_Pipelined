@@ -2,11 +2,26 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
+--/////////////////////////////////////////
+--KEEP THIS COMMENT UNTIL ISSUE RESOLVED.
+--we also need to give the alu the current outputs of the z flags.
+--current alu is incorrect as it has no way of checking the flags
+-- which is need for 6 out of 8 add instructions and 4 of 6 nand 
+--instructions
+-- And when you make a change to the component ports you need to make that change 
+--in port mapping to all the instances and not just one.
+--/////////////////////////////////////////
+
 entity ALU is 
     port (
         A: in std_logic_vector(15 downto 0);
         B: in std_logic_vector(15 downto 0);
-        instruction: in std_logic_vector(15 downto 0);
+        --we need to add input for current values of flag registers
+        carry_in: in std_logic; 
+        --carry in signal has been added to allow instructions 
+        --with carry computation to work in single cycle
+        --without extra alu.
+		instruction: in std_logic_vector(15 downto 0);
         control_sel: in std_logic_vector(1 downto 0);
         C_flag, Z_flag, E_flag : out std_logic;
         clk: in std_logic;
@@ -24,18 +39,26 @@ signal complement: std_logic := instruction(2);
 ----
 function add(A: in std_logic_vector(15 downto 0);
         B: in std_logic_vector(15 downto 0);
-		  OpCode: std_logic_vector(3 downto 0);
-		  complement: std_logic
-		  --i have taken these to be the same name (refering to the variable names)
-		  -- but they might as well have been different.
-		  )
+        instruction: in std_logic_vector(15 downto 0);
+		OpCode: std_logic_vector(3 downto 0);
+		complement: std_logic;
+        -- need to add arguments here for using them within the function.
+        carry_in: in std_logic
+        --added the carry_in signal for function use
+		--i have taken these to be the same name (refering to the variable names)
+		-- but they might as well have been different.
+		)
 return std_logic_vector is
     variable sum   : std_logic_vector(15 downto 0);
     variable carry : std_logic_vector(15 downto 0);
 begin
     
-    if((OpCode = "0001" or OpCode = "0010") and complement = '1') then
-	 -- always remember to put '' on single bit values.
+    if(OpCode = "0001" and complement = '1' and not(instruction(0) = '1') and (instruction(1) = '1')) then 
+    -- removed the opcode 0010 condition as that was for nand 
+    --which is not needed here.
+    -- always remember to put '' on single bit values.
+	--for instructions //ACA, ACC, ACZ// we need to ADD with the complement of reg B
+    -- we don't do here for ACW and the condition on CZ!=11.
     L1: for i in 0 to 15 loop
         if i = 0 then
         sum(i)  := A(i) xor (not B(i)) xor '0';
@@ -47,9 +70,41 @@ begin
 
         end if;
     end loop L1;
-	 
-	 else 
+	
+	 elsif(OpCode = "0001" and complement = '1' and (instruction(0) = '1') and (instruction(1) = '1')) then
+	 --for instruction //ACW//, we need to add the carry bit also, ACW executes only when carry flag is 1
+	 --it is not included in the above if statement, because we may not want to add the carry bit everytime it is set
 	 L2: for i in 0 to 15 loop
+        if i = 0 then
+        sum(i)  := A(i) xor not(B(i)) xor carry_in;
+        carry(i):= A(i) and not(B(i));
+
+        else 
+        sum(i)  := A(i) xor not(B(i)) xor carry(i-1);
+        carry(i):= (A(i) and not(B(i))) or  (carry(i-1) and (A(i) xor not(B(i))));
+
+        end if;
+    end loop L2;
+
+    elsif(OpCode = "0001" and (instruction(0) = '1') and (instruction(1) = '1')) then
+	--for instruction //AWC//, we need to add the carry bit also, AWC executes only when carry flag is 1
+	--it is not included in the above if statement, because we may not want to add the carry bit everytime it is set
+	L3: for i in 0 to 15 loop
+        if i = 0 then
+        sum(i)  := A(i) xor B(i) xor carry_in;
+        carry(i):= A(i) and B(i);
+
+        else 
+        sum(i)  := A(i) xor B(i) xor carry(i-1);
+        carry(i):= (A(i) and B(i)) or  (carry(i-1) and (A(i) xor B(i)));
+
+        end if;
+    end loop L3;
+	 
+	else 
+    --for instructions //ADA,ADC,ADZ// which require simple addition of contents of reg A and B 
+    --this is the setting under which alu1 and alu3 will permanently operate.
+	L4: for i in 0 to 15 loop
         if i = 0 then
         sum(i)  := A(i) xor B(i) xor '0';
         carry(i):= A(i) and B(i);
@@ -59,23 +114,31 @@ begin
         carry(i):= (A(i) and B(i)) or  (carry(i-1) and (A(i) xor B(i)));
 
         end if;
-    end loop L2;
+    end loop L4;
 	 end if;
     return carry(15) & sum;
 end add;
 
 ----
 function to_nand (A: in std_logic_vector(15 downto 0);
-        B: in std_logic_vector(15 downto 0))
+        B: in std_logic_vector(15 downto 0);
+        OpCode: std_logic_vector(3 downto 0);
+        complement: std_logic
+        )
 return std_logic_vector is
     variable op_nand : std_logic_vector(15 downto 0);
 begin 
-    L2: for i in 0 to 15 loop
+    if(OpCode = "0010" and complement = '1') then --for instructions NCU, NCC, NCZ, we need to NAND with the complement of reg B
+    L4: for i in 0 to 15 loop
+        op_nand(i) := A(i) nand (not B(i));
+    end loop L4;
+    else
+    L5: for i in 0 to 15 loop
         op_nand(i) := A(i) nand B(i);
-    end loop L2;
+    end loop L5;
+    end if;
     return op_nand;
 end to_nand;
-
 ----
 function subtract(A: in std_logic_vector(15 downto 0);
         B: in std_logic_vector(15 downto 0))
@@ -83,9 +146,9 @@ return std_logic_vector is
     variable difference : std_logic_vector(15 downto 0);
     variable carry : std_logic_vector(15 downto 0);
 begin 
-    L3: for i in 0 to 15 loop
+    L6: for i in 0 to 15 loop
         if i = 0 then 
-        difference(i) := A(i) xor not(B(i)) xor '1';
+        difference(i) := A(i) xor (not (B(i))) xor '1';
         carry(i) := A(i) and not(B(i));
 
         else
@@ -93,7 +156,7 @@ begin
         carry(i):= (A(i) and B(i)) or  (carry(i-1) and (A(i) xor B(i)));
 
         end if;
-    end loop L3;
+    end loop L6;
     return carry(15) & difference;
 end subtract;
 
@@ -103,27 +166,28 @@ alu_process : process(A,B,clk)
 variable temp_1,temp_2 : std_logic_vector(16 downto 0);
 
     begin
-        temp_1 := add(A,B,OpCode,complement);
-		  -- the changes while calling the function need to be made here (adding opcode and complement argument in this case.)
-        temp_2 := subtract(A,B);
+        temp_1 := add(A,B,instruction,OpCode,complement,carry_in);
+		  -- the changes while calling the function need to be made here (adding instruction, opcode and complement argument in this case.)
+          temp_2 := subtract(A,B);
     case control_sel is 
     when "00" => 
             ALU_out <= temp_1(15 downto 0); -- for addition
             C <= temp_1(16);
-            if (temp_1(15 downto 0)="0000000000000000") then
+            if (temp_1(15 downto 0)=x"0000") then
                 Z <= '1';
             else Z <= '0';
             end if;
     when "01" =>
-            ALU_out <= to_nand(A,B); -- for nand
-            if (to_nand(A,B)="0000000000000000") then
+            ALU_out <= to_nand(A,B,OpCode,complement); -- for nand
+            if (to_nand(A,B,OpCode,complement)=x"0000") then
+            --added "Opcode and complement" into the function call
                 Z <= '1';
             else Z <= '0';
             end if;
     when "10" => 
             ALU_out <= temp_2(15 downto 0); -- for subtraction
             C <= temp_2(16);
-            if (temp_2(15 downto 0)="0000000000000000") then
+            if (temp_2(15 downto 0)=x"0000") then
                 Z <= '1';
             else Z <= '0';
             end if;

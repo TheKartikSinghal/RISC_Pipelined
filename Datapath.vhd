@@ -49,18 +49,22 @@ architecture arch_Datapath of Datapath is
     );
         end component;
     
-    component ALU is
-        port (
-            A: in std_logic_vector(15 downto 0);
-            B: in std_logic_vector(15 downto 0);
-				instruction: std_logic_vector(15 downto 0);
-            control_sel: in std_logic_vector(1 downto 0);
-            C_flag, Z_flag, E_flag : out std_logic;
-            clk: in std_logic;
-            --only purpose of the clock is for changing the C/Z flags using C/Z signals.
-            ALU_out: out std_logic_vector(15 downto 0)
-        ); 
-        end component;
+    component ALU is 
+    port (
+        A: in std_logic_vector(15 downto 0);
+        B: in std_logic_vector(15 downto 0);
+        carry_in: in std_logic; 
+        --carry in signal has been added to allow instructions 
+        --with carry computation to work in single cycle
+        --without extra alu.
+		instruction: in std_logic_vector(15 downto 0);
+        control_sel: in std_logic_vector(1 downto 0);
+        C_flag, Z_flag, E_flag : out std_logic;
+        clk: in std_logic;
+        --only purpose of the clock is for changing the C/Z flags using C/Z signals.
+        ALU_out: out std_logic_vector(15 downto 0)
+    ); 
+    end component;
     
     component register_1bit is
         port(
@@ -84,6 +88,17 @@ architecture arch_Datapath of Datapath is
         port(instruction : in std_logic_vector(15 downto 0);
         output : out std_logic_vector(15 downto 0));
     end component;
+	 
+	 component PC_MUX_Control_unit is 
+    port (
+        instruction: in std_logic_vector(15 downto 0);
+        C: in std_logic;
+		  Z: in std_logic; 
+        con_sel: out std_logic_vector(1 downto 0);
+        clk: in std_logic;
+		  throw_bit: out std_logic
+	 ); 
+    end component;
 
     signal Instruction, RF_D1, RF_D2, RF_D3, PC_out, alu1out, alu3out, alu2out, DataAdd, DataIn, DataOut, aluAin, aluBin, seOut, PC_in :std_logic_vector(15 downto 0);
     signal RF_A1,RF_A2,RF_A3 : std_logic_vector(2 downto 0);
@@ -97,7 +112,7 @@ begin
     EXMEM: PipelineRegister port map(EXMEM_in,EXMEM_out,clk);
     MEMWB: PipelineRegister port map(MEMWB_in,MEMWB_out,clk);
 	
-	IMem: InstructionMemory port map(PC_out,Instruction,clk);
+	 IMem: InstructionMemory port map(PC_out,Instruction,clk);
     DMem: DataMemory port map(DataAdd,DataIn,DataOut,clk,DMem_WE);
     RF: RegisterFile port map(RF_A1,RF_A2,RF_A3, RF_D1, RF_D2, RF_D3,clk,RF_WE,PC_in,PC_out);
     muxAluA: Mux_4to1_16bit port map(muxAluA_con,RREX_out(31 downto 16),RREX_out(47 downto 32),RREX_out(84 downto 69),x"0000",clk,aluAin);
@@ -107,12 +122,13 @@ begin
     zflag: register_1bit port map(Zflagin,Zflagout,clk,Z_WE);
     
     se: SignExtender port map(RREX_out(15 downto 0),seOut);
-    alu1: ALU port map(PC_out,x"0001",x"0000","00",open,open,open,clk,alu1out);
-    alu2: ALU port map(aluAin,aluBin,RREX_out (15 downto 0),alu2Con,Cflagin,Zflagin,open,clk,alu2out);
-    alu3: ALU port map(RREX_out(84 downto 69),seOut,x"0000","00",open,open,open,clk,alu3out);
-	--the third entry for these ALUs which corresponds to the instruction needed to be changed
-    --which i have set to x"0000" for 1 and 3 and the actual instruction contained in the RREX register
-    --for alu2.
+    --DHATRI MEHTA read this
+    --When you make a change to the component ports you need to make that change 
+    --in port mapping to all the instances and not just one.
+    alu1: ALU port map(PC_out,x"0001",Cflagout,x"0000","00",open,open,open,clk,alu1out);
+    alu2: ALU port map(aluAin,aluBin,Cflagout,Instruction,alu2Con,Cflagin,Zflagin,open,clk,alu2out);
+    alu3: ALU port map(RREX_out(84 downto 69),seOut,Cflagout,x"0000","00",open,open,open,clk,alu3out);
+	 
 	 
     p1: process(clk)
     begin
