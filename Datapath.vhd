@@ -45,26 +45,27 @@ architecture arch_Datapath of Datapath is
         clk: in std_logic;
         RF_write_enable: in std_logic;
         PC_in: in std_logic_vector(15 downto 0) := (others => '0');
-        PC_out: out std_logic_vector(15 downto 0):= (others => '0')
+        PC_out: out std_logic_vector(15 downto 0):= (others => '0');
+        PC_WE: in std_logic
     );
         end component;
     
-    component ALU is 
-    port (
-        A: in std_logic_vector(15 downto 0);
-        B: in std_logic_vector(15 downto 0);
-        carry_in: in std_logic; 
+    component ALU is
+        port (
+            A: in std_logic_vector(15 downto 0);
+            B: in std_logic_vector(15 downto 0);
+            carry_in: in std_logic; 
         --carry in signal has been added to allow instructions 
         --with carry computation to work in single cycle
         --without extra alu.
 		instruction: in std_logic_vector(15 downto 0);
-        control_sel: in std_logic_vector(1 downto 0);
-        C_flag, Z_flag, E_flag : out std_logic;
-        clk: in std_logic;
-        --only purpose of the clock is for changing the C/Z flags using C/Z signals.
-        ALU_out: out std_logic_vector(15 downto 0)
-    ); 
-    end component;
+            control_sel: in std_logic_vector(1 downto 0);
+            C_flag, Z_flag, E_flag : out std_logic;
+            clk: in std_logic;
+            --only purpose of the clock is for changing the C/Z flags using C/Z signals.
+            ALU_out: out std_logic_vector(15 downto 0)
+        ); 
+        end component;
     
     component register_1bit is
         port(
@@ -88,8 +89,8 @@ architecture arch_Datapath of Datapath is
         port(instruction : in std_logic_vector(15 downto 0);
         output : out std_logic_vector(15 downto 0));
     end component;
-	 
-	 component PC_MUX_Control_unit is 
+
+     component PC_MUX_Control_unit is 
     port (
         instruction: in std_logic_vector(15 downto 0);
         C: in std_logic;
@@ -103,7 +104,7 @@ architecture arch_Datapath of Datapath is
     signal Instruction, RF_D1, RF_D2, RF_D3, PC_out, alu1out, alu3out, alu2out, DataAdd, DataIn, DataOut, aluAin, aluBin, seOut, PC_in :std_logic_vector(15 downto 0);
     signal RF_A1,RF_A2,RF_A3 : std_logic_vector(2 downto 0);
     signal IFID_in,IFID_out,IDRR_in,IDRR_out,RREX_in,RREX_out,EXMEM_in,EXMEM_out,MEMWB_in,MEMWB_out: std_logic_vector(100 downto 0);
-    signal Cflagin,Cflagout,C_WE,Zflagin,Zflagout,Z_WE,DMem_WE,RF_WE,throw_sig: std_logic;
+    signal Cflagin,Cflagout,C_WE,Zflagin,Zflagout,Z_WE,DMem_WE,RF_WE,throw_sig,PC_WE: std_logic;
     signal muxpcCon,muxAluA_con,muxAluB_con,alu2con:std_logic_vector(1 downto 0);
 begin
     IFID: PipelineRegister port map(IFID_in,IFID_out,clk);
@@ -114,7 +115,7 @@ begin
 	
 	 IMem: InstructionMemory port map(PC_out,Instruction,clk);
     DMem: DataMemory port map(DataAdd,DataIn,DataOut,clk,DMem_WE);
-    RF: RegisterFile port map(RF_A1,RF_A2,RF_A3, RF_D1, RF_D2, RF_D3,clk,RF_WE,PC_in,PC_out);
+    RF: RegisterFile port map(RF_A1,RF_A2,RF_A3, RF_D1, RF_D2, RF_D3,clk,RF_WE,PC_in,PC_out,PC_WE);
     muxAluA: Mux_4to1_16bit port map(muxAluA_con,RREX_out(31 downto 16),RREX_out(47 downto 32),RREX_out(84 downto 69),x"0000",clk,aluAin);
     muxpc: Mux_4to1_16bit port map(muxpcCon,alu1out,alu3out,alu2out,x"0000",clk,PC_in);
     muxAluB: Mux_4to1_16bit port map(muxAluB_con,seOut,RREX_out(47 downto 32),x"0001",x"0000",clk,aluBin);
@@ -130,21 +131,20 @@ begin
     --possible solution => make all bits 0 so it becomes a add instruction and then make WEs 0 so that 
     -- there is no danger.
     se: SignExtender port map(RREX_out(15 downto 0),seOut);
-    --DHATRI MEHTA read this
-    --When you make a change to the component ports you need to make that change 
-    --in port mapping to all the instances and not just one.
     alu1: ALU port map(PC_out,x"0001",Cflagout,x"0000","00",open,open,open,clk,alu1out);
     alu2: ALU port map(aluAin,aluBin,Cflagout,Instruction,alu2Con,Cflagin,Zflagin,open,clk,alu2out);
     alu3: ALU port map(RREX_out(84 downto 69),seOut,Cflagout,x"0000","00",open,open,open,clk,alu3out);
 	 
-	 
-    p1: process(clk)
-    begin
-	 if(clk'event and clk='0') then
+	 process(clk,Instruction,PC_out)
+	 begin
     -- 1st Pipeline Register
     --IFID will only take in instrucion and PC
     IFID_in(15 downto 0) <= Instruction;
     IFID_in(84 downto 69) <= PC_out;
+	 end process;
+	 
+    p1: process(clk)
+    begin
     
     -- 2nd Pipeline Register
     IDRR_in(15 downto 0)<=IFID_out(15 downto 0);--just copying instruction
@@ -179,9 +179,6 @@ begin
 
     RF_D3 <= MEMWB_out (100 downto 85);
     RF_A3 <= MEMWB_out(5 downto 3);
-	 end if;
-
-    
 
     end process;
 end arch_Datapath;
