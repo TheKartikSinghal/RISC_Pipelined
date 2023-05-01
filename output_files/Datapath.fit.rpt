@@ -1,5 +1,5 @@
 Fitter report for Datapath
-Mon May  1 20:10:37 2023
+Tue May  2 00:59:28 2023
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -61,7 +61,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Fitter Summary                                                                   ;
 +------------------------------------+---------------------------------------------+
-; Fitter Status                      ; Successful - Mon May  1 20:10:37 2023       ;
+; Fitter Status                      ; Successful - Tue May  2 00:59:28 2023       ;
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                      ; Datapath                                    ;
 ; Top-level Entity Name              ; Datapath                                    ;
@@ -147,12 +147,12 @@ https://fpgasoftware.intel.com/eula.
 ; Number detected on machine ; 12          ;
 ; Maximum allowed            ; 12          ;
 ;                            ;             ;
-; Average used               ; 1.03        ;
+; Average used               ; 1.04        ;
 ; Maximum used               ; 12          ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processors 2-12        ;   0.3%      ;
+;     Processors 2-12        ;   0.4%      ;
 +----------------------------+-------------+
 
 
@@ -795,10 +795,10 @@ Info (334004): Delay annotation completed successfully
 Info (11218): Fitter post-fit operations ending: elapsed time is 00:00:00
 Info (144001): Generated suppressed messages file /home/kartik/RISC_Pipelined/output_files/Datapath.fit.smsg
 Info: Quartus Prime Fitter was successful. 0 errors, 7 warnings
-    Info: Peak virtual memory: 1600 megabytes
-    Info: Processing ended: Mon May  1 20:10:38 2023
-    Info: Elapsed time: 00:00:04
-    Info: Total CPU time (on all processors): 00:00:06
+    Info: Peak virtual memory: 1599 megabytes
+    Info: Processing ended: Tue May  2 00:59:28 2023
+    Info: Elapsed time: 00:00:03
+    Info: Total CPU time (on all processors): 00:00:05
 
 
 +----------------------------+

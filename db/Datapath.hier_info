@@ -12,6 +12,7 @@ clk => Mux_4to1_16bit:muxpc.clk
 clk => Mux_4to1_16bit:muxAluB.clk
 clk => register_1bit:cflag.clk
 clk => register_1bit:zflag.clk
+clk => PC_MUX_Control_unit:pcController.clk
 clk => ALU:alu1.clk
 clk => ALU:alu2.clk
 clk => ALU:alu3.clk
@@ -2471,6 +2472,53 @@ data_out <= data_out.DB_MAX_OUTPUT_PORT_TYPE
 clk => ~NO_FANOUT~
 reg_WE => data_out.OUTPUTSELECT
 reg_WE => data.LATCH_ENABLE
+
+
+|Datapath|PC_MUX_Control_unit:pcController
+instruction[0] => ~NO_FANOUT~
+instruction[1] => ~NO_FANOUT~
+instruction[2] => ~NO_FANOUT~
+instruction[3] => ~NO_FANOUT~
+instruction[4] => ~NO_FANOUT~
+instruction[5] => ~NO_FANOUT~
+instruction[6] => ~NO_FANOUT~
+instruction[7] => ~NO_FANOUT~
+instruction[8] => ~NO_FANOUT~
+instruction[9] => ~NO_FANOUT~
+instruction[10] => ~NO_FANOUT~
+instruction[11] => ~NO_FANOUT~
+instruction[12] => Equal0.IN2
+instruction[12] => Equal1.IN3
+instruction[12] => Equal2.IN1
+instruction[12] => Equal3.IN1
+instruction[12] => Equal4.IN3
+instruction[12] => Equal5.IN3
+instruction[13] => Equal0.IN1
+instruction[13] => Equal1.IN1
+instruction[13] => Equal2.IN3
+instruction[13] => Equal3.IN0
+instruction[13] => Equal4.IN0
+instruction[13] => Equal5.IN2
+instruction[14] => Equal0.IN0
+instruction[14] => Equal1.IN0
+instruction[14] => Equal2.IN0
+instruction[14] => Equal3.IN3
+instruction[14] => Equal4.IN2
+instruction[14] => Equal5.IN1
+instruction[15] => Equal0.IN3
+instruction[15] => Equal1.IN2
+instruction[15] => Equal2.IN2
+instruction[15] => Equal3.IN2
+instruction[15] => Equal4.IN1
+instruction[15] => Equal5.IN0
+C => process_0.IN1
+C => process_0.IN0
+Z => process_0.IN1
+Z => process_0.IN1
+con_sel[0] <= con_sel.DB_MAX_OUTPUT_PORT_TYPE
+con_sel[1] <= con_sel.DB_MAX_OUTPUT_PORT_TYPE
+clk => ~NO_FANOUT~
+throw_bit <= <VCC>
 
 
 |Datapath|SignExtender:se

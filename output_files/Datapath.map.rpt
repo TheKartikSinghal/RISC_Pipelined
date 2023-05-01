@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Datapath
-Mon May  1 20:10:33 2023
+Tue May  2 00:59:25 2023
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -17,7 +17,7 @@ Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
   9. Port Connectivity Checks: "ALU:alu3"
  10. Port Connectivity Checks: "ALU:alu2"
  11. Port Connectivity Checks: "ALU:alu1"
- 12. Port Connectivity Checks: "register_1bit:zflag"
+ 12. Port Connectivity Checks: "PC_MUX_Control_unit:pcController"
  13. Port Connectivity Checks: "Mux_4to1_16bit:muxAluB"
  14. Port Connectivity Checks: "Mux_4to1_16bit:muxpc"
  15. Port Connectivity Checks: "Mux_4to1_16bit:muxAluA"
@@ -57,7 +57,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Mon May  1 20:10:33 2023       ;
+; Analysis & Synthesis Status        ; Successful - Tue May  2 00:59:25 2023       ;
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                      ; Datapath                                    ;
 ; Top-level Entity Name              ; Datapath                                    ;
@@ -178,21 +178,22 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                             ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                      ; Library ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------+---------+
-; signExtender.vhd                 ; yes             ; User VHDL File  ; /home/kartik/RISC_Pipelined/signExtender.vhd      ;         ;
-; RegisterFile.vhd                 ; yes             ; User VHDL File  ; /home/kartik/RISC_Pipelined/RegisterFile.vhd      ;         ;
-; register_1bit.vhd                ; yes             ; User VHDL File  ; /home/kartik/RISC_Pipelined/register_1bit.vhd     ;         ;
-; PipelineRegister.vhd             ; yes             ; User VHDL File  ; /home/kartik/RISC_Pipelined/PipelineRegister.vhd  ;         ;
-; Mux_4to1_16bit.vhd               ; yes             ; User VHDL File  ; /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd    ;         ;
-; InstructionMemory.vhd            ; yes             ; User VHDL File  ; /home/kartik/RISC_Pipelined/InstructionMemory.vhd ;         ;
-; Datapath.vhd                     ; yes             ; User VHDL File  ; /home/kartik/RISC_Pipelined/Datapath.vhd          ;         ;
-; DataMemory.vhd                   ; yes             ; User VHDL File  ; /home/kartik/RISC_Pipelined/DataMemory.vhd        ;         ;
-; ALU.vhd                          ; yes             ; User VHDL File  ; /home/kartik/RISC_Pipelined/ALU.vhd               ;         ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------+---------+
++--------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                               ;
++----------------------------------+-----------------+-----------------+-----------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                        ; Library ;
++----------------------------------+-----------------+-----------------+-----------------------------------------------------+---------+
+; PC_MUX_Control_unit.vhd          ; yes             ; User VHDL File  ; /home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd ;         ;
+; signExtender.vhd                 ; yes             ; User VHDL File  ; /home/kartik/RISC_Pipelined/signExtender.vhd        ;         ;
+; RegisterFile.vhd                 ; yes             ; User VHDL File  ; /home/kartik/RISC_Pipelined/RegisterFile.vhd        ;         ;
+; register_1bit.vhd                ; yes             ; User VHDL File  ; /home/kartik/RISC_Pipelined/register_1bit.vhd       ;         ;
+; PipelineRegister.vhd             ; yes             ; User VHDL File  ; /home/kartik/RISC_Pipelined/PipelineRegister.vhd    ;         ;
+; Mux_4to1_16bit.vhd               ; yes             ; User VHDL File  ; /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd      ;         ;
+; InstructionMemory.vhd            ; yes             ; User VHDL File  ; /home/kartik/RISC_Pipelined/InstructionMemory.vhd   ;         ;
+; Datapath.vhd                     ; yes             ; User VHDL File  ; /home/kartik/RISC_Pipelined/Datapath.vhd            ;         ;
+; DataMemory.vhd                   ; yes             ; User VHDL File  ; /home/kartik/RISC_Pipelined/DataMemory.vhd          ;         ;
+; ALU.vhd                          ; yes             ; User VHDL File  ; /home/kartik/RISC_Pipelined/ALU.vhd                 ;         ;
++----------------------------------+-----------------+-----------------+-----------------------------------------------------+---------+
 
 
 +-----------------------------------------------------+
@@ -288,13 +289,13 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-------------+--------+----------+-------------------------------------------------------------------------------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "register_1bit:zflag"                                                                    ;
-+----------+--------+----------+-------------------------------------------------------------------------------------+
-; Port     ; Type   ; Severity ; Details                                                                             ;
-+----------+--------+----------+-------------------------------------------------------------------------------------+
-; data_out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+----------+--------+----------+-------------------------------------------------------------------------------------+
++---------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "PC_MUX_Control_unit:pcController"                                                        ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port      ; Type   ; Severity ; Details                                                                             ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; throw_bit ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
 
 
 +----------------------------------------------------+
@@ -428,10 +429,13 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Mon May  1 20:10:25 2023
+    Info: Processing started: Tue May  2 00:59:19 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off RISCee -c Datapath
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
+Info (12021): Found 2 design units, including 1 entities, in source file PC_MUX_Control_unit.vhd
+    Info (12022): Found design unit 1: PC_MUX_Control_unit-arch_PC_MUX_Control_unit File: /home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd Line: 17
+    Info (12023): Found entity 1: PC_MUX_Control_unit File: /home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file signExtender.vhd
     Info (12022): Found design unit 1: SignExtender-arch_SignExtender File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 10
     Info (12023): Found entity 1: SignExtender File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 5
@@ -470,11 +474,10 @@ Warning (10541): VHDL Signal Declaration warning at Datapath.vhd(103): used impl
 Warning (10541): VHDL Signal Declaration warning at Datapath.vhd(103): used implicit default value for signal "DataIn" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 103
 Warning (10036): Verilog HDL or VHDL warning at Datapath.vhd(103): object "DataOut" assigned a value but never read File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 103
 Warning (10541): VHDL Signal Declaration warning at Datapath.vhd(106): used implicit default value for signal "C_WE" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 106
-Warning (10036): Verilog HDL or VHDL warning at Datapath.vhd(106): object "Zflagout" assigned a value but never read File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 106
 Warning (10541): VHDL Signal Declaration warning at Datapath.vhd(106): used implicit default value for signal "Z_WE" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 106
 Warning (10541): VHDL Signal Declaration warning at Datapath.vhd(106): used implicit default value for signal "DMem_WE" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 106
 Warning (10541): VHDL Signal Declaration warning at Datapath.vhd(106): used implicit default value for signal "RF_WE" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 106
-Warning (10541): VHDL Signal Declaration warning at Datapath.vhd(107): used implicit default value for signal "muxpcCon" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 107
+Warning (10036): Verilog HDL or VHDL warning at Datapath.vhd(106): object "throw_sig" assigned a value but never read File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 106
 Warning (10541): VHDL Signal Declaration warning at Datapath.vhd(107): used implicit default value for signal "muxAluA_con" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 107
 Warning (10541): VHDL Signal Declaration warning at Datapath.vhd(107): used implicit default value for signal "muxAluB_con" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 107
 Warning (10541): VHDL Signal Declaration warning at Datapath.vhd(107): used implicit default value for signal "alu2con" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 107
@@ -560,7 +563,18 @@ Warning (10492): VHDL Process Statement warning at register_1bit.vhd(25): signal
 Warning (10631): VHDL Process Statement warning at register_1bit.vhd(19): inferring latch(es) for signal or variable "data", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/register_1bit.vhd Line: 19
 Warning (10631): VHDL Process Statement warning at register_1bit.vhd(19): inferring latch(es) for signal or variable "data_out", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/register_1bit.vhd Line: 19
 Info (10041): Inferred latch for "data" at register_1bit.vhd(19) File: /home/kartik/RISC_Pipelined/register_1bit.vhd Line: 19
-Info (12128): Elaborating entity "SignExtender" for hierarchy "SignExtender:se" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 124
+Info (12128): Elaborating entity "PC_MUX_Control_unit" for hierarchy "PC_MUX_Control_unit:pcController" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 123
+Warning (10540): VHDL Signal Declaration warning at PC_MUX_Control_unit.vhd(19): used explicit default value for signal "OpCode" because signal was never assigned a value File: /home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd Line: 19
+Warning (10492): VHDL Process Statement warning at PC_MUX_Control_unit.vhd(23): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd Line: 23
+Warning (10492): VHDL Process Statement warning at PC_MUX_Control_unit.vhd(26): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd Line: 26
+Warning (10492): VHDL Process Statement warning at PC_MUX_Control_unit.vhd(29): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd Line: 29
+Warning (10492): VHDL Process Statement warning at PC_MUX_Control_unit.vhd(32): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd Line: 32
+Warning (10492): VHDL Process Statement warning at PC_MUX_Control_unit.vhd(35): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd Line: 35
+Warning (10492): VHDL Process Statement warning at PC_MUX_Control_unit.vhd(38): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd Line: 38
+Warning (10492): VHDL Process Statement warning at PC_MUX_Control_unit.vhd(44): signal "throw" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd Line: 44
+Warning (10631): VHDL Process Statement warning at PC_MUX_Control_unit.vhd(21): inferring latch(es) for signal or variable "throw", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd Line: 21
+Info (10041): Inferred latch for "throw" at PC_MUX_Control_unit.vhd(21) File: /home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd Line: 21
+Info (12128): Elaborating entity "SignExtender" for hierarchy "SignExtender:se" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 132
 Warning (10492): VHDL Process Statement warning at signExtender.vhd(21): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 21
 Warning (10492): VHDL Process Statement warning at signExtender.vhd(22): signal "input" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 22
 Warning (10492): VHDL Process Statement warning at signExtender.vhd(24): signal "input" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 24
@@ -586,7 +600,7 @@ Info (10041): Inferred latch for "output[12]" at signExtender.vhd(17) File: /hom
 Info (10041): Inferred latch for "output[13]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
 Info (10041): Inferred latch for "output[14]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
 Info (10041): Inferred latch for "output[15]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
-Info (12128): Elaborating entity "ALU" for hierarchy "ALU:alu1" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 128
+Info (12128): Elaborating entity "ALU" for hierarchy "ALU:alu1" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 136
 Warning (10540): VHDL Signal Declaration warning at ALU.vhd(36): used explicit default value for signal "OpCode" because signal was never assigned a value File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 36
 Warning (10540): VHDL Signal Declaration warning at ALU.vhd(37): used explicit default value for signal "complement" because signal was never assigned a value File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 37
 Warning (10492): VHDL Process Statement warning at ALU.vhd(169): signal "instruction" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 169
@@ -632,10 +646,10 @@ Warning (21074): Design contains 1 input pin(s) that do not drive logic
 Info (21057): Implemented 1 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 1 input pins
     Info (21059): Implemented 0 output pins
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 70 warnings
-    Info: Peak virtual memory: 431 megabytes
-    Info: Processing ended: Mon May  1 20:10:33 2023
-    Info: Elapsed time: 00:00:08
-    Info: Total CPU time (on all processors): 00:00:20
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 78 warnings
+    Info: Peak virtual memory: 432 megabytes
+    Info: Processing ended: Tue May  2 00:59:25 2023
+    Info: Elapsed time: 00:00:06
+    Info: Total CPU time (on all processors): 00:00:14
 
 

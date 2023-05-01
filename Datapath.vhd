@@ -103,7 +103,7 @@ architecture arch_Datapath of Datapath is
     signal Instruction, RF_D1, RF_D2, RF_D3, PC_out, alu1out, alu3out, alu2out, DataAdd, DataIn, DataOut, aluAin, aluBin, seOut, PC_in :std_logic_vector(15 downto 0);
     signal RF_A1,RF_A2,RF_A3 : std_logic_vector(2 downto 0);
     signal IFID_in,IFID_out,IDRR_in,IDRR_out,RREX_in,RREX_out,EXMEM_in,EXMEM_out,MEMWB_in,MEMWB_out: std_logic_vector(100 downto 0);
-    signal Cflagin,Cflagout,C_WE,Zflagin,Zflagout,Z_WE,DMem_WE,RF_WE: std_logic;
+    signal Cflagin,Cflagout,C_WE,Zflagin,Zflagout,Z_WE,DMem_WE,RF_WE,throw_sig: std_logic;
     signal muxpcCon,muxAluA_con,muxAluB_con,alu2con:std_logic_vector(1 downto 0);
 begin
     IFID: PipelineRegister port map(IFID_in,IFID_out,clk);
@@ -120,7 +120,15 @@ begin
     muxAluB: Mux_4to1_16bit port map(muxAluB_con,seOut,RREX_out(47 downto 32),x"0001",x"0000",clk,aluBin);
     cflag: register_1bit port map(Cflagin,Cflagout,clk,C_WE);
     zflag: register_1bit port map(Zflagin,Zflagout,clk,Z_WE);
-    
+    pcController: PC_MUX_Control_unit port map(RREX_out(15 downto 0),Cflagout,Zflagout,muxpcCon,clk,throw_sig);
+    --throw_sig carries the value of the throw bit for the pipeline registers prior to EXMEM.
+    --at the end of this cycle the branch instruction will enter mem stage and the last useless
+    --instruction would have entered the IF stage.
+    --so the throw bit needs to be set for IFID,IDRR,RREX.
+    --ALSO CARE NEEDS TO BE TAKEN FOR THROWN INSTRUCTIONS WHICH CAN CAUSE DAMAGE EVEN WITHOUT WRITING 
+    --INTO RF OR MEM (LIKE BRANCH INSTRUCTIONS)
+    --possible solution => make all bits 0 so it becomes a add instruction and then make WEs 0 so that 
+    -- there is no danger.
     se: SignExtender port map(RREX_out(15 downto 0),seOut);
     --DHATRI MEHTA read this
     --When you make a change to the component ports you need to make that change 
