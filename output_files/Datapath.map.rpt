@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Datapath
-Sun Apr 30 14:03:01 2023
+Mon May  1 18:39:04 2023
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -10,7 +10,28 @@ Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
   2. Analysis & Synthesis Summary
   3. Analysis & Synthesis Settings
   4. Parallel Compilation
-  5. Analysis & Synthesis Messages
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. General Register Statistics
+  9. Port Connectivity Checks: "ALU:alu3"
+ 10. Port Connectivity Checks: "ALU:alu2"
+ 11. Port Connectivity Checks: "ALU:alu1"
+ 12. Port Connectivity Checks: "register_1bit:zflag"
+ 13. Port Connectivity Checks: "register_1bit:cflag"
+ 14. Port Connectivity Checks: "Mux_4to1_16bit:muxAluB"
+ 15. Port Connectivity Checks: "Mux_4to1_16bit:muxpc"
+ 16. Port Connectivity Checks: "Mux_4to1_16bit:muxAluA"
+ 17. Port Connectivity Checks: "RegisterFile:RF"
+ 18. Port Connectivity Checks: "DataMemory:DMem"
+ 19. Port Connectivity Checks: "PipelineRegister:MEMWB"
+ 20. Port Connectivity Checks: "PipelineRegister:EXMEM"
+ 21. Port Connectivity Checks: "PipelineRegister:RREX"
+ 22. Port Connectivity Checks: "PipelineRegister:IDRR"
+ 23. Port Connectivity Checks: "PipelineRegister:IFID"
+ 24. Post-Synthesis Netlist Statistics for Top Partition
+ 25. Elapsed Time Per Partition
+ 26. Analysis & Synthesis Messages
 
 
 
@@ -37,22 +58,22 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Failed - Sun Apr 30 14:03:01 2023           ;
+; Analysis & Synthesis Status        ; Successful - Mon May  1 18:39:04 2023       ;
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                      ; Datapath                                    ;
 ; Top-level Entity Name              ; Datapath                                    ;
 ; Family                             ; MAX 10                                      ;
-; Total logic elements               ; N/A until Partition Merge                   ;
-;     Total combinational functions  ; N/A until Partition Merge                   ;
-;     Dedicated logic registers      ; N/A until Partition Merge                   ;
-; Total registers                    ; N/A until Partition Merge                   ;
-; Total pins                         ; N/A until Partition Merge                   ;
-; Total virtual pins                 ; N/A until Partition Merge                   ;
-; Total memory bits                  ; N/A until Partition Merge                   ;
-; Embedded Multiplier 9-bit elements ; N/A until Partition Merge                   ;
-; Total PLLs                         ; N/A until Partition Merge                   ;
-; UFM blocks                         ; N/A until Partition Merge                   ;
-; ADC blocks                         ; N/A until Partition Merge                   ;
+; Total logic elements               ; 0                                           ;
+;     Total combinational functions  ; 0                                           ;
+;     Dedicated logic registers      ; 0                                           ;
+; Total registers                    ; 0                                           ;
+; Total pins                         ; 1                                           ;
+; Total virtual pins                 ; 0                                           ;
+; Total memory bits                  ; 0                                           ;
+; Embedded Multiplier 9-bit elements ; 0                                           ;
+; Total PLLs                         ; 0                                           ;
+; UFM blocks                         ; 0                                           ;
+; ADC blocks                         ; 0                                           ;
 +------------------------------------+---------------------------------------------+
 
 
@@ -158,13 +179,266 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 
 
++------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                             ;
++----------------------------------+-----------------+-----------------+---------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                      ; Library ;
++----------------------------------+-----------------+-----------------+---------------------------------------------------+---------+
+; signExtender.vhd                 ; yes             ; User VHDL File  ; /home/kartik/RISC_Pipelined/signExtender.vhd      ;         ;
+; RegisterFile.vhd                 ; yes             ; User VHDL File  ; /home/kartik/RISC_Pipelined/RegisterFile.vhd      ;         ;
+; register_1bit.vhd                ; yes             ; User VHDL File  ; /home/kartik/RISC_Pipelined/register_1bit.vhd     ;         ;
+; PipelineRegister.vhd             ; yes             ; User VHDL File  ; /home/kartik/RISC_Pipelined/PipelineRegister.vhd  ;         ;
+; Mux_4to1_16bit.vhd               ; yes             ; User VHDL File  ; /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd    ;         ;
+; InstructionMemory.vhd            ; yes             ; User VHDL File  ; /home/kartik/RISC_Pipelined/InstructionMemory.vhd ;         ;
+; Datapath.vhd                     ; yes             ; User VHDL File  ; /home/kartik/RISC_Pipelined/Datapath.vhd          ;         ;
+; DataMemory.vhd                   ; yes             ; User VHDL File  ; /home/kartik/RISC_Pipelined/DataMemory.vhd        ;         ;
+; ALU.vhd                          ; yes             ; User VHDL File  ; /home/kartik/RISC_Pipelined/ALU.vhd               ;         ;
++----------------------------------+-----------------+-----------------+---------------------------------------------------+---------+
+
+
++-----------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary         ;
++---------------------------------------------+-------+
+; Resource                                    ; Usage ;
++---------------------------------------------+-------+
+;                                             ;       ;
+; Total combinational functions               ; 0     ;
+; Logic element usage by number of LUT inputs ;       ;
+;     -- 4 input functions                    ; 0     ;
+;     -- 3 input functions                    ; 0     ;
+;     -- <=2 input functions                  ; 0     ;
+;                                             ;       ;
+; Logic elements by mode                      ;       ;
+;     -- normal mode                          ; 0     ;
+;     -- arithmetic mode                      ; 0     ;
+;                                             ;       ;
+; Total registers                             ; 0     ;
+;     -- Dedicated logic registers            ; 0     ;
+;     -- I/O registers                        ; 0     ;
+;                                             ;       ;
+; I/O pins                                    ; 1     ;
+;                                             ;       ;
+; Embedded Multiplier 9-bit elements          ; 0     ;
+;                                             ;       ;
+; Maximum fan-out node                        ; clk   ;
+; Maximum fan-out                             ; 1     ;
+; Total fan-out                               ; 1     ;
+; Average fan-out                             ; 0.50  ;
++---------------------------------------------+-------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                ;
++----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+-------------+--------------+
+; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name ; Entity Name ; Library Name ;
++----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+-------------+--------------+
+; |Datapath                  ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 1    ; 0            ; 0          ; |Datapath           ; Datapath    ; work         ;
++----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+-------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 0     ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "ALU:alu3"                                                                                  ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; instruction ; Input  ; Info     ; Stuck at GND                                                                        ;
+; control_sel ; Input  ; Info     ; Stuck at GND                                                                        ;
+; c_flag      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; z_flag      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; e_flag      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "ALU:alu2"                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; e_flag ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "ALU:alu1"                                                                                  ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; b[15..1]    ; Input  ; Info     ; Stuck at GND                                                                        ;
+; b[0]        ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; instruction ; Input  ; Info     ; Stuck at GND                                                                        ;
+; control_sel ; Input  ; Info     ; Stuck at GND                                                                        ;
+; c_flag      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; z_flag      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; e_flag      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "register_1bit:zflag"                                                                    ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                             ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; data_out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "register_1bit:cflag"                                                                    ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                             ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; data_out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------+
+; Port Connectivity Checks: "Mux_4to1_16bit:muxAluB" ;
++----------+-------+----------+----------------------+
+; Port     ; Type  ; Severity ; Details              ;
++----------+-------+----------+----------------------+
+; c[15..1] ; Input ; Info     ; Stuck at GND         ;
+; c[0]     ; Input ; Info     ; Stuck at VCC         ;
+; d        ; Input ; Info     ; Stuck at GND         ;
++----------+-------+----------+----------------------+
+
+
++--------------------------------------------------+
+; Port Connectivity Checks: "Mux_4to1_16bit:muxpc" ;
++------+-------+----------+------------------------+
+; Port ; Type  ; Severity ; Details                ;
++------+-------+----------+------------------------+
+; d    ; Input ; Info     ; Stuck at GND           ;
++------+-------+----------+------------------------+
+
+
++----------------------------------------------------+
+; Port Connectivity Checks: "Mux_4to1_16bit:muxAluA" ;
++------+-------+----------+--------------------------+
+; Port ; Type  ; Severity ; Details                  ;
++------+-------+----------+--------------------------+
+; d    ; Input ; Info     ; Stuck at GND             ;
++------+-------+----------+--------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "RegisterFile:RF"                                                                                                                             ;
++-------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; Port  ; Type  ; Severity ; Details                                                                                                                                      ;
++-------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; pc_we ; Input ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
++-------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "DataMemory:DMem"                                                                               ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port            ; Type   ; Severity ; Details                                                                             ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+; data_out_memory ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "PipelineRegister:MEMWB"                                                                        ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port            ; Type   ; Severity ; Details                                                                             ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+; data_in[68..48] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; data_out[84..6] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; data_out[2..0]  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "PipelineRegister:EXMEM"                                                                         ;
++------------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port             ; Type   ; Severity ; Details                                                                             ;
++------------------+--------+----------+-------------------------------------------------------------------------------------+
+; data_in[68..48]  ; Input  ; Info     ; Stuck at GND                                                                        ;
+; data_out[68..48] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "PipelineRegister:RREX"                                                                           ;
++-------------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port              ; Type   ; Severity ; Details                                                                             ;
++-------------------+--------+----------+-------------------------------------------------------------------------------------+
+; data_in[100..85]  ; Input  ; Info     ; Stuck at GND                                                                        ;
+; data_in[68..48]   ; Input  ; Info     ; Stuck at GND                                                                        ;
+; data_out[100..85] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; data_out[68..48]  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "PipelineRegister:IDRR"                                                                           ;
++-------------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port              ; Type   ; Severity ; Details                                                                             ;
++-------------------+--------+----------+-------------------------------------------------------------------------------------+
+; data_in[100..85]  ; Input  ; Info     ; Stuck at GND                                                                        ;
+; data_in[68..16]   ; Input  ; Info     ; Stuck at GND                                                                        ;
+; data_out[100..12] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; data_out[5..0]    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "PipelineRegister:IFID"                                                                           ;
++-------------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port              ; Type   ; Severity ; Details                                                                             ;
++-------------------+--------+----------+-------------------------------------------------------------------------------------+
+; data_in[100..85]  ; Input  ; Info     ; Stuck at GND                                                                        ;
+; data_in[68..16]   ; Input  ; Info     ; Stuck at GND                                                                        ;
+; data_out[100..85] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; data_out[68..16]  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-------------------+---------------------------------+
+; Type              ; Count                           ;
++-------------------+---------------------------------+
+; boundary_port     ; 1                               ;
+;                   ;                                 ;
+; Max LUT depth     ; 0.00                            ;
+; Average LUT depth ; 0.00                            ;
++-------------------+---------------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:00     ;
++----------------+--------------+
+
+
 +-------------------------------+
 ; Analysis & Synthesis Messages ;
 +-------------------------------+
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Sun Apr 30 14:02:53 2023
+    Info: Processing started: Mon May  1 18:38:56 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off RISCee -c Datapath
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
@@ -195,15 +469,178 @@ Info (12021): Found 2 design units, including 1 entities, in source file Datapat
 Info (12021): Found 2 design units, including 1 entities, in source file DataMemory.vhd
     Info (12022): Found design unit 1: DataMemory-DataMemory_arch File: /home/kartik/RISC_Pipelined/DataMemory.vhd Line: 16
     Info (12023): Found entity 1: DataMemory File: /home/kartik/RISC_Pipelined/DataMemory.vhd Line: 5
-Error (10500): VHDL syntax error at ALU.vhd(96) near text "OpCode";  expecting "begin", or a declaration statement File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 96
-Info (12021): Found 0 design units, including 0 entities, in source file ALU.vhd
+Info (12021): Found 2 design units, including 1 entities, in source file ALU.vhd
+    Info (12022): Found design unit 1: ALU-ALU_arch File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 18
+    Info (12023): Found entity 1: ALU File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file testbench.vhd
     Info (12022): Found design unit 1: testbench_tb-test_arch File: /home/kartik/RISC_Pipelined/testbench.vhd Line: 9
     Info (12023): Found entity 1: testbench_tb File: /home/kartik/RISC_Pipelined/testbench.vhd Line: 6
-Error: Quartus Prime Analysis & Synthesis was unsuccessful. 1 error, 1 warning
-    Error: Peak virtual memory: 420 megabytes
-    Error: Processing ended: Sun Apr 30 14:03:01 2023
-    Error: Elapsed time: 00:00:08
-    Error: Total CPU time (on all processors): 00:00:19
+Info (12127): Elaborating entity "Datapath" for the top level hierarchy
+Warning (10541): VHDL Signal Declaration warning at Datapath.vhd(88): used implicit default value for signal "DataAdd" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 88
+Warning (10541): VHDL Signal Declaration warning at Datapath.vhd(88): used implicit default value for signal "DataIn" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 88
+Warning (10036): Verilog HDL or VHDL warning at Datapath.vhd(88): object "DataOut" assigned a value but never read File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 88
+Warning (10036): Verilog HDL or VHDL warning at Datapath.vhd(91): object "Cflagout" assigned a value but never read File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 91
+Warning (10541): VHDL Signal Declaration warning at Datapath.vhd(91): used implicit default value for signal "C_WE" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 91
+Warning (10036): Verilog HDL or VHDL warning at Datapath.vhd(91): object "Zflagout" assigned a value but never read File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 91
+Warning (10541): VHDL Signal Declaration warning at Datapath.vhd(91): used implicit default value for signal "Z_WE" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 91
+Warning (10541): VHDL Signal Declaration warning at Datapath.vhd(91): used implicit default value for signal "DMem_WE" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 91
+Warning (10541): VHDL Signal Declaration warning at Datapath.vhd(91): used implicit default value for signal "RF_WE" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 91
+Warning (10541): VHDL Signal Declaration warning at Datapath.vhd(92): used implicit default value for signal "muxpcCon" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 92
+Warning (10541): VHDL Signal Declaration warning at Datapath.vhd(92): used implicit default value for signal "muxAluA_con" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 92
+Warning (10541): VHDL Signal Declaration warning at Datapath.vhd(92): used implicit default value for signal "muxAluB_con" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 92
+Warning (10541): VHDL Signal Declaration warning at Datapath.vhd(92): used implicit default value for signal "alu2con" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 92
+Warning (10873): Using initial value X (don't care) for net "IFID_in[100..85]" at Datapath.vhd(90) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 90
+Warning (10873): Using initial value X (don't care) for net "IFID_in[68..16]" at Datapath.vhd(90) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 90
+Warning (10873): Using initial value X (don't care) for net "IDRR_in[100..85]" at Datapath.vhd(90) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 90
+Warning (10873): Using initial value X (don't care) for net "IDRR_in[68..16]" at Datapath.vhd(90) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 90
+Warning (10873): Using initial value X (don't care) for net "RREX_in[100..85]" at Datapath.vhd(90) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 90
+Warning (10873): Using initial value X (don't care) for net "RREX_in[68..48]" at Datapath.vhd(90) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 90
+Warning (10873): Using initial value X (don't care) for net "EXMEM_in[68..48]" at Datapath.vhd(90) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 90
+Warning (10873): Using initial value X (don't care) for net "MEMWB_in[68..48]" at Datapath.vhd(90) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 90
+Info (12128): Elaborating entity "PipelineRegister" for hierarchy "PipelineRegister:IFID" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 94
+Warning (10036): Verilog HDL or VHDL warning at PipelineRegister.vhd(14): object "data" assigned a value but never read File: /home/kartik/RISC_Pipelined/PipelineRegister.vhd Line: 14
+Info (12128): Elaborating entity "InstructionMemory" for hierarchy "InstructionMemory:IMem" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 100
+Warning (10492): VHDL Process Statement warning at InstructionMemory.vhd(20): signal "Instructions" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/InstructionMemory.vhd Line: 20
+Info (12128): Elaborating entity "DataMemory" for hierarchy "DataMemory:DMem" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 101
+Warning (10492): VHDL Process Statement warning at DataMemory.vhd(22): signal "Memory_write_enable" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/DataMemory.vhd Line: 22
+Warning (10492): VHDL Process Statement warning at DataMemory.vhd(23): signal "data_in_memory" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/DataMemory.vhd Line: 23
+Warning (10492): VHDL Process Statement warning at DataMemory.vhd(24): signal "Memory_data" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/DataMemory.vhd Line: 24
+Warning (10492): VHDL Process Statement warning at DataMemory.vhd(25): signal "Memory_write_enable" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/DataMemory.vhd Line: 25
+Warning (10492): VHDL Process Statement warning at DataMemory.vhd(26): signal "Memory_data" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/DataMemory.vhd Line: 26
+Warning (10631): VHDL Process Statement warning at DataMemory.vhd(20): inferring latch(es) for signal or variable "data_out_memory", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/DataMemory.vhd Line: 20
+Info (12128): Elaborating entity "RegisterFile" for hierarchy "RegisterFile:RF" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 102
+Warning (10492): VHDL Process Statement warning at RegisterFile.vhd(50): signal "regzero" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 50
+Warning (10492): VHDL Process Statement warning at RegisterFile.vhd(52): signal "RF_data" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 52
+Warning (10631): VHDL Process Statement warning at RegisterFile.vhd(47): inferring latch(es) for signal or variable "data_out1", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 47
+Warning (10492): VHDL Process Statement warning at RegisterFile.vhd(59): signal "regzero" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 59
+Warning (10631): VHDL Process Statement warning at RegisterFile.vhd(56): inferring latch(es) for signal or variable "data_out2", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 56
+Info (10041): Inferred latch for "data_out2[0]" at RegisterFile.vhd(56) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 56
+Info (10041): Inferred latch for "data_out2[1]" at RegisterFile.vhd(56) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 56
+Info (10041): Inferred latch for "data_out2[2]" at RegisterFile.vhd(56) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 56
+Info (10041): Inferred latch for "data_out2[3]" at RegisterFile.vhd(56) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 56
+Info (10041): Inferred latch for "data_out2[4]" at RegisterFile.vhd(56) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 56
+Info (10041): Inferred latch for "data_out2[5]" at RegisterFile.vhd(56) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 56
+Info (10041): Inferred latch for "data_out2[6]" at RegisterFile.vhd(56) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 56
+Info (10041): Inferred latch for "data_out2[7]" at RegisterFile.vhd(56) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 56
+Info (10041): Inferred latch for "data_out2[8]" at RegisterFile.vhd(56) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 56
+Info (10041): Inferred latch for "data_out2[9]" at RegisterFile.vhd(56) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 56
+Info (10041): Inferred latch for "data_out2[10]" at RegisterFile.vhd(56) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 56
+Info (10041): Inferred latch for "data_out2[11]" at RegisterFile.vhd(56) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 56
+Info (10041): Inferred latch for "data_out2[12]" at RegisterFile.vhd(56) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 56
+Info (10041): Inferred latch for "data_out2[13]" at RegisterFile.vhd(56) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 56
+Info (10041): Inferred latch for "data_out2[14]" at RegisterFile.vhd(56) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 56
+Info (10041): Inferred latch for "data_out2[15]" at RegisterFile.vhd(56) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 56
+Info (10041): Inferred latch for "data_out1[0]" at RegisterFile.vhd(47) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 47
+Info (10041): Inferred latch for "data_out1[1]" at RegisterFile.vhd(47) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 47
+Info (10041): Inferred latch for "data_out1[2]" at RegisterFile.vhd(47) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 47
+Info (10041): Inferred latch for "data_out1[3]" at RegisterFile.vhd(47) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 47
+Info (10041): Inferred latch for "data_out1[4]" at RegisterFile.vhd(47) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 47
+Info (10041): Inferred latch for "data_out1[5]" at RegisterFile.vhd(47) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 47
+Info (10041): Inferred latch for "data_out1[6]" at RegisterFile.vhd(47) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 47
+Info (10041): Inferred latch for "data_out1[7]" at RegisterFile.vhd(47) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 47
+Info (10041): Inferred latch for "data_out1[8]" at RegisterFile.vhd(47) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 47
+Info (10041): Inferred latch for "data_out1[9]" at RegisterFile.vhd(47) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 47
+Info (10041): Inferred latch for "data_out1[10]" at RegisterFile.vhd(47) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 47
+Info (10041): Inferred latch for "data_out1[11]" at RegisterFile.vhd(47) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 47
+Info (10041): Inferred latch for "data_out1[12]" at RegisterFile.vhd(47) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 47
+Info (10041): Inferred latch for "data_out1[13]" at RegisterFile.vhd(47) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 47
+Info (10041): Inferred latch for "data_out1[14]" at RegisterFile.vhd(47) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 47
+Info (10041): Inferred latch for "data_out1[15]" at RegisterFile.vhd(47) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 47
+Info (12128): Elaborating entity "Mux_4to1_16bit" for hierarchy "Mux_4to1_16bit:muxAluA" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 103
+Warning (10631): VHDL Process Statement warning at Mux_4to1_16bit.vhd(16): inferring latch(es) for signal or variable "output", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 16
+Info (10041): Inferred latch for "output[0]" at Mux_4to1_16bit.vhd(16) File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 16
+Info (10041): Inferred latch for "output[1]" at Mux_4to1_16bit.vhd(16) File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 16
+Info (10041): Inferred latch for "output[2]" at Mux_4to1_16bit.vhd(16) File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 16
+Info (10041): Inferred latch for "output[3]" at Mux_4to1_16bit.vhd(16) File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 16
+Info (10041): Inferred latch for "output[4]" at Mux_4to1_16bit.vhd(16) File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 16
+Info (10041): Inferred latch for "output[5]" at Mux_4to1_16bit.vhd(16) File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 16
+Info (10041): Inferred latch for "output[6]" at Mux_4to1_16bit.vhd(16) File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 16
+Info (10041): Inferred latch for "output[7]" at Mux_4to1_16bit.vhd(16) File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 16
+Info (10041): Inferred latch for "output[8]" at Mux_4to1_16bit.vhd(16) File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 16
+Info (10041): Inferred latch for "output[9]" at Mux_4to1_16bit.vhd(16) File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 16
+Info (10041): Inferred latch for "output[10]" at Mux_4to1_16bit.vhd(16) File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 16
+Info (10041): Inferred latch for "output[11]" at Mux_4to1_16bit.vhd(16) File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 16
+Info (10041): Inferred latch for "output[12]" at Mux_4to1_16bit.vhd(16) File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 16
+Info (10041): Inferred latch for "output[13]" at Mux_4to1_16bit.vhd(16) File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 16
+Info (10041): Inferred latch for "output[14]" at Mux_4to1_16bit.vhd(16) File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 16
+Info (10041): Inferred latch for "output[15]" at Mux_4to1_16bit.vhd(16) File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 16
+Info (12128): Elaborating entity "register_1bit" for hierarchy "register_1bit:cflag" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 106
+Warning (10492): VHDL Process Statement warning at register_1bit.vhd(21): signal "reg_WE" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/register_1bit.vhd Line: 21
+Warning (10492): VHDL Process Statement warning at register_1bit.vhd(24): signal "reg_WE" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/register_1bit.vhd Line: 24
+Warning (10492): VHDL Process Statement warning at register_1bit.vhd(25): signal "data" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/register_1bit.vhd Line: 25
+Warning (10631): VHDL Process Statement warning at register_1bit.vhd(19): inferring latch(es) for signal or variable "data", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/register_1bit.vhd Line: 19
+Warning (10631): VHDL Process Statement warning at register_1bit.vhd(19): inferring latch(es) for signal or variable "data_out", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/register_1bit.vhd Line: 19
+Info (10041): Inferred latch for "data" at register_1bit.vhd(19) File: /home/kartik/RISC_Pipelined/register_1bit.vhd Line: 19
+Info (12128): Elaborating entity "SignExtender" for hierarchy "SignExtender:se" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 109
+Warning (10492): VHDL Process Statement warning at signExtender.vhd(21): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 21
+Warning (10492): VHDL Process Statement warning at signExtender.vhd(22): signal "input" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 22
+Warning (10492): VHDL Process Statement warning at signExtender.vhd(24): signal "input" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 24
+Warning (10492): VHDL Process Statement warning at signExtender.vhd(26): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 26
+Warning (10492): VHDL Process Statement warning at signExtender.vhd(27): signal "input" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 27
+Warning (10492): VHDL Process Statement warning at signExtender.vhd(29): signal "input" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 29
+Warning (10492): VHDL Process Statement warning at signExtender.vhd(31): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 31
+Warning (10492): VHDL Process Statement warning at signExtender.vhd(32): signal "input" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 32
+Warning (10631): VHDL Process Statement warning at signExtender.vhd(17): inferring latch(es) for signal or variable "output", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
+Info (10041): Inferred latch for "output[0]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
+Info (10041): Inferred latch for "output[1]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
+Info (10041): Inferred latch for "output[2]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
+Info (10041): Inferred latch for "output[3]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
+Info (10041): Inferred latch for "output[4]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
+Info (10041): Inferred latch for "output[5]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
+Info (10041): Inferred latch for "output[6]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
+Info (10041): Inferred latch for "output[7]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
+Info (10041): Inferred latch for "output[8]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
+Info (10041): Inferred latch for "output[9]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
+Info (10041): Inferred latch for "output[10]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
+Info (10041): Inferred latch for "output[11]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
+Info (10041): Inferred latch for "output[12]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
+Info (10041): Inferred latch for "output[13]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
+Info (10041): Inferred latch for "output[14]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
+Info (10041): Inferred latch for "output[15]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
+Info (12128): Elaborating entity "ALU" for hierarchy "ALU:alu1" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 110
+Warning (10540): VHDL Signal Declaration warning at ALU.vhd(21): used explicit default value for signal "OpCode" because signal was never assigned a value File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 21
+Warning (10540): VHDL Signal Declaration warning at ALU.vhd(22): used explicit default value for signal "complement" because signal was never assigned a value File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 22
+Warning (10492): VHDL Process Statement warning at ALU.vhd(106): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 106
+Warning (10492): VHDL Process Statement warning at ALU.vhd(106): signal "complement" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 106
+Warning (10492): VHDL Process Statement warning at ALU.vhd(109): signal "control_sel" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 109
+Warning (10492): VHDL Process Statement warning at ALU.vhd(140): signal "C" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 140
+Warning (10492): VHDL Process Statement warning at ALU.vhd(141): signal "Z" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 141
+Warning (10492): VHDL Process Statement warning at ALU.vhd(142): signal "E" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 142
+Warning (10631): VHDL Process Statement warning at ALU.vhd(102): inferring latch(es) for signal or variable "ALU_out", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 102
+Warning (10631): VHDL Process Statement warning at ALU.vhd(102): inferring latch(es) for signal or variable "C", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 102
+Warning (10631): VHDL Process Statement warning at ALU.vhd(102): inferring latch(es) for signal or variable "Z", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 102
+Warning (10631): VHDL Process Statement warning at ALU.vhd(102): inferring latch(es) for signal or variable "E", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 102
+Info (10041): Inferred latch for "E" at ALU.vhd(102) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 102
+Info (10041): Inferred latch for "Z" at ALU.vhd(102) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 102
+Info (10041): Inferred latch for "C" at ALU.vhd(102) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 102
+Info (10041): Inferred latch for "ALU_out[0]" at ALU.vhd(102) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 102
+Info (10041): Inferred latch for "ALU_out[1]" at ALU.vhd(102) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 102
+Info (10041): Inferred latch for "ALU_out[2]" at ALU.vhd(102) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 102
+Info (10041): Inferred latch for "ALU_out[3]" at ALU.vhd(102) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 102
+Info (10041): Inferred latch for "ALU_out[4]" at ALU.vhd(102) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 102
+Info (10041): Inferred latch for "ALU_out[5]" at ALU.vhd(102) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 102
+Info (10041): Inferred latch for "ALU_out[6]" at ALU.vhd(102) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 102
+Info (10041): Inferred latch for "ALU_out[7]" at ALU.vhd(102) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 102
+Info (10041): Inferred latch for "ALU_out[8]" at ALU.vhd(102) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 102
+Info (10041): Inferred latch for "ALU_out[9]" at ALU.vhd(102) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 102
+Info (10041): Inferred latch for "ALU_out[10]" at ALU.vhd(102) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 102
+Info (10041): Inferred latch for "ALU_out[11]" at ALU.vhd(102) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 102
+Info (10041): Inferred latch for "ALU_out[12]" at ALU.vhd(102) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 102
+Info (10041): Inferred latch for "ALU_out[13]" at ALU.vhd(102) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 102
+Info (10041): Inferred latch for "ALU_out[14]" at ALU.vhd(102) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 102
+Info (10041): Inferred latch for "ALU_out[15]" at ALU.vhd(102) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 102
+Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 1 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "clk" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 6
+Info (21057): Implemented 1 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 1 input pins
+    Info (21059): Implemented 0 output pins
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 65 warnings
+    Info: Peak virtual memory: 432 megabytes
+    Info: Processing ended: Mon May  1 18:39:04 2023
+    Info: Elapsed time: 00:00:08
+    Info: Total CPU time (on all processors): 00:00:20
 
 

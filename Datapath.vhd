@@ -107,10 +107,12 @@ begin
     zflag: register_1bit port map(Zflagin,Zflagout,clk,Z_WE);
     
     se: SignExtender port map(RREX_out(15 downto 0),seOut);
-    alu1: ALU port map(PC_out,x"0001","00",open,open,open,clk,alu1out);
-    alu2: ALU port map(aluAin,aluBin,alu2Con,Cflagin,Zflagin,open,clk,alu2out);
-    alu3: ALU port map(RREX_out(84 downto 69),seOut,"00",open,open,open,clk,alu3out);
-	 
+    alu1: ALU port map(PC_out,x"0001",x"0000","00",open,open,open,clk,alu1out);
+    alu2: ALU port map(aluAin,aluBin,RREX_out (15 downto 0),alu2Con,Cflagin,Zflagin,open,clk,alu2out);
+    alu3: ALU port map(RREX_out(84 downto 69),seOut,x"0000","00",open,open,open,clk,alu3out);
+	--the third entry for these ALUs which corresponds to the instruction needed to be changed
+    --which i have set to x"0000" for 1 and 3 and the actual instruction contained in the RREX register
+    --for alu2.
 	 
     p1: process(clk)
     begin

@@ -6,7 +6,7 @@ entity ALU is
     port (
         A: in std_logic_vector(15 downto 0);
         B: in std_logic_vector(15 downto 0);
-        instruction: in std_logic_vector(15 downto 0);
+		  instruction: std_logic_vector(15 downto 0);
         control_sel: in std_logic_vector(1 downto 0);
         C_flag, Z_flag, E_flag : out std_logic;
         clk: in std_logic;
@@ -18,24 +18,17 @@ end ALU;
 architecture ALU_arch of ALU is
 --we will define functions for different operations which the ALU needs to do.
 signal C,Z,E: std_logic :='0' ;
-signal OpCode: std_logic_vector(3 downto 0) := instruction(15 downto 12);
-signal complement: std_logic := instruction(2); 
--- opcode and complement are best initialized here
+signal OpCode: std_logic_vector(3 downto 0);
+signal complement: std_logic;
 ----
 function add(A: in std_logic_vector(15 downto 0);
-        B: in std_logic_vector(15 downto 0);
-		  OpCode: std_logic_vector(3 downto 0);
-		  complement: std_logic
-		  --i have taken these to be the same name (refering to the variable names)
-		  -- but they might as well have been different.
-		  )
+        B: in std_logic_vector(15 downto 0))
 return std_logic_vector is
     variable sum   : std_logic_vector(15 downto 0);
     variable carry : std_logic_vector(15 downto 0);
 begin
     
-    if((OpCode = "0001" or OpCode = "0010") and complement = '1') then
-	 -- always remember to put '' on single bit values.
+    if((OpCode = "0001" or OpCode = "0010") and complement = 1) then
     L1: for i in 0 to 15 loop
         if i = 0 then
         sum(i)  := A(i) xor (not B(i)) xor '0';
@@ -99,12 +92,14 @@ end subtract;
 
 ----
 begin
+OpCode <= instruction(15 downto 12);
+complement <= instruction(2); 
 alu_process : process(A,B,clk)
+begin
 variable temp_1,temp_2 : std_logic_vector(16 downto 0);
 
     begin
-        temp_1 := add(A,B,OpCode,complement);
-		  -- the changes while calling the function need to be made here (adding opcode and complement argument in this case.)
+        temp_1 := add(A,B);
         temp_2 := subtract(A,B);
     case control_sel is 
     when "00" => 
