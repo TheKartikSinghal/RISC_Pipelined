@@ -136,10 +136,31 @@ architecture arch_Datapath of Datapath is
         );
     end component;
 
+    component Stall_and_throw is
+    port(
+        CHECKBIT,THROWBIT : in std_logic;
+        IFID_PR_WR,IFID_RST,
+        IDRR_PR_WR,IDRR_RST,
+        RREX_PR_WR,RREX_RST,
+        EXMEM_PR_WR,EXMEM_RST,
+        MEMWB_PR_WR,MEMWB_RST,
+        PC_WR: out std_logic
+        );
+    end component;
+
+    component load_hazards is
+    port( 
+	    PR1 : in std_logic_vector(122 downto 0);
+	    PR2 : in std_logic_vector(122 downto 0);
+	    CHECK_BIT : out std_logic
+	    --MUX_ALU2A_SEL : out std_logic_vector(1 downto 0);
+	    );
+    end component;
+
     signal Instruction, RF_D1, RF_D2, RF_D3, PC_out, alu1out, alu3out, alu2out, DataAdd, DataIn, DataOut, aluAin, aluBin, seOut, PC_in ,fwdtomuxA,fwdtomuxB:std_logic_vector(15 downto 0);
     signal RF_A1,RF_A2,RF_A3 : std_logic_vector(2 downto 0);
     signal IFID_in,IFID_out,IDRR_in,IDRR_out,RREX_in,RREX_out,EXMEM_in,EXMEM_out,MEMWB_in,MEMWB_out: std_logic_vector(122 downto 0);
-    signal Cflagin,Cflagout,C_WE,Zflagin,Zflagout,Z_WE,DMem_WE,RF_WE,throw_sig,PC_WE: std_logic;
+    signal Cflagin,Cflagout,C_WE,Zflagin,Zflagout,Z_WE,DMem_WE,RF_WE,throw_sig,check_sig,PC_WE: std_logic;
     signal muxpcCon,muxAluA_con,muxAluB_con,alu2con,exextofwderA,exextofwderB:std_logic_vector(1 downto 0);
     signal IFID_rst,IFID_WE,IDRR_rst,IDRR_WE,RREX_rst,RREX_WE,EXMEM_rst,EXMEM_WE,MEMWB_rst,MEMWB_WE: std_logic;
 begin
@@ -173,6 +194,9 @@ begin
     fwderB: FwdB port map (MEMWB_out,EXMEM_out,RREX_out,exextofwderB,fwdtomuxB,muxAluB_con);
     exec: Executor port map(RREX_out(15 downto 0),alu2con,exextofwderA,exextofwderB);
 
+    ST: stall_and_throw port map(check_sig,throw_sig,IFID_WE,IFID_rst,IDRR_WE,IDRR_rst,RREX_WE,RREX_rst,EXMEM_WE,EXMEM_rst,MEMWB_WE,MEMWB_rst,PC_WE);
+    LH: load_hazards port map(IDRR_out,IFID_out,check_sig) ;
+    
     se: SignExtender port map(RREX_out(15 downto 0),seOut);
     alu1: ALU port map(PC_out,x"0001",Cflagout,x"0000","00",open,open,open,clk,alu1out);
     alu2: ALU port map(aluAin,aluBin,Cflagout,Instruction,alu2Con,Cflagin,Zflagin,open,clk,alu2out);

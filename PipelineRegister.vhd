@@ -17,12 +17,12 @@ architecture arch_PipelineRegister of PipelineRegister is
     begin
         process(clk,rst,PR_WE)
         begin
-        if(rst='1') then
-            data <=(others => '0');
-            data_out <= (others => '0');
-        else
-            if (clk'event and clk='0') then
-		        if(PR_WE='1') then
+        if(clk'event and clk='0')then
+            if (rst='1') then
+                data <=(others => '0');
+                data_out <= (others => '0');
+			else
+                if(PR_WE='1') then
                     data <= data_in;
                     data_out <= data_in;
                 else

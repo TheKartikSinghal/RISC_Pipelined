@@ -5,8 +5,8 @@ use ieee.numeric_std.all;
 
 entity load_hazards is
 port( 
-	PR1 : in std_logic_vector(106 downto 0);
-	PR2 : in std_logic_vector(106 downto 0);
+	PR1 : in std_logic_vector(122 downto 0);--IDRR
+	PR2 : in std_logic_vector(122 downto 0);--IFID
 	CHECK_BIT : out std_logic
 	--MUX_ALU2A_SEL : out std_logic_vector(1 downto 0);
 	);

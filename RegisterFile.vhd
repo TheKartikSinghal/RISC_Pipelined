@@ -17,7 +17,7 @@ entity RegisterFile is
 end RegisterFile;
 architecture RegisterFile_arch of RegisterFile is
     type RF is array (1 to 7) of std_logic_vector (15 downto 0);
-    signal RF_data: RF := (others => x"0000");
+    signal RF_data: RF := (1 => "0100000001000101",2 => "0100001001000110",others => x"0000");
 	signal regzero : std_logic_vector(15 downto 0) := x"0000";
     begin
     write: process(clk)
