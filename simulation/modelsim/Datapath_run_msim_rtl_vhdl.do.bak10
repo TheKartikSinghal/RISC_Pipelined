@@ -5,12 +5,6 @@ if {[file exists rtl_work]} {
 vlib rtl_work
 vmap work rtl_work
 
-vcom -93 -work work {/home/kartik/RISC_Pipelined/RF_C_Z.vhd}
-vcom -93 -work work {/home/kartik/RISC_Pipelined/Stall_and_throw.vhd}
-vcom -93 -work work {/home/kartik/RISC_Pipelined/load_hazards.vhd}
-vcom -93 -work work {/home/kartik/RISC_Pipelined/Execution.vhd}
-vcom -93 -work work {/home/kartik/RISC_Pipelined/FU_A.vhd}
-vcom -93 -work work {/home/kartik/RISC_Pipelined/FU_B.vhd}
 vcom -93 -work work {/home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd}
 vcom -93 -work work {/home/kartik/RISC_Pipelined/signExtender.vhd}
 vcom -93 -work work {/home/kartik/RISC_Pipelined/RegisterFile.vhd}

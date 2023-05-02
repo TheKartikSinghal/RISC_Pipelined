@@ -54,3 +54,30 @@ and the load instruction itelf will move to the MEMWB stage
 thereafter we can get the data for the dependent instruction simply by dataforwarding.
 the data read from memory will be present in the 122 downto 107 bits of the MEMWB PR.
 ##############
+
+add wave -position end  sim:/testbench_tb/instance/IFID/data
+add wave -position end  sim:/testbench_tb/instance/IDRR/data
+add wave -position end  sim:/testbench_tb/instance/RREX/data
+add wave -position end  sim:/testbench_tb/instance/EXMEM/data
+add wave -position end  sim:/testbench_tb/instance/MEMWB/data
+
+add wave -position end  sim:/testbench_tb/instance/alu2/ALU_out
+add wave -position end  sim:/testbench_tb/instance/alu2/control_sel
+add wave -position end  sim:/testbench_tb/instance/muxAluA/output
+add wave -position end  sim:/testbench_tb/instance/muxAluB/output
+add wave -position end  sim:/testbench_tb/instance/muxAluA/con_sel
+add wave -position end  sim:/testbench_tb/instance/muxAluA/A
+add wave -position end  sim:/testbench_tb/instance/RF/data_out1
+add wave -position end  sim:/testbench_tb/instance/RF/address1
+add wave -position end  sim:/testbench_tb/instance/RF/address2
+add wave -position end  sim:/testbench_tb/instance/RF/data_out2
+add wave -position end  sim:/testbench_tb/instance/RF/PC_WE
+add wave -position end  sim:/testbench_tb/instance/RF/PC_in
+add wave -position end  sim:/testbench_tb/instance/RF/regzero
+add wave -position end  sim:/testbench_tb/instance/RF/data_in3
+add wave -position end  sim:/testbench_tb/instance/RF/address3
+add wave -position end  sim:/testbench_tb/instance/RF/RF_write_enable
+add wave -position end  sim:/testbench_tb/instance/rfcz1/opcode
+add wave -position end  sim:/testbench_tb/instance/rfcz1/INSTR
+restart
+run

@@ -157,6 +157,19 @@ architecture arch_Datapath of Datapath is
 	    );
     end component;
 
+    component RFCZ is
+    port(
+	    INSTR : in std_logic_vector(15 downto 0);
+	    C_OUT : in std_logic;
+	    Z_OUT : in std_logic;
+	    RF_WR : out std_logic;
+	    C_WR : out std_logic;
+	    Z_WR : out std_logic;
+	    DMEM_WR : out std_logic
+	    );
+    end component;
+
+
     signal Instruction, RF_D1, RF_D2, RF_D3, PC_out, alu1out, alu3out, alu2out, DataAdd, DataIn, DataOut, aluAin, aluBin, seOut, PC_in ,fwdtomuxA,fwdtomuxB:std_logic_vector(15 downto 0);
     signal RF_A1,RF_A2,RF_A3 : std_logic_vector(2 downto 0);
     signal IFID_in,IFID_out,IDRR_in,IDRR_out,RREX_in,RREX_out,EXMEM_in,EXMEM_out,MEMWB_in,MEMWB_out: std_logic_vector(122 downto 0);
@@ -196,21 +209,22 @@ begin
 
     ST: stall_and_throw port map(check_sig,throw_sig,IFID_WE,IFID_rst,IDRR_WE,IDRR_rst,RREX_WE,RREX_rst,EXMEM_WE,EXMEM_rst,MEMWB_WE,MEMWB_rst,PC_WE);
     LH: load_hazards port map(IDRR_out,IFID_out,check_sig) ;
+    rfcz1: RFCZ port map(RREX_out(15 downto 0),Cflagout,Zflagout,RF_WE,C_WE,Z_WE,DMem_WE);
     
     se: SignExtender port map(RREX_out(15 downto 0),seOut);
     alu1: ALU port map(PC_out,x"0001",Cflagout,x"0000","00",open,open,open,clk,alu1out);
     alu2: ALU port map(aluAin,aluBin,Cflagout,Instruction,alu2Con,Cflagin,Zflagin,open,clk,alu2out);
     alu3: ALU port map(RREX_out(84 downto 69),seOut,Cflagout,x"0000","00",open,open,open,clk,alu3out);
 	 
-	 process(clk,Instruction,PC_out)
-	 begin
+	IF_ID:process(clk,Instruction,PC_out)
+	begin
     -- 1st Pipeline Register
     --IFID will only take in instrucion and PC
     IFID_in(15 downto 0) <= Instruction;
     IFID_in(84 downto 69) <= PC_out;
-	 end process;
+	end process;
 	 
-    p1: process(clk)
+    ID_RR: process(clk,IFID_out)
     begin
     
     -- 2nd Pipeline Register
@@ -218,15 +232,22 @@ begin
     IDRR_in(84 downto 69)<=IFID_out(84 downto 69);--just copying PC
     --control signals which are supposed to be decided during the ID stage also need to added here. 
     --and also forwarded to other registers.
+    end process;
+
+    RR_EX: process(clk,IDRR_out,RF_D1,RF_D2)
+    begin
     RF_A1 <= IDRR_out(11 downto 9);--incase of ADA encoding was 0001/RA*/RB/RC/0/00
     RF_A2 <= IDRR_out(8 downto 6);--incase of ADA encoding was 0001/RA/RB*/RC/0/00
-    
+
     -- 3rd Pipeline Register
-    RREX_in (15 downto 0)  <= IDRR_in(15 downto 0);--just copying instruction
-    RREX_in (84 downto 69)<= IDRR_in(84 downto 69);--just copying PC
+    RREX_in (15 downto 0)  <= IDRR_out(15 downto 0);--just copying instruction
+    RREX_in (84 downto 69)<= IDRR_out(84 downto 69);--just copying PC
     RREX_in (31 downto 16) <= RF_D1;-- fetching data RA
     RREX_in (47 downto 32) <= RF_D2;-- fetching data RB
-    
+    end process;
+
+    EX_MEM: process(clk,RREX_out,alu1out)
+    begin
     -- 4th Pipeline Register
     EXMEM_in (15 downto 0)  <= RREX_out(15 downto 0);--just copying instruction
     EXMEM_in (84 downto 69) <= RREX_out(84 downto 69);--just copying PC
@@ -236,20 +257,24 @@ begin
     --WE signals might also need to be changed here.
     --also add the wires from EXMEM to DMem
     -- and from DMem to MEMWB
+    end process;
 
+    MEM_WB: process(clk,EXMEM_out)
+    begin
     -- 5th/last Pipeline Register
     MEMWB_in (15 downto 0)  <=EXMEM_out(15 downto 0);--just copying instruction
     MEMWB_in (84 downto 69) <=EXMEM_out(84 downto 69);--just copying PC
     MEMWB_in (31 downto 16) <=EXMEM_out (31 downto 16);--forwarding the data RA
     MEMWB_in (47 downto 32) <=EXMEM_out (47 downto 32);--forwarding the data RB
     MEMWB_in (100 downto 85) <=EXMEM_out (100 downto 85);
+    end process;
 
+    last: process(clk,MEMWB_out)
+    begin
     RF_D3 <= MEMWB_out (100 downto 85);
     --####################
     --we need to put a mux here to choose between the aluout and memout to be loaded into rf
     RF_A3 <= MEMWB_out(5 downto 3);
     --###################
-
-
     end process;
 end arch_Datapath;
