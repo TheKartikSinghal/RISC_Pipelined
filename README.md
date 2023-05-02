@@ -4,7 +4,8 @@ Pipeline register division
 00-15  Instruction
 16-31  Data1
 32-47  Data2
-48-49  ALU control bits (currently vestigial)
+48  (currently vestigial)
+49     Dmem_we
 50     C_WE
 51     Z_WE
 52     RF_WE
@@ -54,6 +55,8 @@ and the load instruction itelf will move to the MEMWB stage
 thereafter we can get the data for the dependent instruction simply by dataforwarding.
 the data read from memory will be present in the 122 downto 107 bits of the MEMWB PR.
 ##############
+the ouptput signals werent to be directly put into the WE of the CZ and RF (for CZ directs works but not for RF and Mem). They were supposed to be stored in the pipeline registers. bitch you dumb as F
+#############
 
 add wave -position end  sim:/testbench_tb/instance/IFID/data
 add wave -position end  sim:/testbench_tb/instance/IDRR/data

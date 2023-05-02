@@ -173,7 +173,7 @@ architecture arch_Datapath of Datapath is
     signal Instruction, RF_D1, RF_D2, RF_D3, PC_out, alu1out, alu3out, alu2out, DataAdd, DataIn, DataOut, aluAin, aluBin, seOut, PC_in ,fwdtomuxA,fwdtomuxB:std_logic_vector(15 downto 0);
     signal RF_A1,RF_A2,RF_A3 : std_logic_vector(2 downto 0);
     signal IFID_in,IFID_out,IDRR_in,IDRR_out,RREX_in,RREX_out,EXMEM_in,EXMEM_out,MEMWB_in,MEMWB_out: std_logic_vector(122 downto 0);
-    signal Cflagin,Cflagout,C_WE,Zflagin,Zflagout,Z_WE,DMem_WE,RF_WE,throw_sig,check_sig,PC_WE: std_logic;
+    signal Cflagin,Cflagout,C_WE,Zflagin,Zflagout,Z_WE,DMem_WE,DMem_WE_out,RF_WE,RF_WE_out,throw_sig,check_sig,PC_WE: std_logic;
     signal muxpcCon,muxAluA_con,muxAluB_con,alu2con,exextofwderA,exextofwderB:std_logic_vector(1 downto 0);
     signal IFID_rst,IFID_WE,IDRR_rst,IDRR_WE,RREX_rst,RREX_WE,EXMEM_rst,EXMEM_WE,MEMWB_rst,MEMWB_WE: std_logic;
 begin
@@ -209,7 +209,7 @@ begin
 
     ST: stall_and_throw port map(check_sig,throw_sig,IFID_WE,IFID_rst,IDRR_WE,IDRR_rst,RREX_WE,RREX_rst,EXMEM_WE,EXMEM_rst,MEMWB_WE,MEMWB_rst,PC_WE);
     LH: load_hazards port map(IDRR_out,IFID_out,check_sig) ;
-    rfcz1: RFCZ port map(RREX_out(15 downto 0),Cflagout,Zflagout,RF_WE,C_WE,Z_WE,DMem_WE);
+    rfcz1: RFCZ port map(RREX_out(15 downto 0),Cflagout,Zflagout,RF_WE_out,C_WE,Z_WE,DMem_WE_out);
     
     se: SignExtender port map(RREX_out(15 downto 0),seOut);
     alu1: ALU port map(PC_out,x"0001",Cflagout,x"0000","00",open,open,open,clk,alu1out);
@@ -254,6 +254,9 @@ begin
     EXMEM_in (31 downto 16) <= RREX_out (31 downto 16);--forwarding the data RA
     EXMEM_in (47 downto 32) <= RREX_out (47 downto 32);--forwarding the data RB
     EXMEM_in (100 downto 85) <= alu2out; 
+    EXMEM_in(52)<=RF_WE_out; --RF_WE
+    EXMEM_in(49)<=DMem_WE_out; --DMEM_WE
+
     --WE signals might also need to be changed here.
     --also add the wires from EXMEM to DMem
     -- and from DMem to MEMWB
@@ -267,11 +270,13 @@ begin
     MEMWB_in (31 downto 16) <=EXMEM_out (31 downto 16);--forwarding the data RA
     MEMWB_in (47 downto 32) <=EXMEM_out (47 downto 32);--forwarding the data RB
     MEMWB_in (100 downto 85) <=EXMEM_out (100 downto 85);
+    DMem_WE<=EXMEM_out(49);
     end process;
 
     last: process(clk,MEMWB_out)
     begin
     RF_D3 <= MEMWB_out (100 downto 85);
+    RF_WE <= MEMWB_out(52);
     --####################
     --we need to put a mux here to choose between the aluout and memout to be loaded into rf
     RF_A3 <= MEMWB_out(5 downto 3);

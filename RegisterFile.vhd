@@ -19,16 +19,26 @@ architecture RegisterFile_arch of RegisterFile is
     type RF is array (1 to 7) of std_logic_vector (15 downto 0);
     signal RF_data: RF := (1 => x"0001",2 => x"0002",others => x"0000");
 	signal regzero : std_logic_vector(15 downto 0) := x"0000";
-	variable address3num : integer := to_integer(unsigned(address3));
     begin
     write: process(clk)
+		variable address3num : integer:=1;
         begin
-			if (address3 = "000") then
-				address3num := 0;
-			else 
-				address3num := to_integer(unsigned(address3));
+			if (address3 = "000" or address3 = "001") then
+				address3num := 1;
+			elsif(address3 = "010" ) then
+				address3num := 2;
+			elsif(address3 = "011" )then
+				address3num := 3;
+			elsif(address3 = "100" )then
+				address3num := 4;
+			elsif(address3 = "101" )then
+				address3num := 5;
+			elsif(address3 = "110" )then
+				address3num := 6;
+			elsif(address3 = "111" )then
+				address3num := 7;
 			end if;
-			
+
 			if (clk'event and clk='0') then
 					if(address3 = "000") then
 						if(RF_write_enable = '1') then
