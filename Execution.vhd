@@ -4,9 +4,6 @@ use IEEE.numeric_std.all;
 
 entity Executor is
 port(PR1 : in std_logic_vector(15 downto 0); --This is the RREX register
-    --CARRY : in std_logic;
-	--ZERO : in std_logic;
-	--removing these because execution.vhd is not deciding anything, it just provides control signals
 	ALU_SEL : out std_logic_vector(1 downto 0);
     ALU_MUXA_SEL : out std_logic_vector(1 downto 0); --these mux selects will be going to the forwarding units.
 	ALU_MUXB_SEL : out std_logic_vector(1 downto 0)

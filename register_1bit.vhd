@@ -16,13 +16,15 @@ end register_1bit;
 architecture arch_register_1bit of register_1bit is
     signal data: std_logic := '0';
     begin
-        p5: process(clk,data_in)
+        process(clk)
         begin
-        if(reg_WE = '1') then
-            data <= data_in;
-            data_out <= data_in;
-        elsif(reg_WE = '0') then
-            data_out <= data;
-        end if;
+        if (clk'event and clk='0') then
+		        if(reg_WE='1') then
+                    data <= data_in;
+                    data_out <= data_in;
+                else
+                    data_out <= data;
+		        end if;
+            end if;
         end process;
 end arch_register_1bit;

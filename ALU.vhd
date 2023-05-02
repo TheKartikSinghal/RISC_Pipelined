@@ -103,7 +103,7 @@ begin
 
 	elsif(OpCode="0011") then -- for LLI, we will directly give the SE value at input B to the alu output
 	sum := B;
-    carry :=0;
+    carry :=x"0000";
     
     else 
     --for instructions //ADA,ADC,ADZ// which require simple addition of contents of reg A and B 

@@ -1,4 +1,8 @@
 vendor_name = ModelSim
+source_file = 1, /home/kartik/RISC_Pipelined/load_hazards.vhd
+source_file = 1, /home/kartik/RISC_Pipelined/Execution.vhd
+source_file = 1, /home/kartik/RISC_Pipelined/FU_A.vhd
+source_file = 1, /home/kartik/RISC_Pipelined/FU_B.vhd
 source_file = 1, /home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd
 source_file = 1, /home/kartik/RISC_Pipelined/signExtender.vhd
 source_file = 1, /home/kartik/RISC_Pipelined/RegisterFile.vhd

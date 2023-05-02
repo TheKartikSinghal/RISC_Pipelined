@@ -45,3 +45,12 @@ fwding unit B
 ##############
 while executing LLI, as the alu already has access to the immediate and the opcode , it will simply choose to provide the SE as output directly regardless of input through mux 1
 Hence normal control signals for alumuxA is 00(RA) and alumuxB is 00(SE)
+##############
+while stalling for load 
+the WE for PR of IFID,IDRR and RREX will be turned off.
+EXMEM will be made nops by putting all ~130 bits to 0
+and the load instruction itelf will move to the MEMWB stage
+/////////
+thereafter we can get the data for the dependent instruction simply by dataforwarding.
+the data read from memory will be present in the 122 downto 107 bits of the MEMWB PR.
+##############
