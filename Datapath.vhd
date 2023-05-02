@@ -136,11 +136,11 @@ architecture arch_Datapath of Datapath is
         );
     end component;
 
-    signal Instruction, RF_D1, RF_D2, RF_D3, PC_out, alu1out, alu3out, alu2out, DataAdd, DataIn, DataOut, aluAin, aluBin, seOut, PC_in :std_logic_vector(15 downto 0);
+    signal Instruction, RF_D1, RF_D2, RF_D3, PC_out, alu1out, alu3out, alu2out, DataAdd, DataIn, DataOut, aluAin, aluBin, seOut, PC_in ,fwdtomuxA,fwdtomuxB:std_logic_vector(15 downto 0);
     signal RF_A1,RF_A2,RF_A3 : std_logic_vector(2 downto 0);
     signal IFID_in,IFID_out,IDRR_in,IDRR_out,RREX_in,RREX_out,EXMEM_in,EXMEM_out,MEMWB_in,MEMWB_out: std_logic_vector(122 downto 0);
     signal Cflagin,Cflagout,C_WE,Zflagin,Zflagout,Z_WE,DMem_WE,RF_WE,throw_sig,PC_WE: std_logic;
-    signal muxpcCon,muxAluA_con,muxAluB_con,alu2con,exextofwderA,exextofwderB,fwdtomuxA,fwdtomuxB:std_logic_vector(1 downto 0);
+    signal muxpcCon,muxAluA_con,muxAluB_con,alu2con,exextofwderA,exextofwderB:std_logic_vector(1 downto 0);
     signal IFID_rst,IFID_WE,IDRR_rst,IDRR_WE,RREX_rst,RREX_WE,EXMEM_rst,EXMEM_WE,MEMWB_rst,MEMWB_WE: std_logic;
 begin
     IFID: PipelineRegister port map(IFID_in,IFID_out,clk,IFID_rst,IFID_WE);
@@ -171,7 +171,7 @@ begin
 
     fwderA: FwdA port map (MEMWB_out,EXMEM_out,RREX_out,exextofwderA,fwdtomuxA,muxAluA_con);
     fwderB: FwdB port map (MEMWB_out,EXMEM_out,RREX_out,exextofwderB,fwdtomuxB,muxAluB_con);
-    exec: Executor port map(RREX_out,alu2con,exextofwderA,exextofwderB);
+    exec: Executor port map(RREX_out(15 downto 0),alu2con,exextofwderA,exextofwderB);
 
     se: SignExtender port map(RREX_out(15 downto 0),seOut);
     alu1: ALU port map(PC_out,x"0001",Cflagout,x"0000","00",open,open,open,clk,alu1out);
