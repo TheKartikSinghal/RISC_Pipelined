@@ -53,8 +53,8 @@ begin
 				INN_A <= x"0000";  --dont care
 				MUX_ALU2A_SEL <= PR3_MUXA_SEL;  --original signal;
 			end if;
-			  
-		elsif PR2(15 downto 12) = "0000" then	 ---destination register is ADI
+
+		elsif (PR2(15 downto 12) = "0000") then	 --destination register is ADI
 			if(PR3(11 downto 9) = PR2(8 downto 6)) then
 				INN_A <= PR2(100 downto 85);   ---alu output stored in the PR1 of the 1st instruction
 				MUX_ALU2A_SEL <= "11";
@@ -62,7 +62,7 @@ begin
 				INN_A <= x"0000";  --dont care
 				MUX_ALU2A_SEL <= PR3_MUXA_SEL;  --original signal
 			end if;
-	
+
 		else
 			INN_A <= x"0000";  --dont care
 			MUX_ALU2A_SEL <= PR3_MUXA_SEL;  --original signal
@@ -82,7 +82,7 @@ begin
 	elsif (PR3(15 downto 12) = "0000") then 	  --source is an ADI operation(No difference in the inside loop seen here for mux A FU)
 		if (PR1(15 downto 12) = "0001") or (PR1(15 downto 12) = "0010") then    --second immediate destination register also of ADD and NAND type                             --
 			if(PR3(11 downto 9) = PR1(5 downto 3)) then   ---reg A matched
-				INN_A <= PR1(100 downto 85);   ---alu output stored in the PR2 of the 1st instruction
+				INN_A <= PR1(100 downto 85);   ---alu output stored in the PR1 of the 1st instruction
 				MUX_ALU2A_SEL <= "11";
 			else 
 				INN_A <= x"0000";  --dont care
@@ -102,37 +102,37 @@ begin
 		end if;
 			 
 		  
-	if ((PR2(15 downto 12) = "0001") or (PR2(15 downto 12) = "0010")) then    --immediate destination register also of ADD and NAND type                             --
-		if(PR3(11 downto 9) = PR2(5 downto 3)) then   ---reg A matched
-			INN_A <= PR2(100 downto 85);   ---alu output stored in the PR2 of the 1st instruction
-			MUX_ALU2A_SEL <= "11";
+		if ((PR2(15 downto 12) = "0001") or (PR2(15 downto 12) = "0010")) then    --immediate destination register also of ADD and NAND type                             --
+			if(PR3(11 downto 9) = PR2(5 downto 3)) then   ---reg A matched
+				INN_A <= PR2(100 downto 85);   ---alu output stored in the PR2 of the 1st instruction
+				MUX_ALU2A_SEL <= "11";
+			else
+				INN_A <= x"0000";  --dont care
+				MUX_ALU2A_SEL <= PR3_MUXA_SEL;  --original signal;
+			end if;
+
+		elsif (PR2(15 downto 12) = "0000") then	 ---destination register is ADI
+			if(PR3(11 downto 9) = PR2(8 downto 6)) then
+				INN_A <= PR2(100 downto 85);   ---alu output stored in the PR1 of the 1st instruction
+				MUX_ALU2A_SEL <= "11";
+			else 
+				INN_A <= x"0000";  --dont care
+				MUX_ALU2A_SEL <= PR3_MUXA_SEL;  --original signal
+			end if;
 		else
-			INN_A <= x"0000";  --dont care
-			MUX_ALU2A_SEL <= PR3_MUXA_SEL;  --original signal;
-		end if;
-		  
-	elsif (PR2(15 downto 12) = "0000") then	 ---destination register is ADI
-		if(PR3(11 downto 9) = PR2(8 downto 6)) then
-			INN_A <= PR2(100 downto 85);   ---alu output stored in the PR1 of the 1st instruction
-			MUX_ALU2A_SEL <= "11";
-		else 
 			INN_A <= x"0000";  --dont care
 			MUX_ALU2A_SEL <= PR3_MUXA_SEL;  --original signal
 		end if;
-	else
-		INN_A <= x"0000";  --dont care
-		MUX_ALU2A_SEL <= PR3_MUXA_SEL;  --original signal
-	end if;
 		  	  
-	if (PR1(15 downto 12) = "0100") then    ---THIS IS FOR LOAD HAZARDS
-		if(PR3(11 downto 9) = PR1(11 downto 9)) then
-			INN_A <= PR1(122 downto 107);   ---mem_access output stored in the PR1 of the 1st instruction
-			MUX_ALU2A_SEL <= "11";
-		else
-			INN_A <= x"0000";  --dont care
-			MUX_ALU2A_SEL <= PR3_MUXA_SEL;  --original signal
+		if (PR1(15 downto 12) = "0100") then    ---THIS IS FOR LOAD HAZARDS
+			if(PR3(11 downto 9) = PR1(11 downto 9)) then
+				INN_A <= PR1(122 downto 107);   ---mem_access output stored in the PR1 of the 1st instruction
+				MUX_ALU2A_SEL <= "11";
+			else
+				INN_A <= x"0000";  --dont care
+				MUX_ALU2A_SEL <= PR3_MUXA_SEL;  --original signal
+			end if;
 		end if;
-	end if;
 		  
 		
 	elsif (PR3(15 downto 12) = "0100") or(PR3(15 downto 12) = "0101") then  --source is load LW/SW instruction(same effect)
@@ -160,37 +160,37 @@ begin
 		end if;
 			 
 		  
-	if (PR2(15 downto 12) = "0001") or (PR2(15 downto 12) = "0010") then    --immediate destination register also of ADD and NAND type                             --
-		if(PR3(8 downto 6) = PR2(5 downto 3)) then   ---reg B matched
-			INN_A <= PR2(100 downto 85);   ---alu output stored in the PR2 of the 1st instruction
-			MUX_ALU2A_SEL <= "11";
+		if (PR2(15 downto 12) = "0001") or (PR2(15 downto 12) = "0010") then    --immediate destination register also of ADD and NAND type                             --
+			if(PR3(8 downto 6) = PR2(5 downto 3)) then   ---reg B matched
+				INN_A <= PR2(100 downto 85);   ---alu output stored in the PR2 of the 1st instruction
+				MUX_ALU2A_SEL <= "11";
+			else
+				INN_A <= x"0000";  --dont care
+				MUX_ALU2A_SEL <= PR3_MUXA_SEL;  --original signal;
+			end if;
+
+		elsif PR2(15 downto 12) = "0000" then	 ---destination register is ADI
+			if(PR3(8 downto 6) = PR2(8 downto 6)) then
+				INN_A <= PR2(100 downto 85);   ---alu output stored in the PR1 of the 1st instruction
+				MUX_ALU2A_SEL <= "11";
+			else 
+				INN_A <= x"0000";  --dont care
+				MUX_ALU2A_SEL <= PR3_MUXA_SEL;  --original signal
+			end if;
 		else
-			INN_A <= x"0000";  --dont care
-			MUX_ALU2A_SEL <= PR3_MUXA_SEL;  --original signal;
-		end if;
-		  
-	elsif PR2(15 downto 12) = "0000" then	 ---destination register is ADI
-		if(PR3(8 downto 6) = PR2(8 downto 6)) then
-			INN_A <= PR2(100 downto 85);   ---alu output stored in the PR1 of the 1st instruction
-			MUX_ALU2A_SEL <= "11";
-		else 
 			INN_A <= x"0000";  --dont care
 			MUX_ALU2A_SEL <= PR3_MUXA_SEL;  --original signal
 		end if;
-	else
-		INN_A <= x"0000";  --dont care
-		MUX_ALU2A_SEL <= PR3_MUXA_SEL;  --original signal
-	end if;
 	 
-	if (PR1(15 downto 12) = "0100") then    ---THIS IS FOR LOAD HAZARDS
-		if(PR3(8 downto 6) = PR1(11 downto 9)) then
-			INN_A <= PR1(122 downto 107);   ---mem_access output stored in the PR1 of the 1st instruction
-			MUX_ALU2A_SEL <= "11";
-		else
-			INN_A <= x"0000";  --dont care
-			MUX_ALU2A_SEL <= PR3_MUXA_SEL;  --original signal
+		if (PR1(15 downto 12) = "0100") then    ---THIS IS FOR LOAD HAZARDS
+			if(PR3(8 downto 6) = PR1(11 downto 9)) then
+				INN_A <= PR1(122 downto 107);   ---mem_access output stored in the PR1 of the 1st instruction
+				MUX_ALU2A_SEL <= "11";
+			else
+				INN_A <= x"0000";  --dont care
+				MUX_ALU2A_SEL <= PR3_MUXA_SEL;  --original signal
+			end if;
 		end if;
-	end if;
 		
 	else
 		INN_A <= x"0000";  --dont care
