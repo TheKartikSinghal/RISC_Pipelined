@@ -100,8 +100,12 @@ begin
 
         end if;
     end loop L3;
-	 
-	else 
+
+	elsif(OpCode="0011") then -- for LLI, we will directly give the SE value at input B to the alu output
+	sum := B;
+    carry :=0;
+    
+    else 
     --for instructions //ADA,ADC,ADZ// which require simple addition of contents of reg A and B 
     --this is the setting under which alu1 and alu3 will permanently operate.
 	L4: for i in 0 to 15 loop
@@ -115,7 +119,7 @@ begin
 
         end if;
     end loop L4;
-	 end if;
+	end if;
     return carry(15) & sum;
 end add;
 
@@ -167,8 +171,8 @@ variable temp_1,temp_2 : std_logic_vector(16 downto 0);
 
     begin
         temp_1 := add(A,B,instruction,OpCode,complement,carry_in);
-		  -- the changes while calling the function need to be made here (adding instruction, opcode and complement argument in this case.)
-          temp_2 := subtract(A,B);
+		-- the changes while calling the function need to be made here (adding instruction, opcode and complement argument in this case.)
+        temp_2 := subtract(A,B);
     case control_sel is 
     when "00" => 
             ALU_out <= temp_1(15 downto 0); -- for addition

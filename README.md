@@ -1,5 +1,5 @@
 6 stage pipelines (Instruction fetch, instruction decode, register  read,  execute,  memory  access, and  write  back)
-
+################
 Pipeline register division
 00-15  Instruction
 16-31  Data1
@@ -12,7 +12,26 @@ Pipeline register division
 69-84  PC
 85-100 ALU_output
 101    throw bit (controls: RF_WE, C_WE, Z_WE, MEM_WE, PC_WE)
-102    PC_WE
+
+107-122 Mem_Access output 
+
+###############
+alu mux signals
+
+alumuxA
+-data1
+-data2
+-pc
+-fwding unit A
+
+alumuxB
+-SE
+-data2
+-+1
+fwding unit B
+
+--their final control signals will also be provided using fwding unit
+##############
 
 --throw_sig in datapath carries the value of the throw bit for the pipeline registers prior to EXMEM.
     --at the end of this cycle the branch instruction will enter mem stage and the last useless
@@ -22,3 +41,7 @@ Pipeline register division
     --INTO RF OR MEM (LIKE BRANCH INSTRUCTIONS)
     --possible solution => make all bits 0 so it becomes a add instruction and then make WEs 0 so that 
     -- there is no danger.
+
+##############
+while executing LLI, as the alu already has access to the immediate and the opcode , it will simply choose to provide the SE as output directly regardless of input through mux 1
+Hence normal control signals for alumuxA is 00(RA) and alumuxB is 00(SE)
