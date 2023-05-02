@@ -43,23 +43,24 @@ component DataMemory is
     );
 end component;
 
-component Register_file is
+component RegisterFile is 
     port(
         address1,address2,address3 : in std_logic_vector(2 downto 0);
         data_out1,data_out2 : out std_logic_vector(15 downto 0);
         data_in3 : in std_logic_vector(15 downto 0);
-        --data_in3 is the only input bus. Have used '3' to imply corrspondence to address3.
         clk: in std_logic;
-        RF_write_enable: in std_logic_vector(0 downto 0)
-        --if RF_write_enable is high then we write to the RF (i.e. input to the RF). if low then we read from it.
+        RF_write_enable: in std_logic;
+        PC_in: in std_logic_vector(15 downto 0) := (others => '0');
+        PC_out: out std_logic_vector(15 downto 0);
+        PC_WE: in std_logic
     );
-end component;
+        end component;
 
 signal temp_addr : std_logic_vector(2 downto 0) := "000";
 signal data1, data2 : std_logic_vector(15 downto 0) := x"0000";
 signal addr1, addr2 : std_logic_vector(2 downto 0) := "000";
 signal load_data : std_logic_vector(15 downto 0):= x"0000"; 
-
+signal pc_redundant : std_logic_vector(15 downto 0):= x"0000"; 
 begin
 
 regread : process(PR1, temp_addr)
@@ -71,7 +72,7 @@ if( PR1(7 downto 0) /= "00000000" ) then --lm
 PE1 : PE port map(PR1(7 downto 0), temp_addr, '1');
 DM1 : DataMemory port map(PR1(31 downto 16), x"0000", load_data, clk, '0');
 if( temp_addr /= "000") then
-rf : Register_file port map( addr1, addr2, temp_addr, data1, data2, load_data, clk, '1');
+rf : Register_file port map( addr1, addr2, temp_addr, data1, data2, load_data, clk, '1',PR1(84 DOWNTO 69), pc_redundant, '0');
 else
 null;
 end if;
@@ -87,7 +88,7 @@ end if;
 elsif (PR1(15 DOWNTO 12) = "0111") THEN
 if( PR1(7 downto 0) /= "00000000" ) then --Sm
 PE2 : PE port map(PR1(7 downto 0), addr1, '1');
-rf2 : Register_file port map( addr1, addr2, temp_addr, data1, data2, load_data, clk, '1');
+rf2 : Register_file port map( addr1, addr2, temp_addr, data1, data2, load_data, clk, '0', PR1(84 DOWNTO 69), pc_redundant, '0');
 DM2 : DataMemory port map(PR1(31 downto 16), data1, load_data, clk, '1');
 resetlsm : reset_lsm port map(addr1, PR1(7 DOWNTO 0), '1', rstlsmout);
 exe_en <= '1';
