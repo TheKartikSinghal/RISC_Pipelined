@@ -9,14 +9,16 @@ entity FwdB is
 	PR2 : in std_logic_vector(122 downto 0);
 	PR3 : in std_logic_vector(122 downto 0);
 	PR3_MUXB_SEL : in std_logic_vector(1 downto 0);
-	INN_B : out std_logic_vector(15 downto 0);
-	MUX_ALU2B_SEL : out std_logic_vector(1 downto 0)
+	INN_B_out : out std_logic_vector(15 downto 0);
+	MUX_ALU2B_SEL_out : out std_logic_vector(1 downto 0)
 	);
 end FwdB;
 
 
 architecture arch_FwdB of FwdB is 
 --signals--
+signal INN_B: std_logic_vector(15 downto 0);
+signal MUX_ALU2B_SEL: std_logic_vector(1 downto 0);
 begin
 FU: process(PR1,PR2,PR3,PR3_MUXB_SEL)
 begin
@@ -71,9 +73,6 @@ begin
 				INN_B <= x"0000";  --dont care
 				MUX_ALU2B_SEL <= PR3_MUXB_SEL;  --original signal
 		    end if;
-		else
-		    INN_B <= x"0000";  --dont care
-			MUX_ALU2B_SEL <= PR3_MUXB_SEL;  --original signal
 		end if;
 		 
 	elsif (PR3(15 downto 12) = "0000") then 	  --source is an ADI operation(No difference in the inside loop seen here for mux A FU)
@@ -90,4 +89,6 @@ begin
 	end if;
     
   end process;
+  INN_B_out <=INN_B;
+  MUX_ALU2B_SEL_out <= MUX_ALU2B_SEL;
   end arch_FwdB;

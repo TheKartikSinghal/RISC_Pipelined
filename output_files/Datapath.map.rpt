@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Datapath
-Wed May  3 12:24:43 2023
+Wed May  3 16:36:44 2023
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -54,7 +54,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Wed May  3 12:24:43 2023       ;
+; Analysis & Synthesis Status        ; Successful - Wed May  3 16:36:44 2023       ;
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                      ; Datapath                                    ;
 ; Top-level Entity Name              ; Datapath                                    ;
@@ -400,7 +400,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Wed May  3 12:24:34 2023
+    Info: Processing started: Wed May  3 16:36:36 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off RISCee -c Datapath
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
@@ -556,14 +556,13 @@ Info (10041): Inferred latch for "output[14]" at Mux_4to1_16bit.vhd(16) File: /h
 Info (10041): Inferred latch for "output[15]" at Mux_4to1_16bit.vhd(16) File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 16
 Info (12128): Elaborating entity "register_1bit" for hierarchy "register_1bit:cflag" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 193
 Info (12128): Elaborating entity "PC_MUX_Control_unit" for hierarchy "PC_MUX_Control_unit:pcController" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 196
-Warning (10540): VHDL Signal Declaration warning at PC_MUX_Control_unit.vhd(19): used explicit default value for signal "OpCode" because signal was never assigned a value File: /home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd Line: 19
-Warning (10492): VHDL Process Statement warning at PC_MUX_Control_unit.vhd(23): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd Line: 23
-Warning (10492): VHDL Process Statement warning at PC_MUX_Control_unit.vhd(26): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd Line: 26
-Warning (10492): VHDL Process Statement warning at PC_MUX_Control_unit.vhd(29): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd Line: 29
-Warning (10492): VHDL Process Statement warning at PC_MUX_Control_unit.vhd(32): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd Line: 32
-Warning (10492): VHDL Process Statement warning at PC_MUX_Control_unit.vhd(35): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd Line: 35
-Warning (10492): VHDL Process Statement warning at PC_MUX_Control_unit.vhd(38): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd Line: 38
-Warning (10492): VHDL Process Statement warning at PC_MUX_Control_unit.vhd(44): signal "throw" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd Line: 44
+Warning (10492): VHDL Process Statement warning at PC_MUX_Control_unit.vhd(24): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd Line: 24
+Warning (10492): VHDL Process Statement warning at PC_MUX_Control_unit.vhd(27): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd Line: 27
+Warning (10492): VHDL Process Statement warning at PC_MUX_Control_unit.vhd(30): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd Line: 30
+Warning (10492): VHDL Process Statement warning at PC_MUX_Control_unit.vhd(33): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd Line: 33
+Warning (10492): VHDL Process Statement warning at PC_MUX_Control_unit.vhd(36): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd Line: 36
+Warning (10492): VHDL Process Statement warning at PC_MUX_Control_unit.vhd(39): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd Line: 39
+Warning (10492): VHDL Process Statement warning at PC_MUX_Control_unit.vhd(45): signal "throw" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd Line: 45
 Warning (10631): VHDL Process Statement warning at PC_MUX_Control_unit.vhd(21): inferring latch(es) for signal or variable "throw", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd Line: 21
 Info (10041): Inferred latch for "throw" at PC_MUX_Control_unit.vhd(21) File: /home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd Line: 21
 Info (12128): Elaborating entity "FwdA" for hierarchy "FwdA:fwderA" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 207
@@ -589,69 +588,44 @@ Warning (10492): VHDL Process Statement warning at RF_C_Z.vhd(74): signal "opcod
 Warning (10492): VHDL Process Statement warning at RF_C_Z.vhd(80): signal "opcode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RF_C_Z.vhd Line: 80
 Warning (10492): VHDL Process Statement warning at RF_C_Z.vhd(86): signal "opcode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RF_C_Z.vhd Line: 86
 Info (12128): Elaborating entity "SignExtender" for hierarchy "SignExtender:se" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 215
-Warning (10492): VHDL Process Statement warning at signExtender.vhd(21): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 21
-Warning (10492): VHDL Process Statement warning at signExtender.vhd(22): signal "input" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 22
-Warning (10492): VHDL Process Statement warning at signExtender.vhd(24): signal "input" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 24
-Warning (10492): VHDL Process Statement warning at signExtender.vhd(26): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 26
-Warning (10492): VHDL Process Statement warning at signExtender.vhd(27): signal "input" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 27
-Warning (10492): VHDL Process Statement warning at signExtender.vhd(29): signal "input" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 29
-Warning (10492): VHDL Process Statement warning at signExtender.vhd(31): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 31
-Warning (10492): VHDL Process Statement warning at signExtender.vhd(32): signal "input" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 32
-Warning (10631): VHDL Process Statement warning at signExtender.vhd(17): inferring latch(es) for signal or variable "output", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
-Info (10041): Inferred latch for "output[0]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
-Info (10041): Inferred latch for "output[1]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
-Info (10041): Inferred latch for "output[2]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
-Info (10041): Inferred latch for "output[3]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
-Info (10041): Inferred latch for "output[4]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
-Info (10041): Inferred latch for "output[5]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
-Info (10041): Inferred latch for "output[6]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
-Info (10041): Inferred latch for "output[7]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
-Info (10041): Inferred latch for "output[8]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
-Info (10041): Inferred latch for "output[9]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
-Info (10041): Inferred latch for "output[10]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
-Info (10041): Inferred latch for "output[11]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
-Info (10041): Inferred latch for "output[12]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
-Info (10041): Inferred latch for "output[13]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
-Info (10041): Inferred latch for "output[14]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
-Info (10041): Inferred latch for "output[15]" at signExtender.vhd(17) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 17
+Warning (10492): VHDL Process Statement warning at signExtender.vhd(48): signal "input" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 48
+Warning (10492): VHDL Process Statement warning at signExtender.vhd(48): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 48
 Info (12128): Elaborating entity "ALU" for hierarchy "ALU:alu1" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 216
 Warning (10540): VHDL Signal Declaration warning at ALU.vhd(36): used explicit default value for signal "OpCode" because signal was never assigned a value File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 36
 Warning (10540): VHDL Signal Declaration warning at ALU.vhd(37): used explicit default value for signal "complement" because signal was never assigned a value File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 37
-Warning (10492): VHDL Process Statement warning at ALU.vhd(173): signal "instruction" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 173
-Warning (10492): VHDL Process Statement warning at ALU.vhd(173): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 173
-Warning (10492): VHDL Process Statement warning at ALU.vhd(173): signal "complement" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 173
-Warning (10492): VHDL Process Statement warning at ALU.vhd(173): signal "carry_in" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 173
-Warning (10492): VHDL Process Statement warning at ALU.vhd(176): signal "control_sel" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 176
-Warning (10492): VHDL Process Statement warning at ALU.vhd(185): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 185
-Warning (10492): VHDL Process Statement warning at ALU.vhd(185): signal "complement" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 185
-Warning (10492): VHDL Process Statement warning at ALU.vhd(186): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 186
-Warning (10492): VHDL Process Statement warning at ALU.vhd(186): signal "complement" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 186
-Warning (10492): VHDL Process Statement warning at ALU.vhd(208): signal "C" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 208
-Warning (10492): VHDL Process Statement warning at ALU.vhd(209): signal "Z" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 209
-Warning (10492): VHDL Process Statement warning at ALU.vhd(210): signal "E" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 210
-Warning (10631): VHDL Process Statement warning at ALU.vhd(169): inferring latch(es) for signal or variable "ALU_out", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 169
-Warning (10631): VHDL Process Statement warning at ALU.vhd(169): inferring latch(es) for signal or variable "C", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 169
-Warning (10631): VHDL Process Statement warning at ALU.vhd(169): inferring latch(es) for signal or variable "Z", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 169
-Warning (10631): VHDL Process Statement warning at ALU.vhd(169): inferring latch(es) for signal or variable "E", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 169
-Info (10041): Inferred latch for "E" at ALU.vhd(169) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 169
-Info (10041): Inferred latch for "Z" at ALU.vhd(169) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 169
-Info (10041): Inferred latch for "C" at ALU.vhd(169) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 169
-Info (10041): Inferred latch for "ALU_out[0]" at ALU.vhd(169) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 169
-Info (10041): Inferred latch for "ALU_out[1]" at ALU.vhd(169) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 169
-Info (10041): Inferred latch for "ALU_out[2]" at ALU.vhd(169) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 169
-Info (10041): Inferred latch for "ALU_out[3]" at ALU.vhd(169) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 169
-Info (10041): Inferred latch for "ALU_out[4]" at ALU.vhd(169) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 169
-Info (10041): Inferred latch for "ALU_out[5]" at ALU.vhd(169) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 169
-Info (10041): Inferred latch for "ALU_out[6]" at ALU.vhd(169) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 169
-Info (10041): Inferred latch for "ALU_out[7]" at ALU.vhd(169) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 169
-Info (10041): Inferred latch for "ALU_out[8]" at ALU.vhd(169) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 169
-Info (10041): Inferred latch for "ALU_out[9]" at ALU.vhd(169) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 169
-Info (10041): Inferred latch for "ALU_out[10]" at ALU.vhd(169) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 169
-Info (10041): Inferred latch for "ALU_out[11]" at ALU.vhd(169) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 169
-Info (10041): Inferred latch for "ALU_out[12]" at ALU.vhd(169) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 169
-Info (10041): Inferred latch for "ALU_out[13]" at ALU.vhd(169) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 169
-Info (10041): Inferred latch for "ALU_out[14]" at ALU.vhd(169) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 169
-Info (10041): Inferred latch for "ALU_out[15]" at ALU.vhd(169) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 169
+Warning (10492): VHDL Process Statement warning at ALU.vhd(177): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 177
+Warning (10492): VHDL Process Statement warning at ALU.vhd(177): signal "complement" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 177
+Warning (10492): VHDL Process Statement warning at ALU.vhd(177): signal "carry_in" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 177
+Warning (10492): VHDL Process Statement warning at ALU.vhd(189): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 189
+Warning (10492): VHDL Process Statement warning at ALU.vhd(189): signal "complement" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 189
+Warning (10492): VHDL Process Statement warning at ALU.vhd(190): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 190
+Warning (10492): VHDL Process Statement warning at ALU.vhd(190): signal "complement" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 190
+Warning (10492): VHDL Process Statement warning at ALU.vhd(212): signal "C" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 212
+Warning (10492): VHDL Process Statement warning at ALU.vhd(213): signal "Z" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 213
+Warning (10492): VHDL Process Statement warning at ALU.vhd(214): signal "E" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 214
+Warning (10631): VHDL Process Statement warning at ALU.vhd(173): inferring latch(es) for signal or variable "ALU_out", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 173
+Warning (10631): VHDL Process Statement warning at ALU.vhd(173): inferring latch(es) for signal or variable "C", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 173
+Warning (10631): VHDL Process Statement warning at ALU.vhd(173): inferring latch(es) for signal or variable "Z", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 173
+Warning (10631): VHDL Process Statement warning at ALU.vhd(173): inferring latch(es) for signal or variable "E", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 173
+Info (10041): Inferred latch for "E" at ALU.vhd(173) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 173
+Info (10041): Inferred latch for "Z" at ALU.vhd(173) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 173
+Info (10041): Inferred latch for "C" at ALU.vhd(173) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 173
+Info (10041): Inferred latch for "ALU_out[0]" at ALU.vhd(173) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 173
+Info (10041): Inferred latch for "ALU_out[1]" at ALU.vhd(173) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 173
+Info (10041): Inferred latch for "ALU_out[2]" at ALU.vhd(173) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 173
+Info (10041): Inferred latch for "ALU_out[3]" at ALU.vhd(173) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 173
+Info (10041): Inferred latch for "ALU_out[4]" at ALU.vhd(173) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 173
+Info (10041): Inferred latch for "ALU_out[5]" at ALU.vhd(173) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 173
+Info (10041): Inferred latch for "ALU_out[6]" at ALU.vhd(173) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 173
+Info (10041): Inferred latch for "ALU_out[7]" at ALU.vhd(173) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 173
+Info (10041): Inferred latch for "ALU_out[8]" at ALU.vhd(173) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 173
+Info (10041): Inferred latch for "ALU_out[9]" at ALU.vhd(173) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 173
+Info (10041): Inferred latch for "ALU_out[10]" at ALU.vhd(173) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 173
+Info (10041): Inferred latch for "ALU_out[11]" at ALU.vhd(173) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 173
+Info (10041): Inferred latch for "ALU_out[12]" at ALU.vhd(173) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 173
+Info (10041): Inferred latch for "ALU_out[13]" at ALU.vhd(173) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 173
+Info (10041): Inferred latch for "ALU_out[14]" at ALU.vhd(173) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 173
+Info (10041): Inferred latch for "ALU_out[15]" at ALU.vhd(173) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 173
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
 Warning (21074): Design contains 1 input pin(s) that do not drive logic
@@ -659,10 +633,10 @@ Warning (21074): Design contains 1 input pin(s) that do not drive logic
 Info (21057): Implemented 1 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 1 input pins
     Info (21059): Implemented 0 output pins
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 88 warnings
-    Info: Peak virtual memory: 435 megabytes
-    Info: Processing ended: Wed May  3 12:24:43 2023
-    Info: Elapsed time: 00:00:09
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 78 warnings
+    Info: Peak virtual memory: 434 megabytes
+    Info: Processing ended: Wed May  3 16:36:44 2023
+    Info: Elapsed time: 00:00:08
     Info: Total CPU time (on all processors): 00:00:20
 
 

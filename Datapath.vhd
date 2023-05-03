@@ -89,7 +89,7 @@ architecture arch_Datapath of Datapath is
 
     component SignExtender is
         port(instruction : in std_logic_vector(15 downto 0);
-        output : out std_logic_vector(15 downto 0));
+        output_out : out std_logic_vector(15 downto 0));
     end component;
 
      component PC_MUX_Control_unit is 
@@ -118,13 +118,13 @@ architecture arch_Datapath of Datapath is
     
     component FwdB is
 	port (
-	    PR1 : in std_logic_vector(122 downto 0);
-	    PR2 : in std_logic_vector(122 downto 0);
-	    PR3 : in std_logic_vector(122 downto 0);
-	    PR3_MUXB_SEL : in std_logic_vector(1 downto 0);
-	    INN_B : out std_logic_vector(15 downto 0);
-	    MUX_ALU2B_SEL : out std_logic_vector(1 downto 0)
-	    );
+	PR1 : in std_logic_vector(122 downto 0);
+	PR2 : in std_logic_vector(122 downto 0);
+	PR3 : in std_logic_vector(122 downto 0);
+	PR3_MUXB_SEL : in std_logic_vector(1 downto 0);
+	INN_B_out : out std_logic_vector(15 downto 0);
+	MUX_ALU2B_SEL_out : out std_logic_vector(1 downto 0)
+	);
     end component;
 
     component Executor is

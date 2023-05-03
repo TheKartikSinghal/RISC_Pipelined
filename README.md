@@ -55,21 +55,14 @@ and the load instruction itelf will move to the MEMWB stage
 thereafter we can get the data for the dependent instruction simply by dataforwarding.
 the data read from memory will be present in the 122 downto 107 bits of the MEMWB PR.
 ##############
-the ouptput signals werent to be directly put into the WE of the CZ and RF (for CZ directs works but not for RF and Mem). They were supposed to be stored in the pipeline registers. bitch you dumb as F
+the ouptput signals werent to be directly put into the WE of the CZ and RF (for CZ directs works but not for RF and Mem). They were supposed to be stored in the pipeline registers.
 #############
-
-add wave -position end  sim:/testbench_tb/instance/IFID/data
-add wave -position end  sim:/testbench_tb/instance/IDRR/data
-add wave -position end  sim:/testbench_tb/instance/RREX/data
-add wave -position end  sim:/testbench_tb/instance/EXMEM/data
-add wave -position end  sim:/testbench_tb/instance/MEMWB/data
-
-add wave -position end  sim:/testbench_tb/instance/alu2/ALU_out
-add wave -position end  sim:/testbench_tb/instance/alu2/control_sel
-add wave -position end  sim:/testbench_tb/instance/muxAluA/output
-add wave -position end  sim:/testbench_tb/instance/muxAluB/output
-add wave -position end  sim:/testbench_tb/instance/muxAluA/con_sel
-add wave -position end  sim:/testbench_tb/instance/muxAluA/A
+known problems:
+    half cycle late:
+        rfcz
+        alu flags out 
+        alu subtraction late 
+############
 add wave -position end  sim:/testbench_tb/instance/RF/data_out1
 add wave -position end  sim:/testbench_tb/instance/RF/address1
 add wave -position end  sim:/testbench_tb/instance/RF/address2
@@ -79,11 +72,40 @@ add wave -position end  sim:/testbench_tb/instance/RF/PC_in
 add wave -position end  sim:/testbench_tb/instance/RF/regzero
 add wave -position end  sim:/testbench_tb/instance/RF/data_in3
 add wave -position end  sim:/testbench_tb/instance/RF/address3
+
+add wave -position end  sim:/testbench_tb/instance/IFID/data
+add wave -position end  sim:/testbench_tb/instance/IDRR/data
+add wave -position end  sim:/testbench_tb/instance/RREX/data
+add wave -position end  sim:/testbench_tb/instance/EXMEM/data
+add wave -position end  sim:/testbench_tb/instance/MEMWB/data
+
+add wave -position end  sim:/testbench_tb/instance/alu2/ALU_out
+add wave -position end  sim:/testbench_tb/instance/alu2/control_sel
+add wave -position end  sim:/testbench_tb/instance/alu2/A
+add wave -position end  sim:/testbench_tb/instance/alu2/B
+add wave -position end  sim:/testbench_tb/instance/RF/RF_data
 add wave -position end  sim:/testbench_tb/instance/RF/RF_write_enable
+
+add wave -position end  sim:/testbench_tb/instance/RF/regzero
+add wave -position end  sim:/testbench_tb/instance/pcController/con_sel
+add wave -position end  sim:/testbench_tb/instance/muxpc/output
+
+add wave -position end  sim:/testbench_tb/instance/pcController/OpCode
+add wave -position end  sim:/testbench_tb/instance/pcController/Z
+add wave -position end  sim:/testbench_tb/instance/pcController/C
+
+add wave -position 134  sim:/testbench_tb/instance/muxAluB/output
+add wave -position 134  sim:/testbench_tb/instance/muxAluB/con_sel
+
+add wave -position end  sim:/testbench_tb/instance/alu3/ALU_out
+add wave -position end  sim:/testbench_tb/instance/se/output
+add wave -position end  sim:/testbench_tb/instance/se/input
+add wave -position end  sim:/testbench_tb/instance/se/instruction
+add wave -position end  sim:/testbench_tb/instance/se/OpCode
+
 add wave -position end  sim:/testbench_tb/instance/rfcz1/opcode
 add wave -position end  sim:/testbench_tb/instance/rfcz1/INSTR
 add wave -position end  sim:/testbench_tb/instance/rfcz1/RF_WR
-add wave -position end  sim:/testbench_tb/instance/RF/RF_data
 add wave -position end  sim:/testbench_tb/instance/cflag/data_out
 add wave -position end  sim:/testbench_tb/instance/zflag/data_out
 add wave -position end  sim:/testbench_tb/instance/EXMEM/data(52)

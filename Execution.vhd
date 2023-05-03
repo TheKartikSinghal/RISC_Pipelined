@@ -56,8 +56,8 @@ case PR1(15 downto 12) is --conditioning on the opcode.
 	--for comparison
 	--and change to ra and rb
 	    ALU_MUXA_SEL <= "00";--RA
-		ALU_MUXB_SEL <= "00";--RB
-		ALU_SEL <= "00";
+		ALU_MUXB_SEL <= "01";--RB
+		ALU_SEL <= "10";
 	when others =>
 		ALU_MUXA_SEL <= "00";--RA
 		ALU_MUXB_SEL <= "01";--RB

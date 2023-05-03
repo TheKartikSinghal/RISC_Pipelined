@@ -20,6 +20,7 @@ signal OpCode:std_logic_vector(3 downto 0) := instruction(15 downto 12);
 begin
 	process(instruction,clk,Z,C)
 	begin
+	OpCode<= instruction(15 downto 12);
     if(OpCode = "1000" and (Z='1')) then --BEQ
 	    con_sel <= "10"; --provide input to PC from output of ALU 3
 		  

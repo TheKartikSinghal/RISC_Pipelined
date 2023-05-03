@@ -152,12 +152,16 @@ return std_logic_vector is
 begin 
     L6: for i in 0 to 15 loop
         if i = 0 then 
-        difference(i) := A(i) xor (not (B(i))) xor '1';
-        carry(i) := A(i) and not(B(i));
+        --difference(i) := A(i) xor (not (B(i))) xor '1';
+        difference(i) := A(i) xor B(i);
+        --carry(i) := A(i) and not(B(i));
+        carry(i) := not(A(i)) and B(i);
 
         else
-        difference(i)  := A(i) xor B(i) xor carry(i-1);
-        carry(i):= (A(i) and B(i)) or  (carry(i-1) and (A(i) xor B(i)));
+        --difference(i)  := A(i) xor B(i) xor carry(i-1);
+        difference(i)  := (A(i) xor B(i)) xor carry(i-1);
+        --carry(i):= (A(i) and B(i)) or  (carry(i-1) and (A(i) xor B(i)));
+        carry(i):= (not(A(i)) and B(i)) or (not(A(i) xor B(i)) and carry(i-1));
 
         end if;
     end loop L6;
@@ -166,7 +170,7 @@ end subtract;
 
 ----
 begin
-alu_process : process(A,B,clk)
+alu_process : process(A,B,clk,instruction,control_sel)
 variable temp_1,temp_2 : std_logic_vector(16 downto 0);
 
     begin
