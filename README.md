@@ -82,5 +82,12 @@ add wave -position end  sim:/testbench_tb/instance/RF/address3
 add wave -position end  sim:/testbench_tb/instance/RF/RF_write_enable
 add wave -position end  sim:/testbench_tb/instance/rfcz1/opcode
 add wave -position end  sim:/testbench_tb/instance/rfcz1/INSTR
+add wave -position end  sim:/testbench_tb/instance/rfcz1/RF_WR
+add wave -position end  sim:/testbench_tb/instance/RF/RF_data
+add wave -position end  sim:/testbench_tb/instance/cflag/data_out
+add wave -position end  sim:/testbench_tb/instance/zflag/data_out
+add wave -position end  sim:/testbench_tb/instance/EXMEM/data(52)
+add wave -position end  sim:/testbench_tb/instance/MEMWB/data(52)
+
 restart
 run

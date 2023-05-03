@@ -7,10 +7,10 @@ port(
 	INSTR : in std_logic_vector(15 downto 0);
 	C_OUT : in std_logic;
 	Z_OUT : in std_logic;
-	RF_WR_out : out std_logic;
-	C_WR_out : out std_logic;
-	Z_WR_out : out std_logic;
-	DMEM_WR_out : out std_logic;
+	RF_WR : out std_logic;
+	C_WR : out std_logic;
+	Z_WR : out std_logic;
+	DMEM_WR : out std_logic;
 	clk : in std_logic
 	);
 end entity;
@@ -18,10 +18,9 @@ end entity;
 
 architecture behave of RFCZ is
 signal opcode : std_logic_vector(3 downto 0):= INSTR(15 downto 12);
-signal RF_WR,C_WR,Z_WR,DMEM_WR : std_logic;
 begin 
 
-process(clk,INSTR,C_OUT,Z_OUT,RF_WR,C_WR,Z_WR,DMEM_WR)
+process(INSTR,C_OUT,Z_OUT)
 begin
 	opcode<=INSTR(15 downto 12);
 	if opcode = "0001" or opcode = "0010" then  --arithmetic add and nand instructions
@@ -97,8 +96,4 @@ begin
   
 	end if;
 end process;
-RF_WR_out<=RF_WR;
-C_WR_out<=C_WR;
-Z_WR_out<=Z_WR;
-DMEM_WR_out<=DMEM_WR;
 end behave;

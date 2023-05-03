@@ -15,7 +15,7 @@ end PipelineRegister;
 architecture arch_PipelineRegister of PipelineRegister is
     signal data : std_logic_vector(122 downto 0) := (others => '0');
     begin
-        process(clk,rst,PR_WE)
+        process(clk,rst,PR_WE,data_in)
         begin
         if(clk'event and clk='0')then
             if (rst='1') then

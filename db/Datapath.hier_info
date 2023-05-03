@@ -13,6 +13,7 @@ clk => Mux_4to1_16bit:muxAluB.clk
 clk => register_1bit:cflag.clk
 clk => register_1bit:zflag.clk
 clk => PC_MUX_Control_unit:pcController.clk
+clk => RFCZ:rfcz1.clk
 clk => ALU:alu1.clk
 clk => ALU:alu2.clk
 clk => ALU:alu3.clk
@@ -5770,10 +5771,11 @@ INSTR[15] => Equal11.IN2
 INSTR[15] => Equal12.IN1
 C_OUT => RF_WR.DATAB
 Z_OUT => RF_WR.DATAB
-RF_WR <= RF_WR.DB_MAX_OUTPUT_PORT_TYPE
-C_WR <= C_WR.DB_MAX_OUTPUT_PORT_TYPE
-Z_WR <= Z_WR.DB_MAX_OUTPUT_PORT_TYPE
-DMEM_WR <= DMEM_WR.DB_MAX_OUTPUT_PORT_TYPE
+RF_WR_out <= RF_WR.DB_MAX_OUTPUT_PORT_TYPE
+C_WR_out <= C_WR.DB_MAX_OUTPUT_PORT_TYPE
+Z_WR_out <= Z_WR.DB_MAX_OUTPUT_PORT_TYPE
+DMEM_WR_out <= DMEM_WR.DB_MAX_OUTPUT_PORT_TYPE
+clk => ~NO_FANOUT~
 
 
 |Datapath|SignExtender:se

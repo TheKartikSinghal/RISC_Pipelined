@@ -162,10 +162,11 @@ architecture arch_Datapath of Datapath is
 	    INSTR : in std_logic_vector(15 downto 0);
 	    C_OUT : in std_logic;
 	    Z_OUT : in std_logic;
-	    RF_WR : out std_logic;
-	    C_WR : out std_logic;
-	    Z_WR : out std_logic;
-	    DMEM_WR : out std_logic
+	    RF_WR_out : out std_logic;
+	    C_WR_out : out std_logic;
+	    Z_WR_out : out std_logic;
+	    DMEM_WR_out : out std_logic;
+	    clk : in std_logic
 	    );
     end component;
 
@@ -209,7 +210,7 @@ begin
 
     ST: stall_and_throw port map(check_sig,throw_sig,IFID_WE,IFID_rst,IDRR_WE,IDRR_rst,RREX_WE,RREX_rst,EXMEM_WE,EXMEM_rst,MEMWB_WE,MEMWB_rst,PC_WE);
     LH: load_hazards port map(IDRR_out,IFID_out,check_sig) ;
-    rfcz1: RFCZ port map(RREX_out(15 downto 0),Cflagout,Zflagout,RF_WE_out,C_WE,Z_WE,DMem_WE_out);
+    rfcz1: RFCZ port map(RREX_out(15 downto 0),Cflagout,Zflagout,RF_WE_out,C_WE,Z_WE,DMem_WE_out,clk);
     
     se: SignExtender port map(RREX_out(15 downto 0),seOut);
     alu1: ALU port map(PC_out,x"0001",Cflagout,x"0000","00",open,open,open,clk,alu1out);
@@ -246,7 +247,7 @@ begin
     RREX_in (47 downto 32) <= RF_D2;-- fetching data RB
     end process;
 
-    EX_MEM: process(clk,RREX_out,alu1out)
+    EX_MEM: process(clk,RREX_out,alu1out,RF_WE_out,DMem_WE_out)
     begin
     -- 4th Pipeline Register
     EXMEM_in (15 downto 0)  <= RREX_out(15 downto 0);--just copying instruction
@@ -264,12 +265,14 @@ begin
 
     MEM_WB: process(clk,EXMEM_out)
     begin
-    -- 5th/last Pipeline Register
+    -- 5th/last Pipeline Registersim:/testbench_tb/instance/RF/RF_data(3)
+
     MEMWB_in (15 downto 0)  <=EXMEM_out(15 downto 0);--just copying instruction
     MEMWB_in (84 downto 69) <=EXMEM_out(84 downto 69);--just copying PC
     MEMWB_in (31 downto 16) <=EXMEM_out (31 downto 16);--forwarding the data RA
     MEMWB_in (47 downto 32) <=EXMEM_out (47 downto 32);--forwarding the data RB
     MEMWB_in (100 downto 85) <=EXMEM_out (100 downto 85);
+    MEMWB_in(52) <= EXMEM_out(52);
     DMem_WE<=EXMEM_out(49);
     end process;
 
