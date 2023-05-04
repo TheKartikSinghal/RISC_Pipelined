@@ -4,7 +4,7 @@ use IEEE.numeric_std.all;
 
 entity RFCZ is
 port(
-	INSTR : in std_logic_vector(15 downto 0);
+	INSTR : in std_logic_vector(122 downto 0);
 	C_OUT : in std_logic;
 	Z_OUT : in std_logic;
 	RF_WR_out : out std_logic;
@@ -24,6 +24,8 @@ begin
 process(clk,INSTR,C_OUT,Z_OUT,RF_WR,C_WR,Z_WR,DMEM_WR)
 begin
 	opcode<=INSTR(15 downto 12);
+	
+ if (INSTR(48) = '1') then
 	if opcode = "0001" or opcode = "0010" then  --arithmetic add and nand instructions
     	if INSTR(1 downto 0) = "10" then   --add/nand if carry set 
         	if C_OUT = '1' then
@@ -84,7 +86,7 @@ begin
 		DMEM_WR<= '0';
   
 	elsif (opcode = "1100") or (opcode = "1101") then
-        RF_WR<= '1';
+      RF_WR<= '1';
 		C_WR<= '0';
 		Z_WR<= '0';
 		DMEM_WR<= '0';
@@ -96,6 +98,16 @@ begin
 		DMEM_WR<= '0';
   
 	end if;
+	
+	
+else 
+     RF_WR<= '0';
+	  C_WR<= '0';
+	  Z_WR<= '0';
+	  DMEM_WR<= '0';
+	  
+end if;
+	
 end process;
 RF_WR_out<=RF_WR;
 C_WR_out<=C_WR;

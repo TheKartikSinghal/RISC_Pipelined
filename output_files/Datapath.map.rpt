@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Datapath
-Thu May  4 09:21:09 2023
+Thu May  4 11:09:50 2023
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -53,7 +53,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Thu May  4 09:21:09 2023       ;
+; Analysis & Synthesis Status        ; Successful - Thu May  4 11:09:50 2023       ;
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                      ; Datapath                                    ;
 ; Top-level Entity Name              ; Datapath                                    ;
@@ -390,7 +390,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Thu May  4 09:21:01 2023
+    Info: Processing started: Thu May  4 11:09:44 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off RISCee -c Datapath
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
@@ -552,7 +552,6 @@ Warning (10492): VHDL Process Statement warning at PC_MUX_Control_unit.vhd(31): 
 Warning (10492): VHDL Process Statement warning at PC_MUX_Control_unit.vhd(34): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd Line: 34
 Warning (10492): VHDL Process Statement warning at PC_MUX_Control_unit.vhd(37): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd Line: 37
 Warning (10492): VHDL Process Statement warning at PC_MUX_Control_unit.vhd(40): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd Line: 40
-Warning (10492): VHDL Process Statement warning at PC_MUX_Control_unit.vhd(46): signal "throw" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd Line: 46
 Info (12128): Elaborating entity "FwdA" for hierarchy "FwdA:fwderA" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 208
 Info (12128): Elaborating entity "FwdB" for hierarchy "FwdB:fwderB" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 209
 Info (12128): Elaborating entity "Executor" for hierarchy "Executor:exec" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 210
@@ -569,12 +568,12 @@ Info (12128): Elaborating entity "Stall_and_throw" for hierarchy "Stall_and_thro
 Info (12128): Elaborating entity "load_hazards" for hierarchy "load_hazards:LH" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 213
 Warning (10620): VHDL warning at load_hazards.vhd(38): comparison between unequal length operands always returns FALSE File: /home/kartik/RISC_Pipelined/load_hazards.vhd Line: 38
 Info (12128): Elaborating entity "RFCZ" for hierarchy "RFCZ:rfcz1" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 214
-Warning (10492): VHDL Process Statement warning at RF_C_Z.vhd(27): signal "opcode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RF_C_Z.vhd Line: 27
-Warning (10492): VHDL Process Statement warning at RF_C_Z.vhd(62): signal "opcode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RF_C_Z.vhd Line: 62
-Warning (10492): VHDL Process Statement warning at RF_C_Z.vhd(68): signal "opcode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RF_C_Z.vhd Line: 68
-Warning (10492): VHDL Process Statement warning at RF_C_Z.vhd(74): signal "opcode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RF_C_Z.vhd Line: 74
-Warning (10492): VHDL Process Statement warning at RF_C_Z.vhd(80): signal "opcode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RF_C_Z.vhd Line: 80
-Warning (10492): VHDL Process Statement warning at RF_C_Z.vhd(86): signal "opcode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RF_C_Z.vhd Line: 86
+Warning (10492): VHDL Process Statement warning at RF_C_Z.vhd(29): signal "opcode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RF_C_Z.vhd Line: 29
+Warning (10492): VHDL Process Statement warning at RF_C_Z.vhd(64): signal "opcode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RF_C_Z.vhd Line: 64
+Warning (10492): VHDL Process Statement warning at RF_C_Z.vhd(70): signal "opcode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RF_C_Z.vhd Line: 70
+Warning (10492): VHDL Process Statement warning at RF_C_Z.vhd(76): signal "opcode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RF_C_Z.vhd Line: 76
+Warning (10492): VHDL Process Statement warning at RF_C_Z.vhd(82): signal "opcode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RF_C_Z.vhd Line: 82
+Warning (10492): VHDL Process Statement warning at RF_C_Z.vhd(88): signal "opcode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RF_C_Z.vhd Line: 88
 Info (12128): Elaborating entity "SignExtender" for hierarchy "SignExtender:se" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 216
 Warning (10631): VHDL Process Statement warning at signExtender.vhd(19): inferring latch(es) for signal or variable "output", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 19
 Info (10041): Inferred latch for "output[0]" at signExtender.vhd(19) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 19
@@ -612,10 +611,10 @@ Warning (21074): Design contains 1 input pin(s) that do not drive logic
 Info (21057): Implemented 1 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 1 input pins
     Info (21059): Implemented 0 output pins
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 70 warnings
-    Info: Peak virtual memory: 435 megabytes
-    Info: Processing ended: Thu May  4 09:21:09 2023
-    Info: Elapsed time: 00:00:08
-    Info: Total CPU time (on all processors): 00:00:20
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 69 warnings
+    Info: Peak virtual memory: 434 megabytes
+    Info: Processing ended: Thu May  4 11:09:50 2023
+    Info: Elapsed time: 00:00:06
+    Info: Total CPU time (on all processors): 00:00:15
 
 

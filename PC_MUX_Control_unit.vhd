@@ -15,13 +15,13 @@ entity PC_MUX_Control_unit is
 end PC_MUX_Control_unit;
 
 architecture arch_PC_MUX_Control_unit of PC_MUX_Control_unit is
-signal throw: std_logic:= '1'; -- one means throw
+--signal throw: std_logic:= '1'; -- one means throw
 signal OpCode:std_logic_vector(3 downto 0) := instruction(15 downto 12);
 begin
 	process(instruction,clk,Z,C)
 	begin
 	OpCode<= instruction(15 downto 12);
-	throw <= '1';
+	throw_bit <= '1';
     if(OpCode = "1000" and (Z='1')) then --BEQ
 	    con_sel <= "10"; --provide input to PC from output of ALU 3
 		  
@@ -41,8 +41,7 @@ begin
 	    con_sel <= "01"; --provide input to PC from output of ALU 2
 	else
 	    con_sel <= "00";
-		throw <= '0'; --means branch not taken so we don't throw
-	end if;
-	throw_bit <= throw;		  
+		throw_bit <= '0'; --means branch not taken so we don't throw
+	end if;	  
 	end process;
 end arch_PC_MUX_Control_unit;

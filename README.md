@@ -93,6 +93,9 @@ add wave -position end  sim:/testbench_tb/instance/pcController/throw_bit
 add wave -position end  sim:/testbench_tb/instance/pcController/OpCode
 add wave -position end  sim:/testbench_tb/instance/pcController/Z
 add wave -position end  sim:/testbench_tb/instance/pcController/C
+add wave -position end  sim:/testbench_tb/instance/rfcz1/opcode
+add wave -position end  sim:/testbench_tb/instance/rfcz1/INSTR
+add wave -position end  sim:/testbench_tb/instance/rfcz1/RF_WR
 
 add wave -position 134  sim:/testbench_tb/instance/muxAluB/output
 add wave -position 134  sim:/testbench_tb/instance/muxAluB/con_sel

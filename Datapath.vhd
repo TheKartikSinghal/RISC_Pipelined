@@ -160,7 +160,7 @@ architecture arch_Datapath of Datapath is
 
     component RFCZ is
     port(
-	    INSTR : in std_logic_vector(15 downto 0);
+	    INSTR : in std_logic_vector(122 downto 0);
 	    C_OUT : in std_logic;
 	    Z_OUT : in std_logic;
 	    RF_WR_out : out std_logic;
@@ -211,11 +211,11 @@ begin
 
     ST: stall_and_throw port map(check_sig,throw_sig,IFID_WE,IFID_rst,IDRR_WE,IDRR_rst,RREX_WE,RREX_rst,EXMEM_WE,EXMEM_rst,MEMWB_WE,MEMWB_rst,PC_WE);
     LH: load_hazards port map(IDRR_out,IFID_out,check_sig) ;
-    rfcz1: RFCZ port map(RREX_out(15 downto 0),Cflagout,Zflagout,RF_WE_out,C_WE,Z_WE,DMem_WE_out,clk);
+    rfcz1: RFCZ port map(RREX_out,Cflagout,Zflagout,RF_WE_out,C_WE,Z_WE,DMem_WE_out,clk);
     
     se: SignExtender port map(RREX_out(15 downto 0),seOut);
     alu1: ALU port map(PC_out,x"0001",Cflagout,x"0000","00",open,open,open,clk,alu1out);
-    alu2: ALU port map(aluAin,aluBin,Cflagout,Instruction,alu2Con,Cflagin,Zflagin,open,clk,alu2out);
+    alu2: ALU port map(aluAin,aluBin,Cflagout,RREX_out(15 downto 0),alu2Con,Cflagin,Zflagin,open,clk,alu2out);
     alu3: ALU port map(RREX_out(84 downto 69),seOut,Cflagout,x"0000","00",open,open,open,clk,alu3out);
 	 
 	IF_ID:process(clk,Instruction,PC_out)

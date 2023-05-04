@@ -13,7 +13,7 @@ entity PipelineRegister is
 end PipelineRegister;
 
 architecture arch_PipelineRegister of PipelineRegister is
-    signal data : std_logic_vector(122 downto 0) := (others => '0');
+    signal data : std_logic_vector(122 downto 0) := (48=>'1',others => '0');
     begin
         process(clk,rst,PR_WE,data_in)
         begin
