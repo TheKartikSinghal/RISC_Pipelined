@@ -13,11 +13,12 @@ entity InstructionMemory is
 end InstructionMemory;
 architecture InstructionMemory_arch of InstructionMemory is
     type Memory is array (0 to 127) of std_logic_vector (15 downto 0);
-    signal Instructions: Memory := (1=>"1101101010000000",2 => "0001001010011000",3 => "0001001010110000",15=>"0011111111111111",others => x"b000") ;
-    --1 JLR R5 R2 2
-    --2 ADD
-    --3 ADD R1 R2 R6 000
-    --15 LLI R7 111111111
+    signal Instructions: Memory := (2=>"0100110010000000",3 => "0001110001011000",4=>"0101011010000001",15=>"0011111111111111",others => x"b000") ;
+    --1 
+    --2 LW R6 R2 0 // loads from mem16 to R6 
+    --3 ADD R6 R1 R3 000
+    --4 SW R3 R2 1
+    --15 LLI
     begin
     process(clk,address)
         begin

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Datapath
-Thu May  4 17:33:03 2023
+Thu May  4 19:03:32 2023
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -18,15 +18,14 @@ Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
  10. Port Connectivity Checks: "ALU:alu2"
  11. Port Connectivity Checks: "ALU:alu1"
  12. Port Connectivity Checks: "Mux_4to1_16bit:muxAluB"
- 13. Port Connectivity Checks: "DataMemory:DMem"
- 14. Port Connectivity Checks: "PipelineRegister:MEMWB"
- 15. Port Connectivity Checks: "PipelineRegister:EXMEM"
- 16. Port Connectivity Checks: "PipelineRegister:RREX"
- 17. Port Connectivity Checks: "PipelineRegister:IDRR"
- 18. Port Connectivity Checks: "PipelineRegister:IFID"
- 19. Post-Synthesis Netlist Statistics for Top Partition
- 20. Elapsed Time Per Partition
- 21. Analysis & Synthesis Messages
+ 13. Port Connectivity Checks: "PipelineRegister:MEMWB"
+ 14. Port Connectivity Checks: "PipelineRegister:EXMEM"
+ 15. Port Connectivity Checks: "PipelineRegister:RREX"
+ 16. Port Connectivity Checks: "PipelineRegister:IDRR"
+ 17. Port Connectivity Checks: "PipelineRegister:IFID"
+ 18. Post-Synthesis Netlist Statistics for Top Partition
+ 19. Elapsed Time Per Partition
+ 20. Analysis & Synthesis Messages
 
 
 
@@ -53,7 +52,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Thu May  4 17:33:03 2023       ;
+; Analysis & Synthesis Status        ; Successful - Thu May  4 19:03:32 2023       ;
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                      ; Datapath                                    ;
 ; Top-level Entity Name              ; Datapath                                    ;
@@ -302,21 +301,12 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------+-------+----------+----------------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "DataMemory:DMem"                                                                               ;
-+-----------------+--------+----------+-------------------------------------------------------------------------------------+
-; Port            ; Type   ; Severity ; Details                                                                             ;
-+-----------------+--------+----------+-------------------------------------------------------------------------------------+
-; data_out_memory ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+-----------------+--------+----------+-------------------------------------------------------------------------------------+
-
-
 +-----------------------------------------------------+
 ; Port Connectivity Checks: "PipelineRegister:MEMWB"  ;
 +-------------------+-------+----------+--------------+
 ; Port              ; Type  ; Severity ; Details      ;
 +-------------------+-------+----------+--------------+
-; data_in[122..101] ; Input ; Info     ; Stuck at GND ;
+; data_in[106..101] ; Input ; Info     ; Stuck at GND ;
 ; data_in[68..53]   ; Input ; Info     ; Stuck at GND ;
 ; data_in[51..48]   ; Input ; Info     ; Stuck at GND ;
 +-------------------+-------+----------+--------------+
@@ -391,7 +381,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Thu May  4 17:32:57 2023
+    Info: Processing started: Thu May  4 19:03:26 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off RISCee -c Datapath
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
@@ -453,10 +443,8 @@ Info (12021): Found 2 design units, including 1 entities, in source file testben
     Info (12022): Found design unit 1: testbench_tb-test_arch File: /home/kartik/RISC_Pipelined/testbench.vhd Line: 9
     Info (12023): Found entity 1: testbench_tb File: /home/kartik/RISC_Pipelined/testbench.vhd Line: 6
 Info (12127): Elaborating entity "Datapath" for the top level hierarchy
-Warning (10541): VHDL Signal Declaration warning at Datapath.vhd(183): used implicit default value for signal "DataAdd" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 183
-Warning (10541): VHDL Signal Declaration warning at Datapath.vhd(183): used implicit default value for signal "DataIn" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 183
-Warning (10036): Verilog HDL or VHDL warning at Datapath.vhd(183): object "DataOut" assigned a value but never read File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 183
 Warning (10492): VHDL Process Statement warning at Datapath.vhd(267): signal "alu2out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 267
+Warning (10492): VHDL Process Statement warning at Datapath.vhd(289): signal "DataOut" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 289
 Warning (10873): Using initial value X (don't care) for net "IFID_in[122..85]" at Datapath.vhd(185) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 185
 Warning (10873): Using initial value X (don't care) for net "IFID_in[68..16]" at Datapath.vhd(185) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 185
 Warning (10873): Using initial value X (don't care) for net "IDRR_in[122..85]" at Datapath.vhd(185) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 185
@@ -467,12 +455,12 @@ Warning (10873): Using initial value X (don't care) for net "EXMEM_in[122..101]"
 Warning (10873): Using initial value X (don't care) for net "EXMEM_in[68..53]" at Datapath.vhd(185) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 185
 Warning (10873): Using initial value X (don't care) for net "EXMEM_in[51..50]" at Datapath.vhd(185) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 185
 Warning (10873): Using initial value X (don't care) for net "EXMEM_in[48]" at Datapath.vhd(185) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 185
-Warning (10873): Using initial value X (don't care) for net "MEMWB_in[122..101]" at Datapath.vhd(185) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 185
+Warning (10873): Using initial value X (don't care) for net "MEMWB_in[106..101]" at Datapath.vhd(185) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 185
 Warning (10873): Using initial value X (don't care) for net "MEMWB_in[68..53]" at Datapath.vhd(185) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 185
 Warning (10873): Using initial value X (don't care) for net "MEMWB_in[51..48]" at Datapath.vhd(185) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 185
 Info (12128): Elaborating entity "PipelineRegister" for hierarchy "PipelineRegister:IFID" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 190
 Info (12128): Elaborating entity "InstructionMemory" for hierarchy "InstructionMemory:IMem" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 196
-Warning (10492): VHDL Process Statement warning at InstructionMemory.vhd(24): signal "Instructions" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/InstructionMemory.vhd Line: 24
+Warning (10492): VHDL Process Statement warning at InstructionMemory.vhd(25): signal "Instructions" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/InstructionMemory.vhd Line: 25
 Info (12128): Elaborating entity "DataMemory" for hierarchy "DataMemory:DMem" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 197
 Warning (10492): VHDL Process Statement warning at DataMemory.vhd(22): signal "Memory_write_enable" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/DataMemory.vhd Line: 22
 Warning (10492): VHDL Process Statement warning at DataMemory.vhd(23): signal "data_in_memory" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/DataMemory.vhd Line: 23
@@ -618,10 +606,10 @@ Warning (21074): Design contains 1 input pin(s) that do not drive logic
 Info (21057): Implemented 1 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 1 input pins
     Info (21059): Implemented 0 output pins
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 71 warnings
-    Info: Peak virtual memory: 439 megabytes
-    Info: Processing ended: Thu May  4 17:33:03 2023
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 69 warnings
+    Info: Peak virtual memory: 436 megabytes
+    Info: Processing ended: Thu May  4 19:03:32 2023
     Info: Elapsed time: 00:00:06
-    Info: Total CPU time (on all processors): 00:00:15
+    Info: Total CPU time (on all processors): 00:00:14
 
 

@@ -281,9 +281,12 @@ begin
     MEMWB_in (84 downto 69) <=EXMEM_out(84 downto 69);--just copying PC
     MEMWB_in (31 downto 16) <=EXMEM_out (31 downto 16);--forwarding the data RA
     MEMWB_in (47 downto 32) <=EXMEM_out (47 downto 32);--forwarding the data RB
-    MEMWB_in (100 downto 85) <=EXMEM_out (100 downto 85);
+    MEMWB_in (100 downto 85) <=EXMEM_out (100 downto 85);--alu out in general
     MEMWB_in(52) <= EXMEM_out(52);
     DMem_WE<=EXMEM_out(49);
+    DataAdd <= EXMEM_out (100 downto 85);--alu out from address calculation
+    DataIn <= EXMEM_out (31 downto 16);--data from RA in RF into MEM.
+    MEMWB_in(122 downto 107) <= DataOut;
     end process;
 
     last: process(clk,MEMWB_out)

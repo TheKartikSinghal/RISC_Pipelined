@@ -73,11 +73,11 @@ add wave -position end  sim:/testbench_tb/instance/RF/regzero
 add wave -position end  sim:/testbench_tb/instance/RF/data_in3
 add wave -position end  sim:/testbench_tb/instance/RF/address3
 
-add wave -position end  sim:/testbench_tb/instance/IFID/data
-add wave -position end  sim:/testbench_tb/instance/IDRR/data
-add wave -position end  sim:/testbench_tb/instance/RREX/data
-add wave -position end  sim:/testbench_tb/instance/EXMEM/data
-add wave -position end  sim:/testbench_tb/instance/MEMWB/data
+add wave -position 3  sim:/testbench_tb/instance/IFID/data
+add wave -position 4  sim:/testbench_tb/instance/IDRR/data
+add wave -position 5 sim:/testbench_tb/instance/RREX/data
+add wave -position 6 sim:/testbench_tb/instance/EXMEM/data
+add wave -position 7 sim:/testbench_tb/instance/MEMWB/data
 
 add wave -position end  sim:/testbench_tb/instance/alu2/ALU_out
 add wave -position end  sim:/testbench_tb/instance/alu2/control_sel
