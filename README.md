@@ -89,7 +89,7 @@ add wave -position end  sim:/testbench_tb/instance/RF/RF_write_enable
 add wave -position end  sim:/testbench_tb/instance/RF/regzero
 add wave -position end  sim:/testbench_tb/instance/pcController/con_sel
 add wave -position end  sim:/testbench_tb/instance/muxpc/output
-
+add wave -position end  sim:/testbench_tb/instance/pcController/throw_bit
 add wave -position end  sim:/testbench_tb/instance/pcController/OpCode
 add wave -position end  sim:/testbench_tb/instance/pcController/Z
 add wave -position end  sim:/testbench_tb/instance/pcController/C
@@ -99,9 +99,14 @@ add wave -position 134  sim:/testbench_tb/instance/muxAluB/con_sel
 
 add wave -position end  sim:/testbench_tb/instance/alu3/ALU_out
 add wave -position end  sim:/testbench_tb/instance/se/output
-add wave -position end  sim:/testbench_tb/instance/se/input
 add wave -position end  sim:/testbench_tb/instance/se/instruction
-add wave -position end  sim:/testbench_tb/instance/se/OpCode
+restart
+run
+run
+run
+run
+run
+run
 
 add wave -position end  sim:/testbench_tb/instance/rfcz1/opcode
 add wave -position end  sim:/testbench_tb/instance/rfcz1/INSTR
@@ -111,5 +116,3 @@ add wave -position end  sim:/testbench_tb/instance/zflag/data_out
 add wave -position end  sim:/testbench_tb/instance/EXMEM/data(52)
 add wave -position end  sim:/testbench_tb/instance/MEMWB/data(52)
 
-restart
-run

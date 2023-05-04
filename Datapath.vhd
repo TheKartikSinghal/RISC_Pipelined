@@ -89,7 +89,8 @@ architecture arch_Datapath of Datapath is
 
     component SignExtender is
         port(instruction : in std_logic_vector(15 downto 0);
-        output_out : out std_logic_vector(15 downto 0));
+        output : out std_logic_vector(15 downto 0)
+        );
     end component;
 
      component PC_MUX_Control_unit is 
@@ -188,7 +189,7 @@ begin
     DMem: DataMemory port map(DataAdd,DataIn,DataOut,clk,DMem_WE);
     RF: RegisterFile port map(RF_A1,RF_A2,RF_A3, RF_D1, RF_D2, RF_D3,clk,RF_WE,PC_in,PC_out,PC_WE);
     muxAluA: Mux_4to1_16bit port map(muxAluA_con,RREX_out(31 downto 16),RREX_out(47 downto 32),RREX_out(84 downto 69),fwdtomuxA,clk,aluAin);
-    muxpc: Mux_4to1_16bit port map(muxpcCon,alu1out,alu3out,alu2out,x"0000",clk,PC_in);
+    muxpc: Mux_4to1_16bit port map(muxpcCon,alu1out,alu2out,alu3out,RREX_out(47 downto 32),clk,PC_in);
     muxAluB: Mux_4to1_16bit port map(muxAluB_con,seOut,RREX_out(47 downto 32),x"0001",fwdtomuxB,clk,aluBin);
     cflag: register_1bit port map(Cflagin,Cflagout,clk,C_WE);
     zflag: register_1bit port map(Zflagin,Zflagout,clk,Z_WE);

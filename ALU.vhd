@@ -170,7 +170,7 @@ end subtract;
 
 ----
 begin
-alu_process : process(A,B,clk,instruction,control_sel)
+alu_process : process(A,B,clk,instruction,control_sel,C,Z,E)
 variable temp_1,temp_2 : std_logic_vector(16 downto 0);
 
     begin
@@ -187,6 +187,7 @@ variable temp_1,temp_2 : std_logic_vector(16 downto 0);
             end if;
     when "01" =>
             ALU_out <= to_nand(A,B,OpCode,complement); -- for nand
+				C<='1';
             if (to_nand(A,B,OpCode,complement)=x"0000") then
             --added "Opcode and complement" into the function call
                 Z <= '1';
@@ -200,7 +201,9 @@ variable temp_1,temp_2 : std_logic_vector(16 downto 0);
             else Z <= '0';
             end if;
     when "11" => 
-            
+            ALU_out <= x"0000";
+				C<= '1';
+				Z<='1';
             if (A=B) then -- for equality check
                 E<='1'; --return 0 if equal
             else E<='0'; -- else return 1
@@ -208,6 +211,7 @@ variable temp_1,temp_2 : std_logic_vector(16 downto 0);
     when others =>
             ALU_out <= temp_1(15 downto 0);
             C <= temp_1(16);
+				Z<='1';
     end case;
 	  C_flag <= C ;
      Z_flag <= Z ;

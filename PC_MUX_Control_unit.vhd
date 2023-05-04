@@ -21,6 +21,7 @@ begin
 	process(instruction,clk,Z,C)
 	begin
 	OpCode<= instruction(15 downto 12);
+	throw <= '1';
     if(OpCode = "1000" and (Z='1')) then --BEQ
 	    con_sel <= "10"; --provide input to PC from output of ALU 3
 		  
