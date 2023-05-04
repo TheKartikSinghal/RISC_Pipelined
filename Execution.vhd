@@ -58,7 +58,39 @@ case PR1(15 downto 12) is --conditioning on the opcode.
 	    ALU_MUXA_SEL <= "00";--RA
 		ALU_MUXB_SEL <= "01";--RB
 		ALU_SEL <= "10";
-	when others =>
+		
+	when "1001" => --BEQ
+	--change to subb
+	--for comparison
+	--and change to ra and rb
+	    ALU_MUXA_SEL <= "00";--RA
+		ALU_MUXB_SEL <= "01";--RB
+		ALU_SEL <= "10";
+	
+	when "1010" => --BEQ
+	--change to subb
+	--for comparison
+	--and change to ra and rb
+	    ALU_MUXA_SEL <= "00";--RA
+		ALU_MUXB_SEL <= "01";--RB
+		ALU_SEL <= "10";
+	
+	when "1100" =>--jal
+		ALU_MUXA_SEL <= "10"; --pc
+		ALU_MUXB_SEL <="10";--+1
+		ALU_SEL <="00";
+
+	when "1101" =>--jlr
+		ALU_MUXA_SEL <= "10"; --pc
+		ALU_MUXB_SEL <="10";--+1
+		ALU_SEL <="00";
+
+	when "1111" =>--jri
+		ALU_MUXA_SEL <= "00"; --RA
+		ALU_MUXB_SEL <="00";--SE(immediate)
+		ALU_SEL <="00";
+	
+	when others =>--for nop doesnt matter as WE are 0.
 		ALU_MUXA_SEL <= "00";--RA
 		ALU_MUXB_SEL <= "01";--RB
 		ALU_SEL <= "00";

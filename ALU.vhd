@@ -152,15 +152,11 @@ return std_logic_vector is
 begin 
     L6: for i in 0 to 15 loop
         if i = 0 then 
-        --difference(i) := A(i) xor (not (B(i))) xor '1';
         difference(i) := A(i) xor B(i);
-        --carry(i) := A(i) and not(B(i));
         carry(i) := not(A(i)) and B(i);
 
         else
-        --difference(i)  := A(i) xor B(i) xor carry(i-1);
         difference(i)  := (A(i) xor B(i)) xor carry(i-1);
-        --carry(i):= (A(i) and B(i)) or  (carry(i-1) and (A(i) xor B(i)));
         carry(i):= (not(A(i)) and B(i)) or (not(A(i) xor B(i)) and carry(i-1));
 
         end if;

@@ -25,7 +25,7 @@ process(clk,INSTR,C_OUT,Z_OUT,RF_WR,C_WR,Z_WR,DMEM_WR)
 begin
 	opcode<=INSTR(15 downto 12);
 	
- if (INSTR(48) = '1') then
+ if not(INSTR(1 downto 12) = "1011") then
 	if opcode = "0001" or opcode = "0010" then  --arithmetic add and nand instructions
     	if INSTR(1 downto 0) = "10" then   --add/nand if carry set 
         	if C_OUT = '1' then
