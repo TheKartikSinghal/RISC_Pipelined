@@ -5,6 +5,7 @@ if {[file exists rtl_work]} {
 vlib rtl_work
 vmap work rtl_work
 
+vcom -93 -work work {/home/kartik/RISC_Pipelined/loader.vhd}
 vcom -93 -work work {/home/kartik/RISC_Pipelined/RF_C_Z.vhd}
 vcom -93 -work work {/home/kartik/RISC_Pipelined/Stall_and_throw.vhd}
 vcom -93 -work work {/home/kartik/RISC_Pipelined/load_hazards.vhd}

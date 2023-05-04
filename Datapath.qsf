@@ -67,6 +67,7 @@ set_global_assignment -name EDA_TEST_BENCH_NAME testbench.vhd -section_id eda_si
 set_global_assignment -name EDA_DESIGN_INSTANCE_NAME instance -section_id testbench.vhd
 set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME testbench_tb -section_id testbench.vhd
 set_global_assignment -name EDA_TEST_BENCH_FILE testbench.vhd -section_id testbench.vhd
+set_global_assignment -name VHDL_FILE loader.vhd
 set_global_assignment -name VHDL_FILE RF_C_Z.vhd
 set_global_assignment -name VHDL_FILE Stall_and_throw.vhd
 set_global_assignment -name VHDL_FILE load_hazards.vhd

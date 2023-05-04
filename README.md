@@ -103,6 +103,8 @@ add wave -position 134  sim:/testbench_tb/instance/muxAluB/con_sel
 add wave -position end  sim:/testbench_tb/instance/alu3/ALU_out
 add wave -position end  sim:/testbench_tb/instance/se/output
 add wave -position end  sim:/testbench_tb/instance/se/instruction
+add wave -position 19  sim:/testbench_tb/instance/RF/data_in3
+add wave -position 20  sim:/testbench_tb/instance/RF/address3
 restart
 run
 run

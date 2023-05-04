@@ -171,6 +171,14 @@ architecture arch_Datapath of Datapath is
 	    );
     end component;
 
+    component loader is 
+    port(
+        PR_MEMWB: in std_logic_vector(122 downto 0);
+        data: out std_logic_vector(15 downto 0);
+        address: out std_logic_vector(2 downto 0)
+        );
+    end component;
+
 
     signal Instruction, RF_D1, RF_D2, RF_D3, PC_out, alu1out, alu3out, alu2out, DataAdd, DataIn, DataOut, aluAin, aluBin, seOut, PC_in ,fwdtomuxA,fwdtomuxB:std_logic_vector(15 downto 0);
     signal RF_A1,RF_A2,RF_A3 : std_logic_vector(2 downto 0);
@@ -193,7 +201,7 @@ begin
     muxAluB: Mux_4to1_16bit port map(muxAluB_con,seOut,RREX_out(47 downto 32),x"0001",fwdtomuxB,clk,aluBin);
     cflag: register_1bit port map(Cflagin,Cflagout,clk,C_WE);
     zflag: register_1bit port map(Zflagin,Zflagout,clk,Z_WE);
-
+    
     pcController: PC_MUX_Control_unit port map(RREX_out(15 downto 0),Cflagin,Zflagin,muxpcCon,clk,throw_sig);
     
     --throw_sig carries the value of the throw bit for the pipeline registers prior to EXMEM.
@@ -212,6 +220,7 @@ begin
     ST: stall_and_throw port map(check_sig,throw_sig,IFID_WE,IFID_rst,IDRR_WE,IDRR_rst,RREX_WE,RREX_rst,EXMEM_WE,EXMEM_rst,MEMWB_WE,MEMWB_rst,PC_WE);
     LH: load_hazards port map(IDRR_out,IFID_out,check_sig) ;
     rfcz1: RFCZ port map(RREX_out,Cflagout,Zflagout,RF_WE_out,C_WE,Z_WE,DMem_WE_out,clk);
+    loader1: loader port map (MEMWB_out,RF_D3,RF_A3);
     
     se: SignExtender port map(RREX_out(15 downto 0),seOut);
     alu1: ALU port map(PC_out,x"0001",Cflagout,x"0000","00",open,open,open,clk,alu1out);
@@ -279,11 +288,11 @@ begin
 
     last: process(clk,MEMWB_out)
     begin
-    RF_D3 <= MEMWB_out (100 downto 85);
     RF_WE <= MEMWB_out(52);
     --####################
     --we need to put a mux here to choose between the aluout and memout to be loaded into rf
-    RF_A3 <= MEMWB_out(5 downto 3);
+    -- and also to figure where to get the address from.
+    --DONE BY LOADER.VHD
     --###################
     end process;
 end arch_Datapath;

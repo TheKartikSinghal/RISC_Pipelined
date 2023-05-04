@@ -1,4 +1,5 @@
 vendor_name = ModelSim
+source_file = 1, /home/kartik/RISC_Pipelined/loader.vhd
 source_file = 1, /home/kartik/RISC_Pipelined/RF_C_Z.vhd
 source_file = 1, /home/kartik/RISC_Pipelined/Stall_and_throw.vhd
 source_file = 1, /home/kartik/RISC_Pipelined/load_hazards.vhd
