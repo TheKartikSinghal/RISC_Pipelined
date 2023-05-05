@@ -53,46 +53,36 @@ return std_logic_vector is
     variable carry : std_logic_vector(15 downto 0);
 begin
     
-    if(OpCode = "0001" and complement = '1' and not(instruction(0) = '1') and (instruction(1) = '1')) then 
-    -- removed the opcode 0010 condition as that was for nand 
-    --which is not needed here.
-    -- always remember to put '' on single bit values.
-	--for instructions //ACA, ACC, ACZ// we need to ADD with the complement of reg B
-    -- we don't do here for ACW and the condition on CZ!=11.
-    L1: for i in 0 to 15 loop
-        if i = 0 then
-        sum(i)  := A(i) xor (not B(i)) xor '0';
-        carry(i):= A(i) and (not B(i));
-
-        else 
-        sum(i)  := A(i) xor (not B(i)) xor carry(i-1);
-        carry(i):= (A(i) and (not B(i))) or  (carry(i-1) and (A(i) xor (not B(i))));
-
+    if(OpCode = "0001" and complement = '1') then
+        if (instruction(1 downto 0) = "11") then
+            L1: for i in 0 to 15 loop
+            if i = 0 then
+                sum(i)  := (A(i) xor not(B(i))) xor carry_in;
+                carry(i):= (A(i) and not(B(i))) or (carry_in and (A(i) xor not(B(i))));
+            else 
+                sum(i)  := A(i) xor not(B(i)) xor carry(i-1);
+                carry(i):= (A(i) and not(B(i))) or  (carry(i-1) and (A(i) xor not(B(i))));
+            end if;
+            end loop L1;
+        else
+            L2: for i in 0 to 15 loop
+            if i = 0 then
+                sum(i)  := (A(i) xor not(B(i))) xor '0';
+                carry(i):= A(i) and (not B(i));
+            else 
+                sum(i)  := (A(i) xor (not B(i))) xor carry(i-1);
+                carry(i):= (A(i) and (not B(i))) or  (carry(i-1) and (A(i) xor (not B(i))));
+            end if;
+            end loop L2;
         end if;
-    end loop L1;
-	
-	 elsif(OpCode = "0001" and complement = '1' and (instruction(0) = '1') and (instruction(1) = '1')) then
-	 --for instruction //ACW//, we need to add the carry bit also, ACW executes only when carry flag is 1
-	 --it is not included in the above if statement, because we may not want to add the carry bit everytime it is set
-	 L2: for i in 0 to 15 loop
-        if i = 0 then
-        sum(i)  := A(i) xor not(B(i)) xor carry_in;
-        carry(i):= A(i) and not(B(i));
 
-        else 
-        sum(i)  := A(i) xor not(B(i)) xor carry(i-1);
-        carry(i):= (A(i) and not(B(i))) or  (carry(i-1) and (A(i) xor not(B(i))));
-
-        end if;
-    end loop L2;
-
-    elsif(OpCode = "0001" and (instruction(0) = '1') and (instruction(1) = '1')) then
+    elsif(OpCode = "0001" and complement ='0' and (instruction(0) = '1') and (instruction(1) = '1')) then
 	--for instruction //AWC//, we need to add the carry bit also, AWC executes only when carry flag is 1
 	--it is not included in the above if statement, because we may not want to add the carry bit everytime it is set
 	L3: for i in 0 to 15 loop
         if i = 0 then
-        sum(i)  := A(i) xor B(i) xor carry_in;
-        carry(i):= A(i) and B(i);
+        sum(i)  := (A(i) xor B(i)) xor carry_in;
+        carry(i):= (A(i) and B(i)) or (carry_in and (A(i) xor B(i)));
 
         else 
         sum(i)  := A(i) xor B(i) xor carry(i-1);
@@ -133,9 +123,9 @@ return std_logic_vector is
     variable op_nand : std_logic_vector(15 downto 0);
 begin 
     if(OpCode = "0010" and complement = '1') then --for instructions NCU, NCC, NCZ, we need to NAND with the complement of reg B
-    L4: for i in 0 to 15 loop
+    L41: for i in 0 to 15 loop
         op_nand(i) := A(i) nand (not B(i));
-    end loop L4;
+    end loop L41;
     else
     L5: for i in 0 to 15 loop
         op_nand(i) := A(i) nand B(i);
@@ -170,9 +160,11 @@ alu_process : process(A,B,clk,instruction,control_sel,C,Z,E)
 variable temp_1,temp_2 : std_logic_vector(16 downto 0);
 
     begin
-        temp_1 := add(A,B,instruction,OpCode,complement,carry_in);
-		-- the changes while calling the function need to be made here (adding instruction, opcode and complement argument in this case.)
-        temp_2 := subtract(A,B);
+    OpCode <= instruction(15 downto 12);
+    complement <= instruction(2); 
+    temp_1 := add(A,B,instruction,OpCode,complement,carry_in);
+	-- the changes while calling the function need to be made here (adding instruction, opcode and complement argument in this case.)
+    temp_2 := subtract(A,B);
     case control_sel is 
     when "00" => 
             ALU_out <= temp_1(15 downto 0); -- for addition

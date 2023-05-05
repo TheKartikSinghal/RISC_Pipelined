@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Datapath
-Fri May  5 13:44:33 2023
+Fri May  5 16:46:46 2023
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -52,7 +52,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Fri May  5 13:44:33 2023       ;
+; Analysis & Synthesis Status        ; Successful - Fri May  5 16:46:46 2023       ;
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                      ; Datapath                                    ;
 ; Top-level Entity Name              ; Datapath                                    ;
@@ -254,17 +254,20 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "ALU:alu3"                                                                                  ;
-+-------------+--------+----------+-------------------------------------------------------------------------------------+
-; Port        ; Type   ; Severity ; Details                                                                             ;
-+-------------+--------+----------+-------------------------------------------------------------------------------------+
-; instruction ; Input  ; Info     ; Stuck at GND                                                                        ;
-; control_sel ; Input  ; Info     ; Stuck at GND                                                                        ;
-; c_flag      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; z_flag      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; e_flag      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+-------------+--------+----------+-------------------------------------------------------------------------------------+
++-------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "ALU:alu3"                                                                                          ;
++---------------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port                ; Type   ; Severity ; Details                                                                             ;
++---------------------+--------+----------+-------------------------------------------------------------------------------------+
+; instruction[13..12] ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; instruction[11..0]  ; Input  ; Info     ; Stuck at GND                                                                        ;
+; instruction[15]     ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; instruction[14]     ; Input  ; Info     ; Stuck at GND                                                                        ;
+; control_sel         ; Input  ; Info     ; Stuck at GND                                                                        ;
+; c_flag              ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; z_flag              ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; e_flag              ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++---------------------+--------+----------+-------------------------------------------------------------------------------------+
 
 
 +------------------------------------------------------------------------------------------------------------------+
@@ -276,20 +279,23 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------+--------+----------+-------------------------------------------------------------------------------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "ALU:alu1"                                                                                  ;
-+-------------+--------+----------+-------------------------------------------------------------------------------------+
-; Port        ; Type   ; Severity ; Details                                                                             ;
-+-------------+--------+----------+-------------------------------------------------------------------------------------+
-; b[15..2]    ; Input  ; Info     ; Stuck at GND                                                                        ;
-; b[1]        ; Input  ; Info     ; Stuck at VCC                                                                        ;
-; b[0]        ; Input  ; Info     ; Stuck at GND                                                                        ;
-; instruction ; Input  ; Info     ; Stuck at GND                                                                        ;
-; control_sel ; Input  ; Info     ; Stuck at GND                                                                        ;
-; c_flag      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; z_flag      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; e_flag      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+-------------+--------+----------+-------------------------------------------------------------------------------------+
++-------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "ALU:alu1"                                                                                          ;
++---------------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port                ; Type   ; Severity ; Details                                                                             ;
++---------------------+--------+----------+-------------------------------------------------------------------------------------+
+; b[15..2]            ; Input  ; Info     ; Stuck at GND                                                                        ;
+; b[1]                ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; b[0]                ; Input  ; Info     ; Stuck at GND                                                                        ;
+; instruction[13..12] ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; instruction[11..0]  ; Input  ; Info     ; Stuck at GND                                                                        ;
+; instruction[15]     ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; instruction[14]     ; Input  ; Info     ; Stuck at GND                                                                        ;
+; control_sel         ; Input  ; Info     ; Stuck at GND                                                                        ;
+; c_flag              ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; z_flag              ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; e_flag              ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++---------------------+--------+----------+-------------------------------------------------------------------------------------+
 
 
 +----------------------------------------------------+
@@ -383,7 +389,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Fri May  5 13:44:27 2023
+    Info: Processing started: Fri May  5 16:46:40 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off RISCee -c Datapath
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
@@ -462,8 +468,8 @@ Warning (10873): Using initial value X (don't care) for net "MEMWB_in[68..53]" a
 Warning (10873): Using initial value X (don't care) for net "MEMWB_in[51..48]" at Datapath.vhd(186) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 186
 Info (12128): Elaborating entity "PipelineRegister" for hierarchy "PipelineRegister:IFID" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 192
 Info (12128): Elaborating entity "InstructionMemory" for hierarchy "InstructionMemory:IMem" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 198
-Warning (10492): VHDL Process Statement warning at InstructionMemory.vhd(27): signal "Instructions" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/InstructionMemory.vhd Line: 27
 Warning (10492): VHDL Process Statement warning at InstructionMemory.vhd(28): signal "Instructions" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/InstructionMemory.vhd Line: 28
+Warning (10492): VHDL Process Statement warning at InstructionMemory.vhd(29): signal "Instructions" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/InstructionMemory.vhd Line: 29
 Info (12128): Elaborating entity "DataMemory" for hierarchy "DataMemory:DMem" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 199
 Warning (10492): VHDL Process Statement warning at DataMemory.vhd(22): signal "Memory_write_enable" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/DataMemory.vhd Line: 22
 Warning (10492): VHDL Process Statement warning at DataMemory.vhd(23): signal "data_in_memory" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/DataMemory.vhd Line: 23
@@ -565,27 +571,19 @@ Warning (10620): VHDL warning at load_hazards.vhd(38): comparison between unequa
 Info (12128): Elaborating entity "RFCZ" for hierarchy "RFCZ:rfcz1" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 224
 Warning (10445): VHDL Subtype or Type Declaration warning at RF_C_Z.vhd(28): subtype or type has null range File: /home/kartik/RISC_Pipelined/RF_C_Z.vhd Line: 28
 Warning (10620): VHDL warning at RF_C_Z.vhd(28): comparison between unequal length operands always returns FALSE File: /home/kartik/RISC_Pipelined/RF_C_Z.vhd Line: 28
-Warning (10492): VHDL Process Statement warning at RF_C_Z.vhd(29): signal "opcode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RF_C_Z.vhd Line: 29
-Warning (10492): VHDL Process Statement warning at RF_C_Z.vhd(64): signal "opcode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RF_C_Z.vhd Line: 64
-Warning (10492): VHDL Process Statement warning at RF_C_Z.vhd(70): signal "opcode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RF_C_Z.vhd Line: 70
-Warning (10492): VHDL Process Statement warning at RF_C_Z.vhd(76): signal "opcode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RF_C_Z.vhd Line: 76
-Warning (10492): VHDL Process Statement warning at RF_C_Z.vhd(82): signal "opcode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RF_C_Z.vhd Line: 82
-Warning (10492): VHDL Process Statement warning at RF_C_Z.vhd(88): signal "opcode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RF_C_Z.vhd Line: 88
 Info (12128): Elaborating entity "loader" for hierarchy "loader:loader1" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 225
 Info (12128): Elaborating entity "SignExtender" for hierarchy "SignExtender:se" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 227
 Warning (10631): VHDL Process Statement warning at signExtender.vhd(19): inferring latch(es) for signal or variable "output", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 19
 Info (12128): Elaborating entity "ALU" for hierarchy "ALU:alu1" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 228
-Warning (10540): VHDL Signal Declaration warning at ALU.vhd(36): used explicit default value for signal "OpCode" because signal was never assigned a value File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 36
-Warning (10540): VHDL Signal Declaration warning at ALU.vhd(37): used explicit default value for signal "complement" because signal was never assigned a value File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 37
-Warning (10492): VHDL Process Statement warning at ALU.vhd(173): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 173
-Warning (10492): VHDL Process Statement warning at ALU.vhd(173): signal "complement" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 173
-Warning (10492): VHDL Process Statement warning at ALU.vhd(173): signal "carry_in" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 173
-Warning (10492): VHDL Process Statement warning at ALU.vhd(185): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 185
-Warning (10492): VHDL Process Statement warning at ALU.vhd(185): signal "complement" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 185
-Warning (10492): VHDL Process Statement warning at ALU.vhd(187): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 187
-Warning (10492): VHDL Process Statement warning at ALU.vhd(187): signal "complement" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 187
-Warning (10631): VHDL Process Statement warning at ALU.vhd(169): inferring latch(es) for signal or variable "E", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 169
-Info (10041): Inferred latch for "E" at ALU.vhd(169) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 169
+Warning (10492): VHDL Process Statement warning at ALU.vhd(165): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 165
+Warning (10492): VHDL Process Statement warning at ALU.vhd(165): signal "complement" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 165
+Warning (10492): VHDL Process Statement warning at ALU.vhd(165): signal "carry_in" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 165
+Warning (10492): VHDL Process Statement warning at ALU.vhd(177): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 177
+Warning (10492): VHDL Process Statement warning at ALU.vhd(177): signal "complement" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 177
+Warning (10492): VHDL Process Statement warning at ALU.vhd(179): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 179
+Warning (10492): VHDL Process Statement warning at ALU.vhd(179): signal "complement" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 179
+Warning (10631): VHDL Process Statement warning at ALU.vhd(159): inferring latch(es) for signal or variable "E", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 159
+Info (10041): Inferred latch for "E" at ALU.vhd(159) File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 159
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
 Warning (21074): Design contains 1 input pin(s) that do not drive logic
@@ -593,9 +591,9 @@ Warning (21074): Design contains 1 input pin(s) that do not drive logic
 Info (21057): Implemented 1 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 1 input pins
     Info (21059): Implemented 0 output pins
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 70 warnings
-    Info: Peak virtual memory: 437 megabytes
-    Info: Processing ended: Fri May  5 13:44:33 2023
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 62 warnings
+    Info: Peak virtual memory: 435 megabytes
+    Info: Processing ended: Fri May  5 16:46:46 2023
     Info: Elapsed time: 00:00:06
     Info: Total CPU time (on all processors): 00:00:14
 

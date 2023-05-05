@@ -164,10 +164,10 @@ architecture arch_Datapath of Datapath is
 	    INSTR : in std_logic_vector(122 downto 0);
 	    C_OUT : in std_logic;
 	    Z_OUT : in std_logic;
-	    RF_WR_out : out std_logic;
-	    C_WR_out : out std_logic;
-	    Z_WR_out : out std_logic;
-	    DMEM_WR_out : out std_logic;
+	    RF_WR : out std_logic;
+	    C_WR : out std_logic;
+	    Z_WR : out std_logic;
+	    DMEM_WR : out std_logic;
 	    clk : in std_logic
 	    );
     end component;
@@ -225,9 +225,9 @@ begin
     loader1: loader port map (MEMWB_out,RF_D3,RF_A3);
     
     se: SignExtender port map(RREX_out(15 downto 0),seOut);
-    alu1: ALU port map(PC_out,x"0002",Cflagout,x"0000","00",open,open,open,clk,alu1out);
+    alu1: ALU port map(PC_out,x"0002",Cflagout,x"b000","00",open,open,open,clk,alu1out);
     alu2: ALU port map(aluAin,aluBin,Cflagout,RREX_out(15 downto 0),alu2Con,Cflagin,Zflagin,open,clk,alu2out);
-    alu3: ALU port map(RREX_out(84 downto 69),seOut,Cflagout,x"0000","00",open,open,open,clk,alu3out);
+    alu3: ALU port map(RREX_out(84 downto 69),seOut,Cflagout,x"b000","00",open,open,open,clk,alu3out);
 	IF_ID:process(clk,Instruction1,Instruction2,PC_out)
 	begin
     -- 1st Pipeline Register
