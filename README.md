@@ -29,11 +29,12 @@ alumuxB
 -SE
 -data2
 -+1
-fwding unit B
+-fwding unit B
 
 --their final control signals will also be provided using fwding unit
 ##############
-
+forwarding  not working for store instruction as it fetches data from PR and not aluout.
+##############
 --throw_sig in datapath carries the value of the throw bit for the pipeline registers prior to EXMEM.
     --at the end of this cycle the branch instruction will enter mem stage and the last useless
     --instruction would have entered the IF stage.
@@ -105,6 +106,18 @@ add wave -position end  sim:/testbench_tb/instance/se/output
 add wave -position end  sim:/testbench_tb/instance/se/instruction
 add wave -position 19  sim:/testbench_tb/instance/RF/data_in3
 add wave -position 20  sim:/testbench_tb/instance/RF/address3
+
+
+add wave -position end  sim:/testbench_tb/instance/alu2/ALU_out
+add wave -position end  sim:/testbench_tb/instance/alu2/control_sel
+add wave -position end  sim:/testbench_tb/instance/alu2/A
+add wave -position end  sim:/testbench_tb/instance/alu2/B
+add wave -position end  sim:/testbench_tb/instance/RF/RF_data
+add wave -position end  sim:/testbench_tb/instance/RF/RF_write_enable
+add wave -position end  sim:/testbench_tb/instance/RF/regzero
+add wave -position end  sim:/testbench_tb/instance/rfcz1/RF_WR
+add wave -position end  sim:/testbench_tb/instance/DMem/Memory_write_enable
+add wave -position end  sim:/testbench_tb/instance/DMem/Memory_data(16)
 restart
 run
 run

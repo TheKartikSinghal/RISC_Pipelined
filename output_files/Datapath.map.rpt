@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Datapath
-Thu May  4 19:03:32 2023
+Fri May  5 13:44:33 2023
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -52,7 +52,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Thu May  4 19:03:32 2023       ;
+; Analysis & Synthesis Status        ; Successful - Fri May  5 13:44:33 2023       ;
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                      ; Datapath                                    ;
 ; Top-level Entity Name              ; Datapath                                    ;
@@ -281,8 +281,9 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-------------+--------+----------+-------------------------------------------------------------------------------------+
 ; Port        ; Type   ; Severity ; Details                                                                             ;
 +-------------+--------+----------+-------------------------------------------------------------------------------------+
-; b[15..1]    ; Input  ; Info     ; Stuck at GND                                                                        ;
-; b[0]        ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; b[15..2]    ; Input  ; Info     ; Stuck at GND                                                                        ;
+; b[1]        ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; b[0]        ; Input  ; Info     ; Stuck at GND                                                                        ;
 ; instruction ; Input  ; Info     ; Stuck at GND                                                                        ;
 ; control_sel ; Input  ; Info     ; Stuck at GND                                                                        ;
 ; c_flag      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
@@ -296,8 +297,9 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------+-------+----------+----------------------+
 ; Port     ; Type  ; Severity ; Details              ;
 +----------+-------+----------+----------------------+
-; c[15..1] ; Input ; Info     ; Stuck at GND         ;
-; c[0]     ; Input ; Info     ; Stuck at VCC         ;
+; c[15..2] ; Input ; Info     ; Stuck at GND         ;
+; c[1]     ; Input ; Info     ; Stuck at VCC         ;
+; c[0]     ; Input ; Info     ; Stuck at GND         ;
 +----------+-------+----------+----------------------+
 
 
@@ -381,7 +383,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Thu May  4 19:03:26 2023
+    Info: Processing started: Fri May  5 13:44:27 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off RISCee -c Datapath
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
@@ -428,7 +430,7 @@ Info (12021): Found 2 design units, including 1 entities, in source file Mux_4to
     Info (12022): Found design unit 1: Mux_4to1_16bit-arch_Mux_4to1_16bit File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 14
     Info (12023): Found entity 1: Mux_4to1_16bit File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file InstructionMemory.vhd
-    Info (12022): Found design unit 1: InstructionMemory-InstructionMemory_arch File: /home/kartik/RISC_Pipelined/InstructionMemory.vhd Line: 14
+    Info (12022): Found design unit 1: InstructionMemory-InstructionMemory_arch File: /home/kartik/RISC_Pipelined/InstructionMemory.vhd Line: 15
     Info (12023): Found entity 1: InstructionMemory File: /home/kartik/RISC_Pipelined/InstructionMemory.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file Datapath.vhd
     Info (12022): Found design unit 1: Datapath-arch_Datapath File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 10
@@ -443,32 +445,33 @@ Info (12021): Found 2 design units, including 1 entities, in source file testben
     Info (12022): Found design unit 1: testbench_tb-test_arch File: /home/kartik/RISC_Pipelined/testbench.vhd Line: 9
     Info (12023): Found entity 1: testbench_tb File: /home/kartik/RISC_Pipelined/testbench.vhd Line: 6
 Info (12127): Elaborating entity "Datapath" for the top level hierarchy
-Warning (10492): VHDL Process Statement warning at Datapath.vhd(267): signal "alu2out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 267
-Warning (10492): VHDL Process Statement warning at Datapath.vhd(289): signal "DataOut" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 289
-Warning (10873): Using initial value X (don't care) for net "IFID_in[122..85]" at Datapath.vhd(185) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 185
-Warning (10873): Using initial value X (don't care) for net "IFID_in[68..16]" at Datapath.vhd(185) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 185
-Warning (10873): Using initial value X (don't care) for net "IDRR_in[122..85]" at Datapath.vhd(185) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 185
-Warning (10873): Using initial value X (don't care) for net "IDRR_in[68..16]" at Datapath.vhd(185) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 185
-Warning (10873): Using initial value X (don't care) for net "RREX_in[122..85]" at Datapath.vhd(185) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 185
-Warning (10873): Using initial value X (don't care) for net "RREX_in[68..48]" at Datapath.vhd(185) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 185
-Warning (10873): Using initial value X (don't care) for net "EXMEM_in[122..101]" at Datapath.vhd(185) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 185
-Warning (10873): Using initial value X (don't care) for net "EXMEM_in[68..53]" at Datapath.vhd(185) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 185
-Warning (10873): Using initial value X (don't care) for net "EXMEM_in[51..50]" at Datapath.vhd(185) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 185
-Warning (10873): Using initial value X (don't care) for net "EXMEM_in[48]" at Datapath.vhd(185) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 185
-Warning (10873): Using initial value X (don't care) for net "MEMWB_in[106..101]" at Datapath.vhd(185) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 185
-Warning (10873): Using initial value X (don't care) for net "MEMWB_in[68..53]" at Datapath.vhd(185) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 185
-Warning (10873): Using initial value X (don't care) for net "MEMWB_in[51..48]" at Datapath.vhd(185) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 185
-Info (12128): Elaborating entity "PipelineRegister" for hierarchy "PipelineRegister:IFID" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 190
-Info (12128): Elaborating entity "InstructionMemory" for hierarchy "InstructionMemory:IMem" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 196
-Warning (10492): VHDL Process Statement warning at InstructionMemory.vhd(25): signal "Instructions" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/InstructionMemory.vhd Line: 25
-Info (12128): Elaborating entity "DataMemory" for hierarchy "DataMemory:DMem" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 197
+Warning (10492): VHDL Process Statement warning at Datapath.vhd(269): signal "alu2out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 269
+Warning (10492): VHDL Process Statement warning at Datapath.vhd(291): signal "DataOut" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 291
+Warning (10873): Using initial value X (don't care) for net "IFID_in[122..85]" at Datapath.vhd(186) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 186
+Warning (10873): Using initial value X (don't care) for net "IFID_in[68..16]" at Datapath.vhd(186) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 186
+Warning (10873): Using initial value X (don't care) for net "IDRR_in[122..85]" at Datapath.vhd(186) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 186
+Warning (10873): Using initial value X (don't care) for net "IDRR_in[68..16]" at Datapath.vhd(186) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 186
+Warning (10873): Using initial value X (don't care) for net "RREX_in[122..85]" at Datapath.vhd(186) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 186
+Warning (10873): Using initial value X (don't care) for net "RREX_in[68..48]" at Datapath.vhd(186) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 186
+Warning (10873): Using initial value X (don't care) for net "EXMEM_in[122..101]" at Datapath.vhd(186) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 186
+Warning (10873): Using initial value X (don't care) for net "EXMEM_in[68..53]" at Datapath.vhd(186) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 186
+Warning (10873): Using initial value X (don't care) for net "EXMEM_in[51..50]" at Datapath.vhd(186) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 186
+Warning (10873): Using initial value X (don't care) for net "EXMEM_in[48]" at Datapath.vhd(186) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 186
+Warning (10873): Using initial value X (don't care) for net "MEMWB_in[106..101]" at Datapath.vhd(186) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 186
+Warning (10873): Using initial value X (don't care) for net "MEMWB_in[68..53]" at Datapath.vhd(186) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 186
+Warning (10873): Using initial value X (don't care) for net "MEMWB_in[51..48]" at Datapath.vhd(186) File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 186
+Info (12128): Elaborating entity "PipelineRegister" for hierarchy "PipelineRegister:IFID" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 192
+Info (12128): Elaborating entity "InstructionMemory" for hierarchy "InstructionMemory:IMem" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 198
+Warning (10492): VHDL Process Statement warning at InstructionMemory.vhd(27): signal "Instructions" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/InstructionMemory.vhd Line: 27
+Warning (10492): VHDL Process Statement warning at InstructionMemory.vhd(28): signal "Instructions" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/InstructionMemory.vhd Line: 28
+Info (12128): Elaborating entity "DataMemory" for hierarchy "DataMemory:DMem" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 199
 Warning (10492): VHDL Process Statement warning at DataMemory.vhd(22): signal "Memory_write_enable" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/DataMemory.vhd Line: 22
 Warning (10492): VHDL Process Statement warning at DataMemory.vhd(23): signal "data_in_memory" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/DataMemory.vhd Line: 23
 Warning (10492): VHDL Process Statement warning at DataMemory.vhd(24): signal "Memory_data" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/DataMemory.vhd Line: 24
 Warning (10492): VHDL Process Statement warning at DataMemory.vhd(25): signal "Memory_write_enable" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/DataMemory.vhd Line: 25
 Warning (10492): VHDL Process Statement warning at DataMemory.vhd(26): signal "Memory_data" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/DataMemory.vhd Line: 26
 Warning (10631): VHDL Process Statement warning at DataMemory.vhd(20): inferring latch(es) for signal or variable "data_out_memory", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/DataMemory.vhd Line: 20
-Info (12128): Elaborating entity "RegisterFile" for hierarchy "RegisterFile:RF" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 198
+Info (12128): Elaborating entity "RegisterFile" for hierarchy "RegisterFile:RF" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 200
 Warning (10492): VHDL Process Statement warning at RegisterFile.vhd(26): signal "address3" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 26
 Warning (10492): VHDL Process Statement warning at RegisterFile.vhd(28): signal "address3" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 28
 Warning (10492): VHDL Process Statement warning at RegisterFile.vhd(30): signal "address3" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 30
@@ -518,7 +521,7 @@ Info (10041): Inferred latch for "data_out1[15]" at RegisterFile.vhd(64) File: /
 Info (10041): Inferred latch for "write:address3num[0]" at RegisterFile.vhd(26) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 26
 Info (10041): Inferred latch for "write:address3num[1]" at RegisterFile.vhd(26) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 26
 Info (10041): Inferred latch for "write:address3num[2]" at RegisterFile.vhd(26) File: /home/kartik/RISC_Pipelined/RegisterFile.vhd Line: 26
-Info (12128): Elaborating entity "Mux_4to1_16bit" for hierarchy "Mux_4to1_16bit:muxAluA" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 199
+Info (12128): Elaborating entity "Mux_4to1_16bit" for hierarchy "Mux_4to1_16bit:muxAluA" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 201
 Warning (10631): VHDL Process Statement warning at Mux_4to1_16bit.vhd(16): inferring latch(es) for signal or variable "output", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 16
 Info (10041): Inferred latch for "output[0]" at Mux_4to1_16bit.vhd(16) File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 16
 Info (10041): Inferred latch for "output[1]" at Mux_4to1_16bit.vhd(16) File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 16
@@ -536,17 +539,17 @@ Info (10041): Inferred latch for "output[12]" at Mux_4to1_16bit.vhd(16) File: /h
 Info (10041): Inferred latch for "output[13]" at Mux_4to1_16bit.vhd(16) File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 16
 Info (10041): Inferred latch for "output[14]" at Mux_4to1_16bit.vhd(16) File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 16
 Info (10041): Inferred latch for "output[15]" at Mux_4to1_16bit.vhd(16) File: /home/kartik/RISC_Pipelined/Mux_4to1_16bit.vhd Line: 16
-Info (12128): Elaborating entity "register_1bit" for hierarchy "register_1bit:cflag" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 202
-Info (12128): Elaborating entity "PC_MUX_Control_unit" for hierarchy "PC_MUX_Control_unit:pcController" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 205
+Info (12128): Elaborating entity "register_1bit" for hierarchy "register_1bit:cflag" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 204
+Info (12128): Elaborating entity "PC_MUX_Control_unit" for hierarchy "PC_MUX_Control_unit:pcController" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 207
 Warning (10492): VHDL Process Statement warning at PC_MUX_Control_unit.vhd(25): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd Line: 25
 Warning (10492): VHDL Process Statement warning at PC_MUX_Control_unit.vhd(28): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd Line: 28
 Warning (10492): VHDL Process Statement warning at PC_MUX_Control_unit.vhd(31): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd Line: 31
 Warning (10492): VHDL Process Statement warning at PC_MUX_Control_unit.vhd(34): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd Line: 34
 Warning (10492): VHDL Process Statement warning at PC_MUX_Control_unit.vhd(37): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd Line: 37
 Warning (10492): VHDL Process Statement warning at PC_MUX_Control_unit.vhd(40): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/PC_MUX_Control_unit.vhd Line: 40
-Info (12128): Elaborating entity "FwdA" for hierarchy "FwdA:fwderA" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 216
-Info (12128): Elaborating entity "FwdB" for hierarchy "FwdB:fwderB" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 217
-Info (12128): Elaborating entity "Executor" for hierarchy "Executor:exec" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 218
+Info (12128): Elaborating entity "FwdA" for hierarchy "FwdA:fwderA" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 218
+Info (12128): Elaborating entity "FwdB" for hierarchy "FwdB:fwderB" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 219
+Info (12128): Elaborating entity "Executor" for hierarchy "Executor:exec" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 220
 Warning (10631): VHDL Process Statement warning at Execution.vhd(16): inferring latch(es) for signal or variable "ALU_MUXA_SEL", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/Execution.vhd Line: 16
 Warning (10631): VHDL Process Statement warning at Execution.vhd(16): inferring latch(es) for signal or variable "ALU_MUXB_SEL", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/Execution.vhd Line: 16
 Warning (10631): VHDL Process Statement warning at Execution.vhd(16): inferring latch(es) for signal or variable "ALU_SEL", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/Execution.vhd Line: 16
@@ -556,10 +559,10 @@ Info (10041): Inferred latch for "ALU_MUXB_SEL[0]" at Execution.vhd(16) File: /h
 Info (10041): Inferred latch for "ALU_MUXB_SEL[1]" at Execution.vhd(16) File: /home/kartik/RISC_Pipelined/Execution.vhd Line: 16
 Info (10041): Inferred latch for "ALU_MUXA_SEL[0]" at Execution.vhd(16) File: /home/kartik/RISC_Pipelined/Execution.vhd Line: 16
 Info (10041): Inferred latch for "ALU_MUXA_SEL[1]" at Execution.vhd(16) File: /home/kartik/RISC_Pipelined/Execution.vhd Line: 16
-Info (12128): Elaborating entity "Stall_and_throw" for hierarchy "Stall_and_throw:ST" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 220
-Info (12128): Elaborating entity "load_hazards" for hierarchy "load_hazards:LH" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 221
+Info (12128): Elaborating entity "Stall_and_throw" for hierarchy "Stall_and_throw:ST" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 222
+Info (12128): Elaborating entity "load_hazards" for hierarchy "load_hazards:LH" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 223
 Warning (10620): VHDL warning at load_hazards.vhd(38): comparison between unequal length operands always returns FALSE File: /home/kartik/RISC_Pipelined/load_hazards.vhd Line: 38
-Info (12128): Elaborating entity "RFCZ" for hierarchy "RFCZ:rfcz1" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 222
+Info (12128): Elaborating entity "RFCZ" for hierarchy "RFCZ:rfcz1" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 224
 Warning (10445): VHDL Subtype or Type Declaration warning at RF_C_Z.vhd(28): subtype or type has null range File: /home/kartik/RISC_Pipelined/RF_C_Z.vhd Line: 28
 Warning (10620): VHDL warning at RF_C_Z.vhd(28): comparison between unequal length operands always returns FALSE File: /home/kartik/RISC_Pipelined/RF_C_Z.vhd Line: 28
 Warning (10492): VHDL Process Statement warning at RF_C_Z.vhd(29): signal "opcode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RF_C_Z.vhd Line: 29
@@ -568,26 +571,10 @@ Warning (10492): VHDL Process Statement warning at RF_C_Z.vhd(70): signal "opcod
 Warning (10492): VHDL Process Statement warning at RF_C_Z.vhd(76): signal "opcode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RF_C_Z.vhd Line: 76
 Warning (10492): VHDL Process Statement warning at RF_C_Z.vhd(82): signal "opcode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RF_C_Z.vhd Line: 82
 Warning (10492): VHDL Process Statement warning at RF_C_Z.vhd(88): signal "opcode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/RF_C_Z.vhd Line: 88
-Info (12128): Elaborating entity "loader" for hierarchy "loader:loader1" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 223
-Info (12128): Elaborating entity "SignExtender" for hierarchy "SignExtender:se" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 225
+Info (12128): Elaborating entity "loader" for hierarchy "loader:loader1" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 225
+Info (12128): Elaborating entity "SignExtender" for hierarchy "SignExtender:se" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 227
 Warning (10631): VHDL Process Statement warning at signExtender.vhd(19): inferring latch(es) for signal or variable "output", which holds its previous value in one or more paths through the process File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 19
-Info (10041): Inferred latch for "output[0]" at signExtender.vhd(19) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 19
-Info (10041): Inferred latch for "output[1]" at signExtender.vhd(19) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 19
-Info (10041): Inferred latch for "output[2]" at signExtender.vhd(19) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 19
-Info (10041): Inferred latch for "output[3]" at signExtender.vhd(19) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 19
-Info (10041): Inferred latch for "output[4]" at signExtender.vhd(19) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 19
-Info (10041): Inferred latch for "output[5]" at signExtender.vhd(19) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 19
-Info (10041): Inferred latch for "output[6]" at signExtender.vhd(19) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 19
-Info (10041): Inferred latch for "output[7]" at signExtender.vhd(19) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 19
-Info (10041): Inferred latch for "output[8]" at signExtender.vhd(19) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 19
-Info (10041): Inferred latch for "output[9]" at signExtender.vhd(19) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 19
-Info (10041): Inferred latch for "output[10]" at signExtender.vhd(19) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 19
-Info (10041): Inferred latch for "output[11]" at signExtender.vhd(19) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 19
-Info (10041): Inferred latch for "output[12]" at signExtender.vhd(19) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 19
-Info (10041): Inferred latch for "output[13]" at signExtender.vhd(19) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 19
-Info (10041): Inferred latch for "output[14]" at signExtender.vhd(19) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 19
-Info (10041): Inferred latch for "output[15]" at signExtender.vhd(19) File: /home/kartik/RISC_Pipelined/signExtender.vhd Line: 19
-Info (12128): Elaborating entity "ALU" for hierarchy "ALU:alu1" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 226
+Info (12128): Elaborating entity "ALU" for hierarchy "ALU:alu1" File: /home/kartik/RISC_Pipelined/Datapath.vhd Line: 228
 Warning (10540): VHDL Signal Declaration warning at ALU.vhd(36): used explicit default value for signal "OpCode" because signal was never assigned a value File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 36
 Warning (10540): VHDL Signal Declaration warning at ALU.vhd(37): used explicit default value for signal "complement" because signal was never assigned a value File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 37
 Warning (10492): VHDL Process Statement warning at ALU.vhd(173): signal "OpCode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/kartik/RISC_Pipelined/ALU.vhd Line: 173
@@ -606,9 +593,9 @@ Warning (21074): Design contains 1 input pin(s) that do not drive logic
 Info (21057): Implemented 1 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 1 input pins
     Info (21059): Implemented 0 output pins
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 69 warnings
-    Info: Peak virtual memory: 436 megabytes
-    Info: Processing ended: Thu May  4 19:03:32 2023
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 70 warnings
+    Info: Peak virtual memory: 437 megabytes
+    Info: Processing ended: Fri May  5 13:44:33 2023
     Info: Elapsed time: 00:00:06
     Info: Total CPU time (on all processors): 00:00:14
 

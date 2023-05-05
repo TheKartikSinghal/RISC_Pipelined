@@ -12,7 +12,8 @@ architecture arch_Datapath of Datapath is
     component InstructionMemory is
         port(
             address : in std_logic_vector(15 downto 0);
-            output : out std_logic_vector(15 downto 0);
+            output1 : out std_logic_vector(7 downto 0);
+            output2 : out std_logic_vector(7 downto 0);
             clk: in std_logic
             );
     end component;
@@ -180,12 +181,13 @@ architecture arch_Datapath of Datapath is
     end component;
 
 
-    signal Instruction, RF_D1, RF_D2, RF_D3, PC_out, alu1out, alu3out, alu2out, DataAdd, DataIn, DataOut, aluAin, aluBin, seOut, PC_in ,fwdtomuxA,fwdtomuxB:std_logic_vector(15 downto 0);
+    signal RF_D1, RF_D2, RF_D3, PC_out, alu1out, alu3out, alu2out, DataAdd, DataIn, DataOut, aluAin, aluBin, seOut, PC_in ,fwdtomuxA,fwdtomuxB:std_logic_vector(15 downto 0);
     signal RF_A1,RF_A2,RF_A3 : std_logic_vector(2 downto 0);
     signal IFID_in,IFID_out,IDRR_in,IDRR_out,RREX_in,RREX_out,EXMEM_in,EXMEM_out,MEMWB_in,MEMWB_out: std_logic_vector(122 downto 0);
     signal Cflagin,Cflagout,C_WE,Zflagin,Zflagout,Z_WE,DMem_WE,DMem_WE_out,RF_WE,RF_WE_out,throw_sig,check_sig,PC_WE: std_logic;
     signal muxpcCon,muxAluA_con,muxAluB_con,alu2con,exextofwderA,exextofwderB:std_logic_vector(1 downto 0);
     signal IFID_rst,IFID_WE,IDRR_rst,IDRR_WE,RREX_rst,RREX_WE,EXMEM_rst,EXMEM_WE,MEMWB_rst,MEMWB_WE: std_logic;
+    signal Instruction1,Instruction2 : std_logic_vector(7 downto 0);
 begin
     IFID: PipelineRegister port map(IFID_in,IFID_out,clk,IFID_rst,IFID_WE);
     IDRR: PipelineRegister port map(IDRR_in,IDRR_out,clk,IDRR_rst,IDRR_WE);
@@ -193,12 +195,12 @@ begin
     EXMEM: PipelineRegister port map(EXMEM_in,EXMEM_out,clk,EXMEM_rst,EXMEM_WE);
     MEMWB: PipelineRegister port map(MEMWB_in,MEMWB_out,clk,MEMWB_rst,MEMWB_WE);
 	
-	IMem: InstructionMemory port map(PC_out,Instruction,clk);
+	IMem: InstructionMemory port map(PC_out,Instruction1,Instruction2,clk);
     DMem: DataMemory port map(DataAdd,DataIn,DataOut,clk,DMem_WE);
     RF: RegisterFile port map(RF_A1,RF_A2,RF_A3, RF_D1, RF_D2, RF_D3,clk,RF_WE,PC_in,PC_out,PC_WE);
     muxAluA: Mux_4to1_16bit port map(muxAluA_con,RREX_out(31 downto 16),RREX_out(47 downto 32),RREX_out(84 downto 69),fwdtomuxA,clk,aluAin);
     muxpc: Mux_4to1_16bit port map(muxpcCon,alu1out,alu2out,alu3out,RREX_out(47 downto 32),clk,PC_in);
-    muxAluB: Mux_4to1_16bit port map(muxAluB_con,seOut,RREX_out(47 downto 32),x"0001",fwdtomuxB,clk,aluBin);
+    muxAluB: Mux_4to1_16bit port map(muxAluB_con,seOut,RREX_out(47 downto 32),x"0002",fwdtomuxB,clk,aluBin);
     cflag: register_1bit port map(Cflagin,Cflagout,clk,C_WE);
     zflag: register_1bit port map(Zflagin,Zflagout,clk,Z_WE);
     
@@ -223,15 +225,15 @@ begin
     loader1: loader port map (MEMWB_out,RF_D3,RF_A3);
     
     se: SignExtender port map(RREX_out(15 downto 0),seOut);
-    alu1: ALU port map(PC_out,x"0001",Cflagout,x"0000","00",open,open,open,clk,alu1out);
+    alu1: ALU port map(PC_out,x"0002",Cflagout,x"0000","00",open,open,open,clk,alu1out);
     alu2: ALU port map(aluAin,aluBin,Cflagout,RREX_out(15 downto 0),alu2Con,Cflagin,Zflagin,open,clk,alu2out);
     alu3: ALU port map(RREX_out(84 downto 69),seOut,Cflagout,x"0000","00",open,open,open,clk,alu3out);
-	 
-	IF_ID:process(clk,Instruction,PC_out)
+	IF_ID:process(clk,Instruction1,Instruction2,PC_out)
 	begin
     -- 1st Pipeline Register
     --IFID will only take in instrucion and PC
-    IFID_in(15 downto 0) <= Instruction;
+    IFID_in(7 downto 0) <= Instruction2;
+    IFID_in(15 downto 8) <= Instruction1;
     IFID_in(84 downto 69) <= PC_out;
 	end process;
 	 

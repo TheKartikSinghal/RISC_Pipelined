@@ -20,17 +20,23 @@ architecture arch_SignExtender of SignExtender is
     begin
     --OpCode <= instruction(15 downto 12);
     --input <= instruction(8 downto 0);
-    if (instruction(15 downto 12)="0000" or instruction(15 downto 12)="0100" or instruction(15 downto 12)="0101" or  instruction(15 downto 12)="1000" or instruction(15 downto 12)="1001"or instruction(15 downto 12)="1010") then
+    if (instruction(15 downto 12)="0000" or instruction(15 downto 12)="0100" or instruction(15 downto 12)="0101") then
         if (instruction(5) = '1') then
             output <= "1111111111"&instruction(5 downto 0);
         elsif (instruction(5) = '0') then
             output <= "0000000000"&instruction(5 downto 0);
         end if;
+    elsif(instruction(15 downto 12)="1000" or instruction(15 downto 12)="1001"or instruction(15 downto 12)="1010") then
+        if (instruction(5) = '1') then
+            output <= "111111111"&instruction(5 downto 0)&'0';
+        elsif (instruction(5) = '0') then
+            output <= "000000000"&instruction(5 downto 0)&'0';
+        end if;
     elsif (instruction(15 downto 12)="1100" or instruction(15 downto 12)="1111") then
         if (instruction(8) = '1') then
-            output <= "1111111"&instruction(8 downto 0);
-        elsif (instruction(5) = '0') then
-            output <= "0000000"&instruction(8 downto 0);
+            output <= "111111"&instruction(8 downto 0)&'0';
+        elsif (instruction(8) = '0') then
+            output <= "000000"&instruction(8 downto 0)&'0';
         end if;
     elsif (instruction(15 downto 12)= "0011") then
         output <= "0000000"&instruction(8 downto 0);

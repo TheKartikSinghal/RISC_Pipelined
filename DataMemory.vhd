@@ -20,10 +20,10 @@ architecture DataMemory_arch of DataMemory is
     process(clk,address_memory)
         begin
             if(Memory_write_enable='1') then
-            Memory_data(to_integer(unsigned(address_memory(6 downto 0)))) <= data_in_memory;
-            data_out_memory <= Memory_data(to_integer(unsigned(address_memory(6 downto 0))));
+            Memory_data(to_integer(unsigned(address_memory(5 downto 0)))) <= data_in_memory;
+            data_out_memory <= Memory_data(to_integer(unsigned(address_memory(5 downto 0))));
             elsif(Memory_write_enable='0') then
-            data_out_memory <= Memory_data(to_integer(unsigned(address_memory(6 downto 0))));
+            data_out_memory <= Memory_data(to_integer(unsigned(address_memory(5 downto 0))));
         end if;
     end process;
     
