@@ -1,0 +1,50 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity loader is 
+    port(
+        PR_MEMWB: in std_logic_vector(122 downto 0);
+        data: out std_logic_vector(15 downto 0);
+        address: out std_logic_vector(2 downto 0)
+    );
+end entity;
+
+architecture loader_arch of loader is
+begin
+    process(PR_MEMWB)
+    begin
+    if (PR_MEMWB(15 downto 12) = "0001" or PR_MEMWB(15 downto 12) = "0010") then
+    -- ADD, NAND
+    data <=PR_MEMWB(100 downto 85);--alu data out 
+    address <= PR_MEMWB(5 downto 3);--RC from the instruction
+
+    elsif (PR_MEMWB(15 downto 12) = "0011") then
+    --LLI
+    data <= PR_MEMWB(100 downto 85); -- alu data out 
+    address <= PR_MEMWB(11 downto 9);
+
+    elsif (PR_MEMWB(15 downto 12) = "0000") then
+    --ADI
+    data <= PR_MEMWB(100 downto 85);
+    address <= PR_MEMWB(8 downto 6);
+
+    elsif (PR_MEMWB(15 downto 12) = "0100" or PR_MEMWB(15 downto 12) = "0101") then
+    data <= PR_MEMWB(122 downto 107);--data brought from memory
+    address <= PR_MEMWB(11 downto 9);--RA for load and store
+
+    elsif (PR_MEMWB(15 downto 12) = "1100" or PR_MEMWB(15 downto 12) = "1101") then
+    data <= PR_MEMWB(100 downto 85);--alu out 
+    address <= PR_MEMWB(11 downto 9);
+	 
+	 elsif( PR_MEMWB(15 DOWNTO 12) = "0110") THEN --LM
+	 data <= PR_MEMWB(122 downto 107); --data got from memory
+	 address <= PR_MEMWB(105 DOWNTO 103);
+    
+    else
+    data <= PR_MEMWB(100 downto 85);
+    address <= PR_MEMWB(5 downto 3);
+
+    end if;
+end process;
+end architecture;

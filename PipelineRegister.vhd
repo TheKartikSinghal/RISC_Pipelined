@@ -4,21 +4,31 @@ use IEEE.numeric_std.all;
 
 entity PipelineRegister is
     port(
-    data_in : in std_logic_vector(100 downto 0);
-    data_out : out std_logic_vector(100 downto 0);
-    clk: in std_logic
+    data_in : in std_logic_vector(122 downto 0);
+    data_out : out std_logic_vector(122 downto 0);
+    clk: in std_logic;
+    rst: in std_logic;
+    PR_WE: in std_logic
     );
 end PipelineRegister;
 
 architecture arch_PipelineRegister of PipelineRegister is
-    signal data : std_logic_vector(100 downto 0) := (others => '0');
+    signal data : std_logic_vector(122 downto 0) := (others => '0');
     begin
-        process(clk)
+        process(clk,rst,PR_WE,data_in)
         begin
-		  if(clk'event and clk='0') then
-            data <= data_in;
-            data_out <= data_in;
-		  
-		  end if;
+        if(clk'event and clk='0')then
+            if (rst='1') then
+                data <=(15=>'1',14=>'0',13=>'1',12=>'1',others => '0');
+                data_out <= (15=>'1',14=>'0',13=>'1',12=>'1',others => '0');
+			else
+                if(PR_WE='1') then
+                    data <= data_in;
+                    data_out <= data_in;
+                else
+                    data_out <= data;
+		        end if;
+            end if;
+        end if;
     end process;
 end arch_PipelineRegister;
