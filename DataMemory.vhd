@@ -15,7 +15,7 @@ entity DataMemory is
 end DataMemory;
 architecture DataMemory_arch of DataMemory is
     type Memory is array (0 to 63) of std_logic_vector (15 downto 0);
-    signal Memory_data: Memory := (15 => x"ffff",others => x"0000");
+    signal Memory_data: Memory := (1 => x"0000", 2 => x"0000",15 => x"ffff",others => x"0000");
     begin
     process(clk,address_memory)
         begin

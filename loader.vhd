@@ -36,9 +36,13 @@ begin
     elsif (PR_MEMWB(15 downto 12) = "1100" or PR_MEMWB(15 downto 12) = "1101") then
     data <= PR_MEMWB(100 downto 85);--alu out 
     address <= PR_MEMWB(11 downto 9);
+	 
+	 elsif( PR_MEMWB(15 DOWNTO 12) = "0110") THEN --LM
+	 data <= PR_MEMWB(122 downto 107); --data got from memory
+	 address <= PR_MEMWB(105 DOWNTO 103);
     
     else
-    data <=PR_MEMWB(100 downto 85);
+    data <= PR_MEMWB(100 downto 85);
     address <= PR_MEMWB(5 downto 3);
 
     end if;

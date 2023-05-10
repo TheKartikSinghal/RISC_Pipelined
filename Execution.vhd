@@ -49,7 +49,13 @@ case PR1(15 downto 12) is --conditioning on the opcode.
 		ALU_SEL <= "00"; --adding for BTA(branch target address) calculation
 
 	when "0110" => --LM
+	    ALU_MUXA_SEL <= "00";
+		 ALU_MUXB_SEL <= "10";
+		 ALU_SEL <= "00";
 	when "0111" => --SM
+	   ALU_MUXA_SEL <= "00";
+		 ALU_MUXB_SEL <= "10";
+		 ALU_SEL <= "00";
 		
 	when "1000" => --BEQ
 	--change to subb

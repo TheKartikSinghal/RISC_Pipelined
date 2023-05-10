@@ -95,15 +95,17 @@ architecture arch_Datapath of Datapath is
     end component;
 
      component PC_MUX_Control_unit is 
-    port (
+      port (
         instruction: in std_logic_vector(15 downto 0);
         C: in std_logic;
-		  Z: in std_logic; 
+		Z: in std_logic; 
+		LS_DETECT: in std_logic_vector(0 downto 0);
         con_sel: out std_logic_vector(1 downto 0);
         clk: in std_logic;
-		  throw_bit: out std_logic
-	 ); 
-    end component;
+		throw_bit,LS_NOP: out std_logic
+        --only purpose of the clock is for changing the control select lines using C/Z signals.
+    ); 
+     end component;
 
     component FwdA is
 	port (
@@ -140,15 +142,16 @@ architecture arch_Datapath of Datapath is
 
     component Stall_and_throw is
     port(
-        CHECKBIT,THROWBIT : in std_logic;
-        IFID_PR_WR,IFID_RST,
-        IDRR_PR_WR,IDRR_RST,
-        RREX_PR_WR,RREX_RST,
-        EXMEM_PR_WR,EXMEM_RST,
-        MEMWB_PR_WR,MEMWB_RST,
-        PC_WR: out std_logic
-        );
-    end component;
+      LM_SM_DETECTOR : in std_logic_vector(0 downto 0);
+      CHECKBIT,THROWBIT,LSNOP : in std_logic;
+      IFID_PR_WR,IFID_RST,
+      IDRR_PR_WR,IDRR_RST,
+      RREX_PR_WR,RREX_RST,
+      EXMEM_PR_WR,EXMEM_RST,
+      MEMWB_PR_WR,MEMWB_RST,
+      PC_WR: out std_logic
+      );
+     end component;
 
     component load_hazards is
     port( 
@@ -164,10 +167,10 @@ architecture arch_Datapath of Datapath is
 	    INSTR : in std_logic_vector(122 downto 0);
 	    C_OUT : in std_logic;
 	    Z_OUT : in std_logic;
-	    RF_WR : out std_logic;
-	    C_WR : out std_logic;
-	    Z_WR : out std_logic;
-	    DMEM_WR : out std_logic;
+	    RF_WR_out : out std_logic;
+	    C_WR_out : out std_logic;
+	    Z_WR_out : out std_logic;
+	    DMEM_WR_out : out std_logic;
 	    clk : in std_logic
 	    );
     end component;
@@ -179,15 +182,75 @@ architecture arch_Datapath of Datapath is
         address: out std_logic_vector(2 downto 0)
         );
     end component;
+	 
+	 component RR is
+   port( PR1 : in std_logic_vector(122 downto 0); --IDRR/MEMWB REG
+      rstlsm_out : out std_logic_vector(7 downto 0);
+		--clk : in std_logic;
+	   rf_addr : out std_logic_vector(2 downto 0);
+		unincremented_mem_addr : out std_logic_vector(15 downto 0);
+		lm_sm_on : out std_logic_vector(0 downto 0)
+      );
+
+    end component;
+	 
+	 component RRINDECIDER is
+    port (LSDETECT:in std_logic_vector(0 downto 0);
+         IDRRREG:IN std_logic_vector(122 downto 0);
+        MEMWBREG : in std_logic_vector(122 downto 0);
+        INPUTRR : OUT STD_LOGIC_VECTOR(122 DOWNTO 0));
+ 
+     end component ;
+	  
+	 COMPONENT Mux_2to1_3bit is
+    port(
+        con_sel: in std_logic_vector(0 downto 0);
+        A,B: in std_logic_vector(2 downto 0);
+        --clk: in std_logic;
+        output: out std_logic_vector(2 downto 0)
+    );
+    end COMPONENT;
+	 
+	 COMPONENT Mux_2to1_8bit is
+    port(
+        con_sel: in std_logic_vector(0 downto 0);
+        A,B: in std_logic_vector(7 downto 0);
+        --clk: in std_logic;
+        output: out std_logic_vector(7 downto 0)
+    );
+    end COMPONENT;
+	 
+	 COMPONENT Mux_2to1_16bit is
+    port(
+        con_sel: in std_logic_vector(0 downto 0);
+        A,B: in std_logic_vector(15 downto 0);
+        --clk: in std_logic;
+        output: out std_logic_vector(15 downto 0)
+    );
+    end COMPONENT;
+	 
+	 component MEMACCESS is 
+    port(
+        PR_EXMEM: in std_logic_vector(122 downto 0);
+        datain: out std_logic_vector(15 downto 0);
+        --dataout: out std_logic_vector(15 downto 0);
+		  dataadd : out std_logic_vector(15 downto 0)
+    );
+   end component;
 
 
     signal RF_D1, RF_D2, RF_D3, PC_out, alu1out, alu3out, alu2out, DataAdd, DataIn, DataOut, aluAin, aluBin, seOut, PC_in ,fwdtomuxA,fwdtomuxB:std_logic_vector(15 downto 0);
     signal RF_A1,RF_A2,RF_A3 : std_logic_vector(2 downto 0);
     signal IFID_in,IFID_out,IDRR_in,IDRR_out,RREX_in,RREX_out,EXMEM_in,EXMEM_out,MEMWB_in,MEMWB_out: std_logic_vector(122 downto 0);
-    signal Cflagin,Cflagout,C_WE,Zflagin,Zflagout,Z_WE,DMem_WE,DMem_WE_out,RF_WE,RF_WE_out,throw_sig,check_sig,PC_WE: std_logic;
+    signal Cflagin,Cflagout,C_WE,Zflagin,Zflagout,Z_WE,DMem_WE,DMem_WE_out,RF_WE,RF_WE_out,lsnop_sig,throw_sig,check_sig,PC_WE: std_logic;
     signal muxpcCon,muxAluA_con,muxAluB_con,alu2con,exextofwderA,exextofwderB:std_logic_vector(1 downto 0);
     signal IFID_rst,IFID_WE,IDRR_rst,IDRR_WE,RREX_rst,RREX_WE,EXMEM_rst,EXMEM_WE,MEMWB_rst,MEMWB_WE: std_logic;
     signal Instruction1,Instruction2 : std_logic_vector(7 downto 0);
+	 signal input_to_RR : std_logic_vector(122 downto 0);
+	 signal output_from_RR, RREX_8 : std_logic_vector(7 downto 0);
+	 signal pe_addr:std_logic_vector(2 downto 0);
+	 signal LM_SM_DETECT : std_logic_vector(0 downto 0) := "0";
+	 signal uninc_mem_addr, EXMEM_DATA1, RREXOUT_DATA2:std_logic_vector(15 downto 0);
 begin
     IFID: PipelineRegister port map(IFID_in,IFID_out,clk,IFID_rst,IFID_WE);
     IDRR: PipelineRegister port map(IDRR_in,IDRR_out,clk,IDRR_rst,IDRR_WE);
@@ -204,8 +267,9 @@ begin
     cflag: register_1bit port map(Cflagin,Cflagout,clk,C_WE);
     zflag: register_1bit port map(Zflagin,Zflagout,clk,Z_WE);
     
-    pcController: PC_MUX_Control_unit port map(RREX_out(15 downto 0),Cflagin,Zflagin,muxpcCon,clk,throw_sig);
-    
+    pcController: PC_MUX_Control_unit port map(RREX_out(15 downto 0),Cflagin,Zflagin,LM_SM_DETECT,muxpcCon,clk,throw_sig,lsnop_sig);
+    lm_sm : RR port map(input_to_RR, output_from_RR, pe_addr,uninc_mem_addr,LM_SM_DETECT );
+	 RRINPUT : RRINDECIDER PORT MAP(LM_SM_DETECT, IDRR_out, MEMWB_out, input_to_RR);
     --throw_sig carries the value of the throw bit for the pipeline registers prior to EXMEM.
     --at the end of this cycle the branch instruction will enter mem stage and the last useless
     --instruction would have entered the IF stage.
@@ -214,20 +278,24 @@ begin
     --INTO RF OR MEM (LIKE BRANCH INSTRUCTIONS)
     --possible solution => make all bits 0 so it becomes a add instruction and then make WEs 0 so that 
     -- there is no danger.
-
+    RFA1_MUX : Mux_2to1_3bit PORT MAP(LM_SM_DETECT,IFID_out(11 downto 9),pe_addr,RF_A1);
     fwderA: FwdA port map (MEMWB_out,EXMEM_out,RREX_out,exextofwderA,fwdtomuxA,muxAluA_con);
     fwderB: FwdB port map (MEMWB_out,EXMEM_out,RREX_out,exextofwderB,fwdtomuxB,muxAluB_con);
     exec: Executor port map(RREX_out(15 downto 0),alu2con,exextofwderA,exextofwderB);
 
-    ST: stall_and_throw port map(check_sig,throw_sig,IFID_WE,IFID_rst,IDRR_WE,IDRR_rst,RREX_WE,RREX_rst,EXMEM_WE,EXMEM_rst,MEMWB_WE,MEMWB_rst,PC_WE);
+    ST: stall_and_throw port map(LM_SM_DETECT,check_sig,throw_sig,lsnop_sig,IFID_WE,IFID_rst,IDRR_WE,IDRR_rst,RREX_WE,RREX_rst,EXMEM_WE,EXMEM_rst,MEMWB_WE,MEMWB_rst,PC_WE);
     LH: load_hazards port map(IDRR_out,IFID_out,check_sig) ;
     rfcz1: RFCZ port map(RREX_out,Cflagout,Zflagout,RF_WE_out,C_WE,Z_WE,DMem_WE_out,clk);
     loader1: loader port map (MEMWB_out,RF_D3,RF_A3);
-    
+    memaccess1 : MEMACCESS port map(EXMEM_out, DataIn, DataAdd);
     se: SignExtender port map(RREX_out(15 downto 0),seOut);
     alu1: ALU port map(PC_out,x"0002",Cflagout,x"b000","00",open,open,open,clk,alu1out);
     alu2: ALU port map(aluAin,aluBin,Cflagout,RREX_out(15 downto 0),alu2Con,Cflagin,Zflagin,open,clk,alu2out);
     alu3: ALU port map(RREX_out(84 downto 69),seOut,Cflagout,x"b000","00",open,open,open,clk,alu3out);
+	 EXMEMIN_DATA1_MUX : Mux_2to1_16bit PORT MAP(LM_SM_DETECT,RREX_out (31 downto 16),alu2out, EXMEM_DATA1);
+	 RREXOUT_LAST8_MUX : Mux_2to1_8bit PORT MAP(LM_SM_DETECT,IDRR_out(7 downto 0), output_from_RR, RREX_8);
+	 RREXOUT_DATA2_MUX : Mux_2to1_16bit PORT MAP(LM_SM_DETECT,IDRR_out (47 downto 32),uninc_mem_addr(15 downto 0),RREXOUT_DATA2);
+	 
 	IF_ID:process(clk,Instruction1,Instruction2,PC_out)
 	begin
     -- 1st Pipeline Register
@@ -245,18 +313,25 @@ begin
     IDRR_in(84 downto 69)<=IFID_out(84 downto 69);--just copying PC
     --control signals which are supposed to be decided during the ID stage also need to added here. 
     --and also forwarded to other registers.
+	 --RF_A1 <= IDRR_out(11 downto 9);--incase of ADA encoding was 0001/RA*/RB/RC/0/00
+    RF_A2 <= IFID_out(8 downto 6);--incase of ADA encoding was 0001/RA/RB*/RC/0/00
+	 IDRR_in (31 downto 16) <= RF_D1;-- fetching data RA
+    IDRR_in (47 downto 32) <= RF_D2;-- fetching data RB
     end process;
 
     RR_EX: process(clk,IDRR_out,RF_D1,RF_D2)
     begin
-    RF_A1 <= IDRR_out(11 downto 9);--incase of ADA encoding was 0001/RA*/RB/RC/0/00
-    RF_A2 <= IDRR_out(8 downto 6);--incase of ADA encoding was 0001/RA/RB*/RC/0/00
+    
 
     -- 3rd Pipeline Register
     RREX_in (15 downto 0)  <= IDRR_out(15 downto 0);--just copying instruction
     RREX_in (84 downto 69)<= IDRR_out(84 downto 69);--just copying PC
-    RREX_in (31 downto 16) <= RF_D1;-- fetching data RA
-    RREX_in (47 downto 32) <= RF_D2;-- fetching data RB
+	 RREX_in(105 downto 103) <= pe_addr;
+	 RREX_in (31 downto 16) <= IDRR_out (31 downto 16);--forwarding the data RA
+	 RREX_in(7 downto 0) <= RREX_8;
+	 RREX_in(47 downto 32) <= RREXOUT_DATA2;
+	 RREX_in(68 downto 53) <= RF_D1; --sm
+    
     end process;
 
     EX_MEM: process(clk,RREX_out,alu1out,RF_WE_out,DMem_WE_out)
@@ -264,11 +339,14 @@ begin
     -- 4th Pipeline Register
     EXMEM_in (15 downto 0)  <= RREX_out(15 downto 0);--just copying instruction
     EXMEM_in (84 downto 69) <= RREX_out(84 downto 69);--just copying PC
-    EXMEM_in (31 downto 16) <= RREX_out (31 downto 16);--forwarding the data RA
+    --EXMEM_in (31 downto 16) <= RREX_out (31 downto 16);--forwarding the data RA
     EXMEM_in (47 downto 32) <= RREX_out (47 downto 32);--forwarding the data RB
     EXMEM_in (100 downto 85) <= alu2out; 
     EXMEM_in(52)<=RF_WE_out; --RF_WE
     EXMEM_in(49)<=DMem_WE_out; --DMEM_WE
+	 EXMEM_in (68 downto 53) <= RREX_out(68 downto 53);--sm data
+	 EXMEM_in (105 downto 103) <= RREX_out(105 downto 103);--peaddr
+	 EXMEM_in(31 downto 16) <= EXMEM_DATA1;
 
     --WE signals might also need to be changed here.
     --also add the wires from EXMEM to DMem
@@ -286,8 +364,8 @@ begin
     MEMWB_in (100 downto 85) <=EXMEM_out (100 downto 85);--alu out in general
     MEMWB_in(52) <= EXMEM_out(52);
     DMem_WE<=EXMEM_out(49);
-    DataAdd <= EXMEM_out (100 downto 85);--alu out from address calculation
-    DataIn <= EXMEM_out (31 downto 16);--data from RA in RF into MEM.
+    --DataAdd <= EXMEM_out (100 downto 85);--alu out from address calculation
+    --DataIn <= EXMEM_out (31 downto 16);--data from RA in RF into MEM.
     MEMWB_in(122 downto 107) <= DataOut;
     end process;
 
